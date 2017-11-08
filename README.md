@@ -1,2 +1,3 @@
-# magic-inventory-client
-magic inventory client side 
+# Magic Inventory client
+
+Inventory for mtg

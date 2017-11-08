@@ -1,0 +1,14 @@
+{
+  "name": "magic-inventory",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Nolan Aguirre",
+  "dependencies": {
+      "@uirouter/angularjs": "^1.0.5",
+     "angular": "^1.6.1",
+     "express": "^4.14.0"
+  }
+}
