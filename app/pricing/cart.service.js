@@ -1,18 +1,57 @@
 angular.module('app')
     .service("CartService", cartService);
 
-function cartService(){
+function cartService() {
     var cart = this;
-    cart.items = [];
+    cart.items = [
+        {
+            "name": "AWOL",
+            "multiverseid": 74231,
+            "price" : {
+                "regular": 6.87,
+                "foil": 13.44
+            },
+            "quantityInStock" : {
+                "regular": 2,
+                "foil": 4
+            },
+            "quantityInCart" : {
+                "regular" : 0,
+                "foil": 0
+            }
+        },
+        {
+            "name": "Letter bomb",
+            "multiverseid": 74232,
+            "price": {
+                "regular": 2.45,
+                "foil": 5.34
+            },
+            "quantityInStock" : {
+                "regular": 2,
+                "foil": 4
+            },
+            "quantityInCart" : {
+                "regular" : 0,
+                "foil": 0
+            }
+        }
+    ];
     cart.total = 0;
-    cart.clear = function(){
+    cart.clear = function() {
         cart.items = [];
     }
-    cart.add = function(card){
+    cart.add = function(card) {
         cart.items.push(card);
         cart.total += card.price;
     }
-    cart.remove = function(card){
-        
+    cart.remove = function(card) {
+
+    }
+    cart.updatePrice = function(){
+        cart.total = 0;
+        cart.items.forEach(function(item){
+            cart.total += item.quantityInCart.regular * item.price.regular + item.quantityInCart.foil * item.price.foil;
+        })
     }
 }

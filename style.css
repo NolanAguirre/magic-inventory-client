@@ -75,12 +75,71 @@ body {
 
 .mi-search {
     background-color: yellow;
-    flex-grow: 1;
+    width:400px;
     height: 600px;
 }
 
 .mi-cart {
     background-color: red;
-    flex-grow: 1;
+    width:400px;
     height:600px;
+}
+.mi-card-container{
+    height: 525px;
+    background-color: blue;
+    overflow: auto;
+}
+.mi-cart-options{
+    height:75px;
+    display:flex;
+    justify-content: space-around;
+    align-items:  center;
+}
+.mi-cart-options-container{
+    font-size: 1.25em;
+}
+.mi-card{
+    font-family: 'Open Sans', sans-serif;
+    font-size: .8em;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 4px solid blue;
+    border-bottom: 4px solid blue;
+    padding: 0 2;
+    height: 110px;
+    background-color: rgb(170, 174, 176);
+}
+.mi-card-section{
+}
+.mi-card-price-container{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    height:100%;
+}
+
+.mi-card-price-section{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+.mi-card-price-section input{
+    padding: 1px;
+    text-align: center;
+    width: 40px;
+    margin-left: 4px;
+}
+.mi-card-image{
+    height:105px;
+    width:78px;
+    position: relative;
+    background-size: contain;
+}
+.mi-card-image:active{
+    height:310;
+    width:223;
+    z-index: 2;
 }

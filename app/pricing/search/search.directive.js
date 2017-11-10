@@ -10,9 +10,9 @@ function search() {
     }
 }
 
-searchController.$inject = ['CartSevice'];
+searchController.$inject = ['CartService'];
 
 function searchController(cartService) {
     var vm = this;
-    var cart = cartService;
+    vm.cart = cartService;
 }

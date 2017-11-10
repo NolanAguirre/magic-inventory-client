@@ -1,3 +1,29 @@
-<div class="mi-cart">
-    this is the cart section of the website.
+<div class="mi-card-container">
+    <div ng-repeat="item in vm.cart.items" class="mi-card">
+        <div class="mi-card-section">
+            <div class="mi-card-image" style="background-image: url('http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{item.multiverseid}}&type=card')"></div>
+        </div>
+        <div class="mi-card-section">{{item.name}}</div>
+        <div class="mi-card-section">
+            <div class="mi-card-price-container">
+                <div class="mi-card-price-section">
+                    <div>Regular: {{item.price.regular}}</div>
+                    <div>Foil: {{item.price.foil}}</div>
+                </div>
+                <div class="mi-card-price-section">
+                     <input ng-change="vm.updateQuantity(item, false, regularQuantity)" ng-model="regularQuantity"></input>
+                     <input ng-change="vm.updateQuantity(item, true, foilQuantity)" ng-model="foilQuantity"></input>
+                 </div>
+                <div class="mi-card-price-section">
+                    <div>of {{item.quantityInStock.regular}}</div>
+                    <div>of {{item.quantityInStock.foil}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mi-cart-options">
+    <div class="mi-cart-options-container">Total : {{vm.cart.total.toFixed(2)}}</div>
+    <div class="mi-cart-options-container"><button>checkout</button></div>
+    <div class="mi-cart-options-container"><button>clear</button></div>
 </div>
