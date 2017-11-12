@@ -115,8 +115,6 @@ body {
 }
 .mi-card-price-container{
     display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
     height:100%;
 }
 
@@ -124,6 +122,7 @@ body {
     display:flex;
     flex-direction: column;
     justify-content: space-around;
+    padding: 0 3;
     height: 100%;
 }
 .mi-card-price-section input{
@@ -142,4 +141,43 @@ body {
     height:310;
     width:223;
     z-index: 2;
+}
+.mi-search-level{
+    padding-top: 4px;
+    display:flex;
+    justify-content: space-around;
+}
+.mi-search-level button{
+    display: block;
+    border: none;
+    width: 100px;
+    margin: 0px auto;
+    outline: none;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(27, 183, 194);
+    font-size: 16px;
+    padding: 10px 15px 10px 15px;
+    transition: background-color .5s, color .5s;
+}
+.mi-search-basic{
+    width: 100%;
+    padding-top: 4px;
+}
+.mi-search-row{
+    width:100%;
+    display:flex;
+    justify-content: center;
+}
+.mi-search-input{
+    font-size: 20px;
+    padding: 5px;
+    width: 300px;
+    border: 1px solid #bcbec1;
+}
+.mi-search-advanced{
+    display:flex;
+}
+.mi-search-advanced-section{
+    padding: 5px;
 }

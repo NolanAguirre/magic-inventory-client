@@ -4,19 +4,21 @@ angular.module('app')
 function cartService() {
     var cart = this;
     cart.items = [
+    ];
+    cart.searchResults = [
         {
             "name": "AWOL",
             "multiverseid": 74231,
-            "price" : {
+            "price": {
                 "regular": 6.87,
                 "foil": 13.44
             },
-            "quantityInStock" : {
+            "quantityInStock": {
                 "regular": 2,
                 "foil": 4
             },
-            "quantityInCart" : {
-                "regular" : 0,
+            "quantityInCart": {
+                "regular": 0,
                 "foil": 0
             }
         },
@@ -27,12 +29,12 @@ function cartService() {
                 "regular": 2.45,
                 "foil": 5.34
             },
-            "quantityInStock" : {
+            "quantityInStock": {
                 "regular": 2,
                 "foil": 4
             },
-            "quantityInCart" : {
-                "regular" : 0,
+            "quantityInCart": {
+                "regular": 0,
                 "foil": 0
             }
         }
@@ -42,8 +44,18 @@ function cartService() {
         cart.items = [];
     }
     cart.add = function(card) {
-        cart.items.push(card);
-        cart.total += card.price;
+        if(cart.items.includes(card)){
+            var item = cart.items.find(function(element){
+                return card == element;
+            })
+            if(item.quantityInCart.regular < item.quantityInStock.regular){
+                item.quantityInCart.regular++;
+            }
+        }else{
+            card.quantityInCart.regular++
+            cart.items.push(card);
+        }
+        cart.updatePrice();
     }
     cart.remove = function(card) {
 

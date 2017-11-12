@@ -11,8 +11,8 @@
                     <div>Foil: {{item.price.foil}}</div>
                 </div>
                 <div class="mi-card-price-section">
-                     <input ng-change="vm.updateQuantity(item, false, regularQuantity)" ng-model="regularQuantity"></input>
-                     <input ng-change="vm.updateQuantity(item, true, foilQuantity)" ng-model="foilQuantity"></input>
+                     <input ng-change="vm.updateQuantity(item, false, regularQuantity)" ng-value="item.quantityInCart.regular" ng-model="regularQuantity"></input>
+                     <input ng-change="vm.updateQuantity(item, true, foilQuantity)" ng-value="item.quantityInCart.foil" ng-model="foilQuantity"></input>
                  </div>
                 <div class="mi-card-price-section">
                     <div>of {{item.quantityInStock.regular}}</div>

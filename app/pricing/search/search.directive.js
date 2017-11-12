@@ -10,9 +10,11 @@ function search() {
     }
 }
 
-searchController.$inject = ['CartService'];
+searchController.$inject = ['CartService', '$scope'];
 
-function searchController(cartService) {
+function searchController(cartService, $scope) {
     var vm = this;
     vm.cart = cartService;
+    vm.isAdvancedSearch = false;
+    
 }
