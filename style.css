@@ -69,25 +69,23 @@ body {
 
 .mi-pricing {
     display: flex;
-    padding-top: 20px;
-    width: 800px;
+    justify-content: space-between;
+    padding: 10 0;
+    width: 810px;
+    background-color: rgb(190, 188, 188);
 }
 
-.mi-search {
-    background-color: yellow;
+.mi-pricing-section {
+    background-color: white;
     width:400px;
     height: 600px;
 }
-
-.mi-cart {
-    background-color: red;
-    width:400px;
-    height:600px;
-}
 .mi-card-container{
     height: 525px;
-    background-color: blue;
     overflow: auto;
+}
+.mi-card-container h1{
+    text-align: center
 }
 .mi-cart-options{
     height:75px;
@@ -109,15 +107,15 @@ body {
     border-bottom: 4px solid blue;
     padding: 0 2;
     height: 110px;
-    background-color: rgb(170, 174, 176);
+    border: 1px solid rgb(198, 147, 217);
+    margin-bottom: 1px;
 }
 .mi-card-section{
 }
 .mi-card-price-container{
-    display: flex;
+    display:flex;
     height:100%;
 }
-
 .mi-card-price-section{
     display:flex;
     flex-direction: column;
