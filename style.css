@@ -167,7 +167,7 @@ body {
     display:flex;
     justify-content: center;
 }
-.mi-search-input{
+.mi-input{
     font-size: 20px;
     padding: 5px;
     width: 300px;
