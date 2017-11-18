@@ -11,11 +11,16 @@
 <body>
     <navbar></navbar>
     <ui-view></ui-view>
+    <script type="text/javascript" src="node_modules/auth0-js/build/auth0.js"></script>
+    <script type="text/javascript" src="auth0-variables.js"></script>
     <script type="text/javascript" src="node_modules/angular/angular.js"></script>
     <script type="text/javascript" src="node_modules/@uirouter/angularjs/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="node_modules/angular-jwt/dist/angular-jwt.js"></script>
     <script type="text/javascript" src="app/app.js"></script>
     <script type="text/javascript" src="app/ui-router.js"></script>
+    <script type="text/javascript" src="app/auth/auth.service.js"></script>
     <script type="text/javascript" src="app/navbar/navbar.directive.js"></script>
+    <script type="text/javascript" src="app/inventory/inventory.controller.js"></script>
     <script type="text/javascript" src="app/pricing/cart.service.js"></script>
     <script type="text/javascript" src="app/pricing/search/search.directive.js"></script>
     <script type="text/javascript" src="app/pricing/cart/cart.directive.js"></script>
@@ -24,4 +29,5 @@
 
 
 </body>
+
 </html>
