@@ -17,11 +17,28 @@ function config($stateProvider) {
             url: '/search',
             controller: 'PricingController',
             templateUrl: 'app/pricing/pricing.html',
-            controllerAs: 'vm'
+            controllerAs: 'vm',
+            resolve: {
+                authenticate: authenticate
+            }
         }).state('inventory', {
             url: '/inventory',
             controller: 'InventoryController',
             templateUrl: 'app/inventory/inventory.html',
-            controllerAs: 'vm'
+            controllerAs: 'vm',
+            resolve: {
+                authenticate: authenticate
+            }
         });
+
+    function authenticate($q, AuthService, $state, $timeout) {
+        if (AuthService.isAuthenticated()) {
+            return $q.when()
+        } else {
+            $timeout(function() {
+                $state.go('home')
+            })
+            return $q.reject()
+        }
+    }
 }
