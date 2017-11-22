@@ -38,10 +38,38 @@
 
         <button class="btn btn-primary btn-margin">
                 Add inventory
-            </button>
+        </button>
 
         <button class="btn btn-primary btn-margin" ui-sref="search">
                 Check prices
-            </button>
+        </button>
     </div>
 </div>
+
+      <!-- <button
+        class="btn btn-primary btn-margin"
+        ng-if="vm.auth.isAuthenticated()"
+        ui-sref="profile">
+          Profile
+      </button>
+
+      <button
+        class="btn btn-primary btn-margin"
+        ng-if="vm.auth.isAuthenticated()"
+        ui-sref="ping">
+          Ping
+      </button>
+
+      <button
+        class="btn btn-primary btn-margin"
+        ng-if="vm.auth.isAuthenticated() && vm.auth.userHasScopes(['write:messages'])"
+        ui-sref="admin">
+          Admin
+      </button>
+
+      <button
+        class="btn btn-primary btn-margin"
+        ng-if="vm.auth.isAuthenticated()"
+        ng-click="vm.auth.logout()">
+          Log Out
+      </button> -->
