@@ -1,6 +1,39 @@
 <div class="mi-body">
-    <div class="mi-pricing">
-        <search class="mi-pricing-section"></search>
-        <cart class="mi-pricing-section"></cart>
+  <div class="mi-pricing">
+    <div ng-controller="SearchController as vm" class="mi-pricing-section">
+      <div class="mi-search-level">
+      </div>
+      <div class="mi-search-basic">
+        <div class="mi-search-row">
+          <input class="mi-input"></input>
+          <button ng-click="vm.test()">search</button>
+        </div>
+      </div>
+      <div class="mi-search-results">
+        <div ng-repeat="item in vm.cart.searchResults" class="mi-card">
+                <div class="mi-card-section">
+                    <div class="mi-card-image" style="background-image: url('http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{item.multiverseid}}&type=card')"></div>
+                </div>
+                <div class="mi-card-section">{{item.name}}</div>
+                <div class="mi-card-section">
+                    <div class="mi-card-price-container">
+                        <div class="mi-card-price-section">
+                            <div>Regular: {{item.price.regular}}</div>
+                            <div>Foil: {{item.price.foil}}</div>
+                        </div>
+                        <div class="mi-card-price-section">
+                            <div>In Stock: {{item.quantityInStock.regular}}</div>
+                            <div>In Stock: {{item.quantityInStock.foil}}</div>
+                        </div>
+                        <div class="mi-card-price-section">
+                            <button ng-click="vm.cart.add(item)">Add</button>
+                            <button ng-click="vm.cart.add(item)">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
     </div>
+    <cart class="mi-pricing-section"></cart>
+  </div>
 </div>

@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.5",
-    "angular": "^1.6.1",
+    "angular": "^1.6.7",
     "angular-auth0": "^2.0.0",
     "angular-jwt": "^0.1.8",
     "auth0-js": "^8.8.0",
