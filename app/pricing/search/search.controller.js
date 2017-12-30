@@ -10,10 +10,15 @@ function searchController($http, cartService) {
   var API_URL = 'http://localhost:3001/api';
   vm.queryCard = function() {
     console.log("querying card")
-    $http.put(API_URL + "/search", queryParams)
-      .then(function(data) {
-        console.log(data);
-        vm.cart.searchResults = cardDataFormatter(data);
+    let queryParams = {
+      queryParams:{
+        name: vm.queryParams
+      }
+    } // this is temoporary
+    $http.post("http://localhost:3001/api/search", queryParams)
+      .then(function(res) {
+        console.log(res.data);
+        vm.cart.searchResults = cardDataFormatter(res.data);
       }, function(err) {
         console.log(err);
       })
@@ -41,8 +46,8 @@ function searchController($http, cartService) {
         foil: 0
       }
       card.price = {
-        regular: queryCardPrie(card.url),
-        foil: queryCardPrie(card.url)
+        regular: queryCardPrice(card.url),
+        foil: queryCardPrice(card.url)
       }
     })
   }
