@@ -6,38 +6,38 @@ function cartService() {
     cart.items = [
     ];
     cart.searchResults = [
-        {
-            "name": "AWOL",
-            "multiverseid": 74231,
-            "price": {
-                "regular": 6.87,
-                "foil": 13.44
-            },
-            "quantityInStock": {
-                "regular": 2,
-                "foil": 4
-            },
-            "quantityInCart": {
-                "regular": 0,
-                "foil": 0
-            }
-        },
-        {
-            "name": "Letter bomb",
-            "multiverseid": 74232,
-            "price": {
-                "regular": 2.45,
-                "foil": 5.34
-            },
-            "quantityInStock": {
-                "regular": 2,
-                "foil": 4
-            },
-            "quantityInCart": {
-                "regular": 0,
-                "foil": 0
-            }
-        }
+        // {
+        //     "name": "AWOL",
+        //     "multiverseid": 74231,
+        //     "price": {
+        //         "regular": 6.87,
+        //         "foil": 13.44
+        //     },
+        //     "quantityInStock": {
+        //         "regular": 2,
+        //         "foil": 4
+        //     },
+        //     "quantityInCart": {
+        //         "regular": 0,
+        //         "foil": 0
+        //     }
+        // },
+        // {
+        //     "name": "Letter bomb",
+        //     "multiverseid": 74232,
+        //     "price": {
+        //         "regular": 2.45,
+        //         "foil": 5.34
+        //     },
+        //     "quantityInStock": {
+        //         "regular": 2,
+        //         "foil": 4
+        //     },
+        //     "quantityInCart": {
+        //         "regular": 0,
+        //         "foil": 0
+        //     }
+        // }
     ];
     cart.total = 0;
     cart.clear = function() {

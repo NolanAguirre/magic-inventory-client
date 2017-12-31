@@ -18,7 +18,8 @@ function searchController($http, cartService) {
     $http.post("http://localhost:3001/api/search", queryParams)
       .then(function(res) {
         console.log(res.data);
-        vm.cart.searchResults = cardDataFormatter(res.data);
+        cardDataFormatter(res.data)
+        vm.cart.searchResults = res.data;
       }, function(err) {
         console.log(err);
       })
@@ -26,11 +27,12 @@ function searchController($http, cartService) {
 
   function queryCardPrice(url) {
     if (url) {
-      return setTimeout($http.put(url).then(function(data) {
-        return data;
-      }, function(err) {
-        return err;
-      }))
+      return 5;
+      // return setTimeout($http.put(url).then(function(data) {
+      //   return data;
+      // }, function(err) {
+      //   return err;
+      // }))
     }
     return null;
   }
