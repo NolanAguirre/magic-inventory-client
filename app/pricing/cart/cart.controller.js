@@ -1,14 +1,7 @@
 angular
     .module('app')
-    .directive('cart', cart);
+    .controller('CartController', cartController);
 
-function cart() {
-    return {
-        templateUrl: 'app/pricing/cart/cart.html',
-        controller: cartController,
-        controllerAs: 'vm'
-    }
-}
 
 cartController.$inject = ['CartService', '$scope'];
 
