@@ -195,6 +195,11 @@ body {
   height:500px;
   overflow: auto;
 }
+/*
+TODO:
+make both the search and the cart headers the same size, using the same class
+make both cart and search display use the same class
+*/
 .mi-search-basic{
     width: 100%;
     padding-top: 4px;
