@@ -31,17 +31,6 @@ a {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 body {
     margin: 0;
 }
@@ -189,7 +178,7 @@ body {
     display:flex;
     justify-content: space-around;
 }
-.mi-search-level button{
+/*.mi-search-level button{
     display: block;
     border: none;
     width: 100px;
@@ -201,6 +190,10 @@ body {
     font-size: 16px;
     padding: 10px 15px 10px 15px;
     transition: background-color .5s, color .5s;
+}*/
+.mi-search-results{
+  height:500px;
+  overflow: auto;
 }
 .mi-search-basic{
     width: 100%;
