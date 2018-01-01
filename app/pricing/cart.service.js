@@ -43,7 +43,7 @@ function cartService() {
     cart.clear = function() {
         cart.items = [];
     }
-    cart.add = function(card) {
+    cart.addRegular = function(card) {
         if(cart.items.includes(card)){
             var item = cart.items.find(function(element){
                 return card == element;
@@ -56,6 +56,20 @@ function cartService() {
             cart.items.push(card);
         }
         cart.updatePrice();
+    }
+    cart.addFoil = function(card){
+      if(cart.items.includes(card)){
+          var item = cart.items.find(function(element){
+              return card == element;
+          })
+          if(item.quantityInCart.foil < item.quantityInStock.foil){
+              item.quantityInCart.foil++;
+          }
+      }else{
+          card.quantityInCart.foil++
+          cart.items.push(card);
+      }
+      cart.updatePrice();
     }
     cart.remove = function(card) {
 
