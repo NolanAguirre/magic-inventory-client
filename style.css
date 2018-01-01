@@ -113,6 +113,13 @@ body {
     width:400px;
     height: 600px;
 }
+.mi-pricing-section-header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+}
 .mi-card-container{
     height: 525px;
     overflow: auto;
@@ -173,11 +180,6 @@ body {
     width:223;
     z-index: 2;
 }
-.mi-search-level{
-    padding-top: 4px;
-    display:flex;
-    justify-content: space-around;
-}
 /*.mi-search-level button{
     display: block;
     border: none;
@@ -191,14 +193,13 @@ body {
     padding: 10px 15px 10px 15px;
     transition: background-color .5s, color .5s;
 }*/
-.mi-search-results{
+.mi-card-container{
   height:500px;
-  overflow: auto;
+  overflow:auto;
 }
 /*
 TODO:
-make both the search and the cart headers the same size, using the same class
-make both cart and search display use the same class
+make expanding image not scroll on the x axis
 */
 .mi-search-basic{
     width: 100%;

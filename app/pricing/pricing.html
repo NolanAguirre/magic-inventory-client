@@ -1,69 +1,71 @@
 <div class="mi-body">
   <div class="mi-pricing">
     <div ng-controller="SearchController as vm" class="mi-pricing-section">
-      <div class="mi-search-level">
-      </div>
-      <div class="mi-search-basic">
-        <div class="mi-search-row">
-          <input ng-model="vm.queryParams" class="mi-input"></input>
-          <button ng-click="vm.queryCard()">search</button>
+      <div class="mi-pricing-section-header">
+        <div class="mi-search-basic">
+          <div class="mi-search-row">
+            <input ng-model="vm.queryParams" class="mi-input"></input>
+            <button ng-click="vm.queryCard()">search</button>
+          </div>
         </div>
       </div>
-      <div class="mi-search-results">
+      <div class="mi-card-container">
         <div ng-repeat="item in vm.cart.searchResults" class="mi-card">
-                <div class="mi-card-section">
-                    <div class="mi-card-image" style="background-image: url('http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{item.multiverseid}}&type=card')"></div>
-                </div>
-                <div class="mi-card-section">{{item.name}} <br> {{item.set}}</div>
-                <div class="mi-card-section">
-                    <div class="mi-card-price-container">
-                        <div class="mi-card-price-section">
-                            <div>Regular: {{item.price.regular}}</div>
-                            <div>Foil: {{item.price.foil}}</div>
-                        </div>
-                        <div class="mi-card-price-section">
-                            <div>In Stock: {{item.quantityInStock.regular}}</div>
-                            <div>In Stock: {{item.quantityInStock.foil}}</div>
-                        </div>
-                        <div class="mi-card-price-section">
-                            <button ng-click="vm.cart.add(item)">Add</button>
-                            <button ng-click="vm.cart.add(item)">Add</button>
-                        </div>
-                    </div>
-                </div>
+          <div class="mi-card-section">
+            <div class="mi-card-image" style="background-image: url('http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{item.multiverseid}}&type=card')"></div>
+          </div>
+          <div class="mi-card-section">{{item.name}} <br> {{item.set}}</div>
+          <div class="mi-card-section">
+            <div class="mi-card-price-container">
+              <div class="mi-card-price-section">
+                <div>Regular: {{item.price.regular}}</div>
+                <div>Foil: {{item.price.foil}}</div>
+              </div>
+              <div class="mi-card-price-section">
+                <div>In Stock: {{item.quantityInStock.regular}}</div>
+                <div>In Stock: {{item.quantityInStock.foil}}</div>
+              </div>
+              <div class="mi-card-price-section">
+                <button ng-click="vm.cart.add(item)">Add</button>
+                <button ng-click="vm.cart.add(item)">Add</button>
+              </div>
             </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div  ng-controller="CartController as vm"class="mi-pricing-section">
+    <div ng-controller="CartController as vm" class="mi-pricing-section">
+      <div class="mi-pricing-section-header">
+        <h1>Cart</h1>
+      </div>
       <div class="mi-card-container">
-          <h1>Cart</h1>
-          <div ng-repeat="item in vm.cart.items" class="mi-card">
-              <div class="mi-card-section">
-                  <div class="mi-card-image" style="background-image: url('http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{item.multiverseid}}&type=card')"></div>
-              </div>
-              <div class="mi-card-section">{{item.name}}</div>
-              <div class="mi-card-section">
-                  <div class="mi-card-price-container">
-                      <div class="mi-card-price-section">
-                          <div>Regular: {{item.price.regular}}</div>
-                          <div>Foil: {{item.price.foil}}</div>
-                      </div>
-                      <div class="mi-card-price-section">
-                           <input ng-change="vm.updateQuantity(item, false, regularQuantity)" ng-value="item.quantityInCart.regular" ng-model="regularQuantity"></input>
-                           <input ng-change="vm.updateQuantity(item, true, foilQuantity)" ng-value="item.quantityInCart.foil" ng-model="foilQuantity"></input>
-                       </div>
-                      <div class="mi-card-price-section">
-                          <div>of {{item.quantityInStock.regular}}</div>
-                          <div>of {{item.quantityInStock.foil}}</div>
-                      </div>
-                  </div>
-              </div>
+        <div ng-repeat="item in vm.cart.items" class="mi-card">
+          <div class="mi-card-section">
+            <div class="mi-card-image" style="background-image: url('http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{item.multiverseid}}&type=card')"></div>
           </div>
+          <div class="mi-card-section">{{item.name}}</div>
+          <div class="mi-card-section">
+            <div class="mi-card-price-container">
+              <div class="mi-card-price-section">
+                <div>Regular: {{item.price.regular}}</div>
+                <div>Foil: {{item.price.foil}}</div>
+              </div>
+              <div class="mi-card-price-section">
+                <input ng-change="vm.updateQuantity(item, false, regularQuantity)" ng-value="item.quantityInCart.regular" ng-model="regularQuantity"></input>
+                <input ng-change="vm.updateQuantity(item, true, foilQuantity)" ng-value="item.quantityInCart.foil" ng-model="foilQuantity"></input>
+              </div>
+              <div class="mi-card-price-section">
+                <div>of {{item.quantityInStock.regular}}</div>
+                <div>of {{item.quantityInStock.foil}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="mi-cart-options">
-          <div class="mi-cart-options-container">Total : {{vm.cart.total.toFixed(2)}}</div>
-          <div class="mi-cart-options-container"><button>checkout</button></div>
-          <div class="mi-cart-options-container"><button>clear</button></div>
+        <div class="mi-cart-options-container">Total : {{vm.cart.total.toFixed(2)}}</div>
+        <div class="mi-cart-options-container"><button>checkout</button></div>
+        <div class="mi-cart-options-container"><button>clear</button></div>
       </div>
     </div>
   </div>
