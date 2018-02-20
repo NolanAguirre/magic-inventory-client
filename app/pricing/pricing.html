@@ -1,72 +1,96 @@
 <div class="mi-body">
-  <div class="mi-pricing">
-    <div ng-controller="SearchController as vm" class="mi-pricing-section">
-      <div class="mi-pricing-section-header">
-        <div class="mi-search-basic">
-          <div class="mi-search-row">
-            <input ng-model="vm.queryParams" class="mi-input"></input>
-            <button ng-click="vm.queryCard()">search</button>
-          </div>
-        </div>
-      </div>
-      <div class="mi-card-container">
-        <div ng-repeat="item in vm.cart.searchResults" class="mi-card">
-          <div class="mi-card-section">
-            <div class="mi-card-image" style="background-image: url('http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{item.multiverseid}}&type=card')"></div>
-          </div>
-          <div class="mi-card-section">{{item.name}} <br> {{item.set}}</div>
-          <div class="mi-card-section">
-            <div class="mi-card-price-container">
-              <div class="mi-card-price-section">
-                <div>Regular: {{item.price.regular}}</div>
-                <div>Foil: {{item.price.foil}}</div>
-              </div>
-              <div class="mi-card-price-section">
-                <div>In Stock: {{item.quantityInStock.regular}}</div>
-                <div>In Stock: {{item.quantityInStock.foil}}</div>
-              </div>
-              <div class="mi-card-price-section">
-                <button ng-click="vm.cart.addRegular(item)">Add</button>
-                <button ng-click="vm.cart.addFoil(item)">Add</button>
-              </div>
+    <div class="mi-pricing">
+        <div ng-controller="SearchController as vm" class="mi-pricing-section">
+            <div class="mi-pricing-section-header">
+                <div class="mi-search-basic">
+                    <div class="mi-search-row">
+
+                    <script type="text/ng-template" id="customTemplate.html">
+                          <a>
+                              <img ng-src="http://upload.wikimedia.org/wikipedia/commons/thumb/{{match.model.flag}}" width="16">
+                              <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+                          </a>
+                        </script>
+
+                        <script type="text/ng-template" id="customPopupTemplate.html">
+                          <div class="custom-popup-wrapper"
+                             ng-style="{top: position().top+'px', left: position().left+'px'}"
+                             style="display: block;"
+                             ng-show="isOpen() && !moveInProgress"
+                             aria-hidden="{{!isOpen()}}">
+                            <p class="message">select location from drop down.</p>
+
+                            <ul class="dropdown-menu" role="listbox">
+                              <li class="uib-typeahead-match" ng-repeat="match in matches track by $index" ng-class="{active: isActive($index) }"
+                                ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="{{::match.id}}">
+                                <div uib-typeahead-match index="$index" match="match" query="query" template-url="templateUrl"></div>
+                              </li>
+                            </ul>
+                          </div>
+                        </script>
+                        <input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" uib-typeahead="address for address in vm.typeahead($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="mi-input">
+                        <button ng-click="vm.queryCard()">search</button>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div ng-controller="CartController as vm" class="mi-pricing-section">
-      <div class="mi-pricing-section-header">
-        <h1>Cart</h1>
-      </div>
-      <div class="mi-card-container">
-        <div ng-repeat="item in vm.cart.items" class="mi-card">
-          <div class="mi-card-section">
-            <div class="mi-card-image" style="background-image: url('http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{item.multiverseid}}&type=card')"></div>
-          </div>
-          <div class="mi-card-section">{{item.name}}</div>
-          <div class="mi-card-section">
-            <div class="mi-card-price-container">
-              <div class="mi-card-price-section">
-                <div>Regular: {{item.price.regular}}</div>
-                <div>Foil: {{item.price.foil}}</div>
-              </div>
-              <div class="mi-card-price-section">
-                <input ng-change="vm.updateQuantity(item, false, regularQuantity)" ng-value="item.quantityInCart.regular" ng-model="regularQuantity"></input>
-                <input ng-change="vm.updateQuantity(item, true, foilQuantity)" ng-value="item.quantityInCart.foil" ng-model="foilQuantity"></input>
-              </div>
-              <div class="mi-card-price-section">
-                <div>of {{item.quantityInStock.regular}}</div>
-                <div>of {{item.quantityInStock.foil}}</div>
-              </div>
+            <div class="mi-card-container">
+                <div ng-repeat="item in vm.cart.searchResults" class="mi-card">
+                    <div class="mi-card-section">
+                        <div class="mi-card-image" style="background-image: url('http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{item.multiverseid}}&type=card')"></div>
+                    </div>
+                    <div class="mi-card-section">{{item.name}} <br> {{item.set}}</div>
+                    <div class="mi-card-section">
+                        <div class="mi-card-price-container">
+                            <div class="mi-card-price-section">
+                                <div>Regular: {{item.price.regular}}</div>
+                                <div>Foil: {{item.price.foil}}</div>
+                            </div>
+                            <div class="mi-card-price-section">
+                                <div>In Stock: {{item.quantityInStock.regular}}</div>
+                                <div>In Stock: {{item.quantityInStock.foil}}</div>
+                            </div>
+                            <div class="mi-card-price-section">
+                                <button ng-click="vm.cart.addRegular(item)">Add</button>
+                                <button ng-click="vm.cart.addFoil(item)">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="mi-cart-options">
-        <div class="mi-cart-options-container">Total : {{vm.cart.total.toFixed(2)}}</div>
-        <div class="mi-cart-options-container"><button>checkout</button></div>
-        <div class="mi-cart-options-container"><button>clear</button></div>
-      </div>
+        <div ng-controller="CartController as vm" class="mi-pricing-section">
+            <div class="mi-pricing-section-header">
+                <h1>Cart</h1>
+            </div>
+            <div class="mi-card-container">
+                <div ng-repeat="item in vm.cart.items" class="mi-card">
+                    <div class="mi-card-section">
+                        <div class="mi-card-image" style="background-image: url('http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{item.multiverseid}}&type=card')"></div>
+                    </div>
+                    <div class="mi-card-section">{{item.name}}</div>
+                    <div class="mi-card-section">
+                        <div class="mi-card-price-container">
+                            <div class="mi-card-price-section">
+                                <div>Regular: {{item.price.regular}}</div>
+                                <div>Foil: {{item.price.foil}}</div>
+                            </div>
+                            <div class="mi-card-price-section">
+                                <input ng-change="vm.updateQuantity(item, false, regularQuantity)" ng-value="item.quantityInCart.regular" ng-model="regularQuantity"></input>
+                                <input ng-change="vm.updateQuantity(item, true, foilQuantity)" ng-value="item.quantityInCart.foil" ng-model="foilQuantity"></input>
+                            </div>
+                            <div class="mi-card-price-section">
+                                <div>of {{item.quantityInStock.regular}}</div>
+                                <div>of {{item.quantityInStock.foil}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mi-cart-options">
+                <div class="mi-cart-options-container">Total : {{vm.cart.total.toFixed(2)}}</div>
+                <div class="mi-cart-options-container"><button>checkout</button></div>
+                <div class="mi-cart-options-container"><button>clear</button></div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
