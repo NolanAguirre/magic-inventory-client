@@ -222,3 +222,16 @@ make expanding image not scroll on the x axis
 .mi-search-advanced-section{
     padding: 5px;
 }
+.custom-popup-wrapper{
+
+}
+.dropdown-menu{
+    margin: 0;
+    position: absolute;
+    min-width: 300px;
+    padding: 0;
+    border: 1px solid black;
+}
+.dropdown-menu li{
+    list-style-type: none;
+}
