@@ -20,8 +20,10 @@
                 })
         }
 
-        function queryCardPrice(card) {
-            return $http.get(card.url).then(
+        function queryCardPrice(card, isFoil) {
+            let tempCard =  Object.assign({}, card);
+            tempCard.foil = isFoil;
+            return $http.post("http://localhost:3002/", tempCard).then(
                 function(res) {
                     return res.data;
                 }).catch(function(err){

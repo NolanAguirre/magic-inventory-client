@@ -12,21 +12,21 @@
                     Home
                 </div>
             </a>
-            <a ng-if="!vm.auth.isAuthenticated()" class="mi-header-link" ng-click="vm.auth.login()">
+            <!-- <a ng-if="!vm.auth.isAuthenticated()" class="mi-header-link" ng-click="vm.auth.login()">
                 <div class="mi-header-link-box">
                     Log in
                 </div>
-            </a>
-            <a ng-if="vm.auth.isAuthenticated()" class="mi-header-link" ui-sref="search">
+            </a> -->
+            <a ng-if="!vm.auth.isAuthenticated()" class="mi-header-link" ui-sref="search">
                 <div class="mi-header-link-box">
                     Price Cards
                 </div>
             </a>
-            <a ng-if="vm.auth.isAuthenticated()" class="mi-header-link" ui-sref="inventory">
+            <!-- <a ng-if="vm.auth.isAuthenticated()" class="mi-header-link" ui-sref="inventory">
                 <div class="mi-header-link-box">
                     Add Inventory
                 </div>
-            </a>
+            </a> -->
         </div>
     </div>
     <div class="mi-header-mobile">

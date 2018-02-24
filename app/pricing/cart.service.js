@@ -3,49 +3,47 @@ angular.module('app')
 
 function cartService() {
     var cart = this;
-    cart.items = [
-    ];
-    cart.searchResults = [
-        // {
-        //     "name": "AWOL",
-        //     "multiverseid": 74231,
-        //     "price": {
-        //         "regular": 6.87,
-        //         "foil": 13.44
-        //     },
-        //     "quantityInStock": {
-        //         "regular": 2,
-        //         "foil": 4
-        //     },
-        //     "quantityInCart": {
-        //         "regular": 0,
-        //         "foil": 0
-        //     }
-        // },
-        // {
-        //     "name": "Letter bomb",
-        //     "multiverseid": 74232,
-        //     "price": {
-        //         "regular": 2.45,
-        //         "foil": 5.34
-        //     },
-        //     "quantityInStock": {
-        //         "regular": 2,
-        //         "foil": 4
-        //     },
-        //     "quantityInCart": {
-        //         "regular": 0,
-        //         "foil": 0
-        //     }
-        // }
-    ];
+    cart.order = {
+        items:[],
+        total: 0
+    };
+    cart.savedOrders = [];
     cart.total = 0;
     cart.clear = function() {
-        cart.items = [];
+        cart.order.items.forEach(function(item){
+            item.quantityInCart = {
+                regular: 0,
+                foil: 0
+            }
+        })
+        cart.order = {
+            items:[],
+            total: 0
+        };
+         cart.isSavedOrder = false;
+    }
+    cart.deleteOrder = function(order){
+        order.items.forEach(function(item){
+            item.quantityInCart = {
+                regular: 0,
+                foil: 0
+            }
+        })
+        order.items = [];
+        order.total = 0;
+    }
+    cart.saveOrder = function(){
+        if(!cart.savedOrders.includes(cart.order)){
+            cart.savedOrders.push(cart.order);
+        }
+        cart.order = {
+            items:[],
+            total: 0
+        };
     }
     cart.addRegular = function(card) {
-        if(cart.items.includes(card)){
-            var item = cart.items.find(function(element){
+        if(cart.order.items.includes(card)){
+            var item = cart.order.items.find(function(element){
                 return card == element;
             })
             if(item.quantityInCart.regular < item.quantityInStock.regular){
@@ -53,13 +51,13 @@ function cartService() {
             }
         }else{
             card.quantityInCart.regular++
-            cart.items.push(card);
+            cart.order.items.push(card);
         }
         cart.updatePrice();
     }
     cart.addFoil = function(card){
-      if(cart.items.includes(card)){
-          var item = cart.items.find(function(element){
+      if(cart.order.items.includes(card)){
+          var item = cart.order.items.find(function(element){
               return card == element;
           })
           if(item.quantityInCart.foil < item.quantityInStock.foil){
@@ -67,7 +65,7 @@ function cartService() {
           }
       }else{
           card.quantityInCart.foil++
-          cart.items.push(card);
+          cart.order.items.push(card);
       }
       cart.updatePrice();
     }
@@ -75,9 +73,9 @@ function cartService() {
 
     }
     cart.updatePrice = function(){
-        cart.total = 0;
-        cart.items.forEach(function(item){
-            cart.total += item.quantityInCart.regular * item.price.regular + item.quantityInCart.foil * item.price.foil;
+        cart.order.total = 0;
+        cart.order.items.forEach(function(item){
+            cart.order.total += item.quantityInCart.regular * item.price.regular + item.quantityInCart.foil * item.price.foil;
         })
     }
 }

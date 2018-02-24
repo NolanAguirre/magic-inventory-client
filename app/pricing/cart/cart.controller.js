@@ -19,7 +19,6 @@ function cartController(cartService, $scope) {
             }
             vm.cart.updatePrice();
             $scope.$apply();
-            console.log(vm.cart.total);
         }, 300);
     }
 }

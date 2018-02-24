@@ -33,10 +33,10 @@
               url: '/search',
               controller: 'PricingController',
               templateUrl: 'app/pricing/pricing.html',
-              controllerAs: 'vm',
-              resolve: {
-                  authenticate: authenticate
-              }
+              controllerAs: 'vm'//,
+              //resolve: {
+              //    authenticate: authenticate
+              //}
           }).state('inventory', {
               url: '/inventory',
               controller: 'InventoryController',
