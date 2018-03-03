@@ -33,40 +33,35 @@
               url: '/search',
               controller: 'PricingController',
               templateUrl: 'app/pricing/pricing.html',
-              controllerAs: 'vm'//,
-              //resolve: {
-              //    authenticate: authenticate
-              //}
+              controllerAs: 'vm',
+              resolve: {
+                 authenticate: authenticateAdmin
+              }
           }).state('inventory', {
               url: '/inventory',
               controller: 'InventoryController',
               templateUrl: 'app/inventory/inventory.html',
               controllerAs: 'vm',
               resolve: {
-                  authenticate: authenticate
+                  authenticate: authenticateAdmin
               }
-          }).state('profile', {
-              url: '/profile',
-              controller: 'ProfileController',
-              templateUrl: 'app/profile/profile.html',
+          }).state('orders', {
+              url: '/orders',
+              controller: 'OrdersController',
+              templateUrl: 'app/orders/orders.html',
               controllerAs: 'vm',
-              onEnter: checkAuthentication
-          })
-          .state('ping', {
-              url: '/ping',
-              controller: 'PingController',
-              templateUrl: 'app/ping/ping.html',
+              resolve: {
+                  authenticate: authenticateAdmin
+              }
+          }).state('settings', {
+              url: '/settings',
+              controller: 'SettingsController',
+              templateUrl: 'app/settings/settings.html',
               controllerAs: 'vm',
-              onEnter: checkAuthentication
-          })
-          .state('admin', {
-              url: '/admin',
-              controller: 'AdminController',
-              templateUrl: 'app/admin/admin.html',
-              controllerAs: 'vm',
-              onEnter: checkForScopes(['write:messages'])
-          })
-          .state('callback', {
+              resolve: {
+                  authenticate: authenticateAdmin
+              }
+          }).state('callback', {
               url: '/callback',
               controller: 'CallbackController',
               templateUrl: 'app/callback/callback.html',
@@ -75,6 +70,16 @@
 
       function authenticate($q, authService, $state, $timeout) {
           if (authService.isAuthenticated()) {
+              return $q.when()
+          } else {
+              $timeout(function() {
+                  $state.go('home')
+              })
+              return $q.reject()
+          }
+      }
+      function authenticateAdmin($q, authService, $state, $timeout) {
+          if (authService.isAuthenticated() && authService.isAdmin()) {
               return $q.when()
           } else {
               $timeout(function() {
