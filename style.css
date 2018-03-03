@@ -268,10 +268,8 @@ make expanding image not scroll on the x axis
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-between;
-    border-top: 4px solid blue;
-    border-bottom: 4px solid blue;
     padding: 0 2;
     height: 40px;
-    border: 1px solid rgb(198, 147, 217);
+    border-bottom: 3px solid #f8f8f8;
     margin-bottom: 1px;
 }
