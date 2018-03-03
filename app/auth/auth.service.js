@@ -6,21 +6,23 @@
     .module('app')
     .service('authService', authService);
 
-  authService.$inject = ['$state', 'angularAuth0', '$timeout'];
+  authService.$inject = ['$state', 'angularAuth0', '$timeout', 'httpService'];
 
-  function authService($state, angularAuth0, $timeout) {
+  function authService($state, angularAuth0, $timeout, httpService) {
 
     var userProfile;
+    var role;
 
     function login() {
       angularAuth0.authorize();
     }
-    
+
     function handleAuthentication() {
-      angularAuth0.parseHash(function(err, authResult) {
+     angularAuth0.parseHash(function(err, authResult) {
         if (authResult && authResult.idToken) {
           setSession(authResult);
           $state.go('home');
+          checkRole();
         } else if (err) {
           $timeout(function() {
             $state.go('home');
@@ -60,48 +62,68 @@
       // use it to set scopes in the session for the user. Otherwise
       // use the scopes as requested. If no scopes were requested,
       // set it to nothing
-      var scopes = authResult.scope || REQUESTED_SCOPES || '';
 
       localStorage.setItem('access_token', authResult.accessToken);
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem('expires_at', expiresAt);
-      localStorage.setItem('scopes', JSON.stringify(scopes));
     }
-    
+
     function logout() {
       // Remove tokens and expiry time from localStorage
       localStorage.removeItem('access_token');
       localStorage.removeItem('id_token');
       localStorage.removeItem('expires_at');
-      localStorage.removeItem('scopes');
+      localStorage.removeItem('role');
+      localStorage.removeItem('store');
       $state.go('home');
     }
-    
+
     function isAuthenticated() {
-      // Check whether the current time is past the 
+      // Check whether the current time is past the
       // access token's expiry time
       let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
       return new Date().getTime() < expiresAt;
     }
-
-    function userHasScopes(scopes) {
-      var grantedScopes = JSON.parse(localStorage.getItem('scopes')).split(' ');
-      for (var i = 0; i < scopes.length; i++) {
-        if (grantedScopes.indexOf(scopes[i]) < 0) {
-          return false;
+    function checkRole(){
+        if (getCachedProfile()) {
+          httpService.checkRole(authService.getCachedProfile()).then(function(data){
+              console.log(data);
+              localStorage.setItem('role', data.role);
+              role = data.role;
+              if(data.role != 'user'){
+                  localStorage.setItem('store', data.store);
+              }
+          })
+        } else {
+          getProfile(function(err, profile) {
+              httpService.checkRole(profile).then(function(data){
+                  console.log(data);
+                  localStorage.setItem('role', data.role);
+                  role = data.role;
+                  if(data.role != 'user'){
+                      localStorage.setItem('store', data.store);
+                  }
+              })
+          });
         }
-      }
-      return true;
     }
-
+    function role(){
+        return role;
+    }
+    function isAdmin(){
+        if(role != 'user'){
+            return true;
+        }
+        return false;
+    }
     return {
       login: login,
       getProfile: getProfile,
-      getCachedProfile: getCachedProfile,
       handleAuthentication: handleAuthentication,
       logout: logout,
       isAuthenticated: isAuthenticated,
-      userHasScopes: userHasScopes
+      isAdmin: isAdmin,
+      checkRole: checkRole
     }
   }
 })();

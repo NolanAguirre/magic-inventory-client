@@ -9,7 +9,14 @@
     httpService.$inject = ['$http'];
 
     function httpService($http) {
-
+        function checkRole(user){
+            return $http.post("http://localhost:3001/api/role", user)
+                .then(function(res) {
+                    return res.data;
+                }, function(err) {
+                    return null;
+                })
+        }
         function queryCard(queryParams) {
             return $http.post("http://localhost:3001/api/search", queryParams)
                 .then(function(res) {
@@ -42,7 +49,8 @@
         return {
             queryCard: queryCard,
             queryCardPrice: queryCardPrice,
-            typeahead: typeahead
+            typeahead: typeahead,
+            checkRole: checkRole
         }
     }
 })();
