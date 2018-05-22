@@ -29,38 +29,33 @@
               controller: 'HomeController',
               templateUrl: 'app/home/home.html',
               controllerAs: 'vm'
-          }).state('search', {
-              url: '/search',
-              controller: 'PricingController',
+          }).state('stores', {
+              url: '/stores',
+              controller: 'StoreController',
               templateUrl: 'app/pricing/pricing.html',
-              controllerAs: 'vm',
+              controllerAs: 'vm'
+          }).state('admin', {
+              url: '/admin',
+              abstract:true
+              templateUrl: '<ng-view/>',
               resolve: {
-                 authenticate: authenticateAdmin
+                  authenticate: authenticateAdmin
               }
-          }).state('inventory', {
+          }).state('admin.inventory', {
               url: '/inventory',
               controller: 'InventoryController',
-              templateUrl: 'app/inventory/inventory.html',
-              controllerAs: 'vm',
-              resolve: {
-                  authenticate: authenticateAdmin
-              }
-          }).state('orders', {
+              templateUrl: 'app/admin/inventory/inventory.admin.html',
+              controllerAs: 'vm'
+          }).state('admin.orders', {
               url: '/orders',
               controller: 'OrdersController',
-              templateUrl: 'app/orders/orders.html',
-              controllerAs: 'vm',
-              resolve: {
-                  authenticate: authenticateAdmin
-              }
-          }).state('settings', {
+              templateUrl: 'app/admin/orders/orders.html',
+              controllerAs: 'vm'
+          }).state('admin.settings', {
               url: '/settings',
               controller: 'SettingsController',
-              templateUrl: 'app/settings/settings.html',
-              controllerAs: 'vm',
-              resolve: {
-                  authenticate: authenticateAdmin
-              }
+              templateUrl: 'app/admin/settings/settings.admin.html',
+              controllerAs: 'vm'
           }).state('callback', {
               url: '/callback',
               controller: 'CallbackController',

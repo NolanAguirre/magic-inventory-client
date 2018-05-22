@@ -1,64 +1,108 @@
 <div class="mi-nav-contaier">
-    <div class="mi-header-desktop">
-        <div class="mi-header-section">
-            <a class="navbar-brand" href="#">Magic Inventory System</a>
-        </div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div class="mi-header-section">
-            <a class="mi-header-link" ui-sref="home">
-                <div class="mi-header-link-box">
-                    Home
-                </div>
-            </a>
-            <a ng-if="!vm.auth.isAuthenticated()" class="mi-header-link" ng-click="vm.auth.login()">
-                <div class="mi-header-link-box">
-                    Log in
-                </div>
-            </a>
-            <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="search">
-                <div class="mi-header-link-box">
-                    Price Cards
-                </div>
-            </a>
-            <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="inventory">
-                <div class="mi-header-link-box">
-                    Manage Inventory
-                </div>
-            </a>
-            <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="orders">
-                <div class="mi-header-link-box">
-                    View Orders
-                </div>
-            </a>
-            <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="settings">
-                <div class="mi-header-link-box">
-                    Settings
-                </div>
-            </a>
-            <a ng-if="vm.auth.isAuthenticated()" class="mi-header-link" ng-click="vm.auth.logout()">
-                <div class="mi-header-link-box">
-                    Log out
-                </div>
-            </a>
-        </div>
+  <div class="mi-header-desktop">
+    <div class="mi-header-section">
+      <a class="navbar-brand" href="#">Magic Inventory System</a>
     </div>
-    <div class="mi-header-mobile">
-        <a class="" href="#">Magic Inventory System</a>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="mi-header-section">
+      <!-- <div>
+        default anonymous users
+        Home View stores -> check store Inventory Find card in my area Log in/sign up
+      </div>
+      <div>
+        Employees
+        My Store Orders Manage inventory Settings Local Sale Find card price
+      </div>
+      <div>
+        Store Owners
+        All the employee stuff Admins Payment information
+      </div>
+      <div>
+        User
+        all the anonymous user stuff Profile -> has orders, order history, info and logout Cart View stores changes to shop from store find card in my area changes to shop for card in area
+      </div> -->
+      <a ng-if="!vm.auth.isAuthenticated()" class="mi-header-link" ui-sref="stores">
+        <div class="mi-header-link-box">
+          View Stores
+        </div>
+      </a>
+      <a ng-if="!vm.auth.isAuthenticated()" class="mi-header-link" ui-sref="area">
+        <div class="mi-header-link-box">
+          View My Area
+        </div>
+      </a>
+      <a ng-if="!vm.auth.isAuthenticated()" class="mi-header-link" ng-click="vm.auth.login()">
+        <div class="mi-header-link-box">
+          Log in
+        </div>
+      </a>
 
-        <button class="btn btn-primary btn-margin" ui-sref="home">
+      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.store">
+        <div class="mi-header-link-box">
+          My Store
+        </div>
+      </a>
+      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.inventory">
+        <div class="mi-header-link-box">
+          Manage Inventory
+        </div>
+      </a>
+      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.orders">
+        <div class="mi-header-link-box">
+          View Orders
+        </div>
+      </a>
+      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.settings">
+        <div class="mi-header-link-box">
+          Settings
+        </div>
+      </a>
+      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.localSale">
+        <div class="mi-header-link-box">
+          Local Sale
+        </div>
+      </a>
+      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.cardPrice">
+        <div class="mi-header-link-box">
+          Find Card prive
+        </div>
+      </a>
+
+      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.employee">
+        <div class="mi-header-link-box">
+          Employees
+        </div>
+      </a>
+      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.payment">
+        <div class="mi-header-link-box">
+          Payment Information
+        </div>
+      </a>
+
+      <a ng-if="vm.auth.isAuthenticated()" class="mi-header-link" ng-click="vm.auth.logout()">
+        <div class="mi-header-link-box">
+          Log out
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="mi-header-mobile">
+    <a class="" href="#">Magic Inventory System</a>
+
+    <button class="btn btn-primary btn-margin" ui-sref="home">
                 Home
             </button>
 
-        <button class="btn btn-primary btn-margin">
+    <button class="btn btn-primary btn-margin">
                 Add inventory
         </button>
 
-        <button class="btn btn-primary btn-margin" ui-sref="search">
+    <button class="btn btn-primary btn-margin" ui-sref="search">
                 Check prices
         </button>
-    </div>
+  </div>
 </div>
 
 

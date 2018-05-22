@@ -19,12 +19,8 @@ function searchController($http, cartService, httpService, $scope) {
     }
     vm.queryCard = function() {
         console.log("querying card")
-        let queryParams = {
-            queryParams: {
-                name: vm.queryParams
-            }
-        }
-        httpService.queryCard(queryParams).then(
+        let queryString = encodeURIComponent(`{allCards(condition:{name:"dark confidant"}){edges{node{name}}}`);
+        httpService.queryCard(queryString).then(
             function(data) {
                 vm.searchResults = data.map(function(card) {
                     card.price = {
@@ -38,7 +34,7 @@ function searchController($http, cartService, httpService, $scope) {
                     card.quantityInCart = {
                         regular: 0,
                         foil: 0
-                    }
+                    }``
                     httpService.queryCardPrice(card, false).then(
                         function(price) {
                             card.price.regular = price;
@@ -51,7 +47,6 @@ function searchController($http, cartService, httpService, $scope) {
                         }).catch(function(err) {
                         card.price.foil = card.url;
                     })
-
                     return card;
                 });
 
