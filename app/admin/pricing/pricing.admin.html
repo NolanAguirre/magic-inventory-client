@@ -1,26 +1,8 @@
-<div class="mi-body">
+<!-- <div class="mi-body">
     <div class="mi-pricing">
         <div ng-controller="SearchController as vm" class="mi-pricing-section">
             <div class="mi-pricing-section-header">
-                <div class="mi-search-basic">
-                    <div class="mi-search-row">
-                        <script type="text/ng-template" id="customPopupTemplate.html">
-                            <div class="custom-popup-wrapper" ng-style="{top: position().top+'px', left: position().left+'px'}" style="display: block; min-width:300px;" ng-show="isOpen() && !moveInProgress" aria-hidden="{{!isOpen()}}">
-                                <ul class="dropdown-menu" role="listbox">
-                                    <li class="uib-typeahead-match" ng-repeat="match in matches track by $index" ng-class="{active: isActive($index) }" ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="{{::match.id}}">
-                                        <div uib-typeahead-match index="$index" match="match" query="query" template-url="templateUrl"></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </script>
-                        <div>
-                            <input type="text" ng-model="vm.queryParams" placeholder="search for a card" uib-typeahead="address for address in vm.typeahead($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="mi-input">
-                        </div>
-                        <div>
-                            <button ng-click="vm.queryCard()">search</button>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div class="mi-card-container">
                 <div ng-repeat="item in vm.searchResults" class="mi-card">
@@ -36,8 +18,8 @@
                                 <div>Foil: {{item.price.foil.toFixed(2)}}</div>
                             </div>
                             <div class="mi-card-price-section">
-                                <!-- <div>In Stock: {{item.quantityInStock.regular}}</div>
-                                <div>In Stock: {{item.quantityInStock.foil}}</div> -->
+                            //<div>In Stock: {{item.quantityInStock.regular}}</div>
+                              //  <div>In Stock: {{item.quantityInStock.foil}}</div>
                             </div>
                             <div class="mi-card-price-section">
                                 <button ng-click="vm.cart.addRegular(item)">Add</button>
@@ -69,8 +51,8 @@
                                 <input ng-change="vm.updateQuantity(item, true, foilQuantity)" ng-value="item.quantityInCart.foil" ng-model="foilQuantity"></input>
                             </div>
                             <div class="mi-card-price-section">
-                                <!-- <div>of {{item.quantityInStock.regular}}</div>
-                                <div>of {{item.quantityInStock.foil}}</div> -->
+                                //<div>of {{item.quantityInStock.regular}}</div>
+                                //<div>of {{item.quantityInStock.foil}}</div>
                             </div>
                         </div>
                     </div>
@@ -97,8 +79,8 @@
                                     <div ng-show="item.quantityInCart.foil > 0">{{item.price.foil}}</div>
                                 </div>
                                 <div class="mi-card-price-section">
-                                    <!-- <div>of {{item.quantityInStock.regular}}</div>
-                                    <div>of {{item.quantityInStock.foil}}</div> -->
+                                    //<div>of {{item.quantityInStock.regular}}</div>
+                                    //<div>of {{item.quantityInStock.foil}}</div>
                                 </div>
                             </div>
                         </div>
@@ -111,4 +93,4 @@
         </div>
 
     </div>
-</div>
+</div> -->
