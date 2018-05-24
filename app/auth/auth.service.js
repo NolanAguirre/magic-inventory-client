@@ -85,36 +85,37 @@
       return new Date().getTime() < expiresAt;
     }
     function checkRole(){
-        if (getCachedProfile()) {
-          httpService.checkRole(authService.getCachedProfile()).then(function(data){
-              console.log(data);
-              localStorage.setItem('role', data.role);
-              role = data.role;
-              if(data.role != 'user'){
-                  localStorage.setItem('store', data.store);
-              }
-          })
-        } else {
-          getProfile(function(err, profile) {
-              httpService.checkRole(profile).then(function(data){
-                  console.log(data);
-                  localStorage.setItem('role', data.role);
-                  role = data.role;
-                  if(data.role != 'user'){
-                      localStorage.setItem('store', data.store);
-                  }
-              })
-          });
-        }
+        // if (getCachedProfile()) {
+        //   httpService.checkRole(authService.getCachedProfile()).then(function(data){
+        //       console.log(data);
+        //       localStorage.setItem('role', data.role);
+        //       role = data.role;
+        //       if(data.role != 'user'){
+        //           localStorage.setItem('store', data.store);
+        //       }
+        //   })
+        // } else {
+        //   getProfile(function(err, profile) {
+        //       httpService.checkRole(profile).then(function(data){
+        //           console.log(data);
+        //           localStorage.setItem('role', data.role);
+        //           role = data.role;
+        //           if(data.role != 'user'){
+        //               localStorage.setItem('store', data.store);
+        //           }
+        //       })
+        //   });
+        // }
+
     }
     function role(){
         return role;
     }
     function isAdmin(){
-        if(role != 'user'){
-            return true;
-        }
         return false;
+    }
+    function isOwner(){
+      return false;
     }
     return {
       login: login,
@@ -123,7 +124,7 @@
       logout: logout,
       isAuthenticated: isAuthenticated,
       isAdmin: isAdmin,
-      checkRole: checkRole
+      isOwner: isOwner
     }
   }
 })();

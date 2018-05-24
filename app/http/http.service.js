@@ -9,13 +9,13 @@
   httpService.$inject = ['$http'];
 
   function httpService($http) {
-    function createRequest(url,config, callback, inputDataFormater) {
+    function createRequest(url, config, callback, inputDataFormater) {
       return function(data) {
         if(inputDataFormater){
-          data = inputDataFormater(data);
+          data.query = inputDataFormater(data.query);
         }
-        return $http.post(url, data, config).then(function(res){
-            return callback(res.data);
+        return $http.post(url, data.query, config).then(function(res){
+            return callback(data.view, res.data);
         }, function(err){
           return err;
         })

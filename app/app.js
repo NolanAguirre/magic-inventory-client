@@ -29,10 +29,20 @@
         controller: 'HomeController',
         templateUrl: 'app/home/home.html',
         controllerAs: 'vm'
+      }).state('test', {
+        url: '/test',
+        controller: 'TestController',
+        templateUrl: 'app/test/test.html',
+        controllerAs: 'vm'
       }).state('stores', {
         url: '/stores',
-        controller: 'StoreController',
-        templateUrl: 'app/pricing/pricing.html',
+        controller: 'StoresController',
+        templateUrl: 'app/user/stores/stores.user.html',
+        controllerAs: 'vm'
+      }).state('cart', {
+        url: '/cart',
+        controller: 'CartController',
+        templateUrl: 'app/user/cart/cart.user.html',
         controllerAs: 'vm'
       }).state('admin', {
         url: '/admin',

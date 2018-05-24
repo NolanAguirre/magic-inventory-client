@@ -5,8 +5,8 @@
   angular
     .module('app')
     .directive('card', card);
-    
-  function() {
+
+  function card() {
     return {
       restrict: 'E',
       scope: {

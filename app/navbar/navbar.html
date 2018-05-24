@@ -23,14 +23,19 @@
         User
         all the anonymous user stuff Profile -> has orders, order history, info and logout Cart View stores changes to shop from store find card in my area changes to shop for card in area
       </div> -->
-      <a ng-if="!vm.auth.isAuthenticated()" class="mi-header-link" ui-sref="stores">
+      <a ng-if="!vm.auth.isAdmin()" class="mi-header-link" ui-sref="stores">
         <div class="mi-header-link-box">
           View Stores
         </div>
       </a>
-      <a ng-if="!vm.auth.isAuthenticated()" class="mi-header-link" ui-sref="area">
+      <a ng-if="!vm.auth.isAdmin()" class="mi-header-link" ui-sref="area">
         <div class="mi-header-link-box">
-          View My Area
+          Find Card in my Area
+        </div>
+      </a>
+      <a ng-if="!vm.auth.isAdmin()" class="mi-header-link" ui-sref="cart">
+        <div class="mi-header-link-box">
+          Cart
         </div>
       </a>
       <a ng-if="!vm.auth.isAuthenticated()" class="mi-header-link" ng-click="vm.auth.login()">
@@ -70,14 +75,9 @@
         </div>
       </a>
 
-      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.employee">
+      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isOwner()" class="mi-header-link" ui-sref="admin.employee">
         <div class="mi-header-link-box">
           Employees
-        </div>
-      </a>
-      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.payment">
-        <div class="mi-header-link-box">
-          Payment Information
         </div>
       </a>
 

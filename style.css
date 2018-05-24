@@ -273,3 +273,11 @@ make expanding image not scroll on the x axis
     border-bottom: 3px solid #f8f8f8;
     margin-bottom: 1px;
 }
+
+
+.mi-store{
+  height: 100px;
+  width: 100%;
+  background-color: blue;
+  border-bottom: 2px solid black;
+}
