@@ -1,27 +1,27 @@
 angular
   .module('app')
-  .controller('StoresController', storesController);
+  .controller('TestController', testController);
 
 
-storesController.$inject = ['httpService'];
+testController.$inject = ['httpService', 'GraphqlService'];
 
-function storesController(httpService) {
+function testController(httpService, graphqlService) {
   var vm = this;
   vm.http = httpService;
-  vm.stores = []
-  if (!vm.http.queryStores) {
-    vm.http.queryStores = vm.http.createRequest('http://localhost:3001/graphql', {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      },
-      (view, data) => {view.stores = data.data.allStores.edges.map(a => a.node)},
-      data => {return { "query": "{ allStores {    edges {     node {       id       storeName      }}}}"}
-      } // this will query by location to user at somepoint
-    )
+  vm.graphql = graphqlService;
+  vm.graphql.registerQuery("createStore", {
+    storeName: true,
+    id:false
+  }, (returnVal, dataRequested) => {return `mutation {\ncreateStore(input:{store:${returnVal}}) {\nstore {\n${dataRequested}}\n}\n}\n`})
+
+  var input = {
+    storeName: "Nolans magic shop"
   }
-  vm.queryStores = function(queryParams){
-    return vm.http.queryStores({view:vm, data: queryParams})
-  }
-  vm.queryStores();
+  var output = [
+      "storeName",
+      "id"
+  ];
+  console.log(vm.graphql.createStore(input, output));
+
+
 }
