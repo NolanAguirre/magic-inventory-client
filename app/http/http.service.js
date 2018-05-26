@@ -9,20 +9,21 @@
   httpService.$inject = ['$http'];
 
   function httpService($http) {
-    function createRequest(url, config, callback, inputDataFormater) {
-      return function(data) {
-        if(inputDataFormater){
-          data.query = inputDataFormater(data.query);
-        }
-        return $http.post(url, data.query, config).then(function(res){
-            return callback(data.view, res.data);
+    function createRequest(url, callback) {
+      return function(view, data) {
+        return $http.post(url, data).then(function(res){
+            return callback(view, res.data);
         }, function(err){
           return err;
         })
       }
     }
+    function graphql(data){
+      return $http.post('http://localhost:3001/graphql', data);
+    }
     return {
-      createRequest: createRequest
+      createRequest: createRequest,
+      graphql, graphql
     }
   }
 })();
