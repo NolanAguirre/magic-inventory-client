@@ -3,25 +3,22 @@ angular
   .controller('StoresController', storesController);
 
 
-storesController.$inject = ['httpService'];
+storesController.$inject = ['httpService', 'GraphqlService'];
 
-function storesController(httpService) {
+function storesController(httpService, graphqlService) {
   var vm = this;
   vm.http = httpService;
-  vm.stores = []
-  if (!vm.http.queryStores) {
-    vm.http.queryStores = vm.http.createRequest('http://localhost:3001/graphql', {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      },
-      (view, data) => {view.stores = data.data.allStores.edges.map(a => a.node)},
-      data => {return { "query": "{ allStores {    edges {     node {       id       storeName      }}}}"}
-      } // this will query by location to user at somepoint
-    )
+  httpService.graphql(graphqlService.allStores({
+    data: ["name", "id"],
+    format:{
+      first:10
+    }
+  })).then((res) => {
+    vm.stores = res.data.data.allStores.edges.map((item) => item = item.node);
+  }, (err) => {
+    console.log(err);
+  })
+  vm.viewInventory = function(store){
+    alert(store);
   }
-  vm.queryStores = function(queryParams){
-    return vm.http.queryStores({view:vm, data: queryParams})
-  }
-  vm.queryStores();
 }

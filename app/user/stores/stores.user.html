@@ -1,13 +1,19 @@
 <div class='mi-body'>
   <div class='mi-store' ng-repeat='store in vm.stores'>
-    <div>
-      <img></img>
+    <div class="mi-store-info">
+      <img src="http://via.placeholder.com/350x150"></img>
       <div>
-        {{store.storeName}}
+        <h3>{{store.name}}</h3>
+        <div class="mi-column">
+          <div class="mi-store-contact"><img src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/phone-32.png"></img>{{store.phoneNumber}}</div>
+          <div class="mi-store-contact"><img src="https://cdn4.iconfinder.com/data/icons/black-white-social-media/32/mail_email_envelope_send_message-32.png"></img>{{store.email}}</div>
+        </div>
       </div>
     </div>
     <div>
-      <button ng-click=''>view inventory</button>
+      <div class="mi-store-view-inventory" ng-click="vm.loadStoreInventory(store)">
+        View Store Inventory
+      </div>
     </div>
   </div>
 </div>

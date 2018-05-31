@@ -18,12 +18,16 @@
         })
       }
     }
+    function testAuth(){
+      return $http.post('http://localhost:3002/', {});
+    }
     function graphql(data){
-      return $http.post('http://localhost:3001/graphql', data);
+      return $http.post('http://localhost:3002/graphql', data);
     }
     return {
       createRequest: createRequest,
-      graphql, graphql
+      graphql, graphql,
+      testAuth, testAuth
     }
   }
 })();

@@ -30,7 +30,10 @@ a {
 
 
 
-
+.mi-column{
+  display: flex;
+  flex-direction: column;
+}
 body {
     margin: 0;
     background-color: #f8f8f8;
@@ -103,7 +106,7 @@ body {
 .mi-body {
     margin: 0 auto;
     padding-top: 75px;
-    width: 800px;
+    width: 1200px;
     height: 600px;
 }
 
@@ -272,12 +275,4 @@ make expanding image not scroll on the x axis
     height: 40px;
     border-bottom: 3px solid #f8f8f8;
     margin-bottom: 1px;
-}
-
-
-.mi-store{
-  height: 100px;
-  width: 100%;
-  background-color: blue;
-  border-bottom: 2px solid black;
 }
