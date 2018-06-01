@@ -9,11 +9,18 @@
   height: 400px;
   width:400px;
   background-color: yellow;
+  overflow: hidden;
+}
+.test-section button{
+  width:344px;
 }
 .test-scroll{
+  width:100%;
+  height: 100%;
   margin-top: 90px;
-  height:300px;
-
+  overflow-y: scroll;
+  padding-right: 17px;
+  box-sizing: content-box;
 }
 .test-data{
   max-width: 400px;

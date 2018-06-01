@@ -8,8 +8,8 @@
         <input ng-model="vm.storeCity" placeholder="store city"></input>
         <input ng-model="vm.storeState" placeholder="store state"></input>
         <input ng-model="vm.storeZip" placeholder="store zip code"></input>
-        <button ng-click="vm.getStores()">get store</button>
         <button ng-click="vm.createStore(vm.storeName, vm.storeEmail, vm.storePhone, vm.storeCity, vm.storeState, vm.storeZip)">create test store</button>
+        <button ng-click="vm.getStore()">get store</button>
         <div class="test-scroll">
           <div class="test-data" ng-repeat="store in vm.stores track by $index">
             <div ng-repeat="data in vm.getKeys(store.node) track by $index">
@@ -21,8 +21,8 @@
       <div class="test-section">
         <input ng-model="vm.userName" placeholder="name"></input>
         <input ng-model="vm.userEmail" placeholder="email"></input>
-        <button ng-click="vm.getUser()">get user</button>
         <button ng-click="vm.createUser(vm.userName, vm.userEmail)">create test user</button>
+        <button ng-click="vm.getUser()">get user</button>
         <div class="test-scroll">
           <div class="test-data" ng-repeat="user in vm.users">
             <div ng-repeat="data in vm.getKeys(user.node) track by $index">
@@ -34,12 +34,12 @@
       <div class="test-section">
         <input ng-model="vm.orderStoreId" placeholder="store id"></input>
         <input ng-model="vm.orderUserId" placeholder="user id"></input>
-        <input ng-model="vm.orderStatus" placeholder="status"></input>
+        <input ng-model="vm.orderStatus" placeholder="status default: sent"></input>
         <input ng-model="vm.orderPrice" placeholder="price"></input>
-        <button ng-click="vm.getOrder(vm.getOrderStoreId, vm.getOrderUserId)">get order</button>
         <button ng-click="vm.createOrder(vm.orderStoreId, vm.storeUserId, vm.orderStatus, vm.orderPrice)">create test order</button>
         <input ng-model="vm.getOrderStoreId" placeholder="get store id"></input>
         <input ng-model="vm.getOrderUserId" placeholder="get user id"></input>
+        <button ng-click="vm.getOrder(vm.getOrderStoreId, vm.getOrderUserId)">get order</button>
         <div class="test-scroll">
           <div class="test-data"ng-repeat="order in vm.orders">
             <div ng-repeat="data in vm.getKeys(order.node) track by $index">
@@ -51,11 +51,19 @@
     </div>
     <div class="test-row">
       <div class="test-section">
-        <button ng-click="vm.getInventory()">get inventory</button>
-        <button ng-click="vm.createInventory()">create test inventory</button>
+        <input ng-model="vm.inventoryCardId" placeholder="card id"></input>
+        <input ng-model="vm.inventoryStoreId" placeholder="store id"></input>
+        <input ng-model="vm.invetoryCondition" placeholder="condition default: mint"></input>
+        <input placeholder="none"></input>
+        <button ng-click="vm.createInventory(vm.inventoryCardId,vm.inventoryStoreId,vm.invetoryCondition)">create test inventory</button>
+        <input ng-model="vm.getInventoryCardId" placeholder="get card id"></input>
+        <input ng-model="vm.getInventoryStoreId" placeholder="get store id"></input>
+        <button ng-click="vm.getInventory(vm.getInventoryStoreId)">get inventory</button>
         <div class="test-scroll">
           <div ng-repeat="inventory in vm.inventories">
-
+            <div ng-repeat="data in vm.getKeys(inventory.node) track by $index">
+              {{data}}: {{inventory.node[data]}}
+            </div>
           </div>
         </div>
       </div>
@@ -63,7 +71,9 @@
         <button ng-click="vm.getCard()">get card</button>
         <div class="test-scroll">
           <div ng-repeat="card in vm.cards">
-
+            <div ng-repeat="data in vm.getKeys(card.node) track by $index">
+              {{data}}: {{card.node[data]}}
+            </div>
           </div>
         </div>
       </div>

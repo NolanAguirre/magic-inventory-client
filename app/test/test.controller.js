@@ -26,7 +26,7 @@ function testController(http, graphql) {
       order:{
         storeId: storeID,
         userId: userID,
-        orderStatus: o,
+        orderStatus: o.toUpperCase(),
         price: p
       }
     })).then((data) => {
@@ -49,14 +49,14 @@ function testController(http, graphql) {
       console.log(data)
     })
   }
-  vm.createInventory = () => {
+  vm.createInventory = (cId,s,c) => {
     http.graphql(graphql.createInventory({
       data:["id"]
     }, {
       inventory: {
-        cardId: vm.card,
-        storeId: vm.store,
-        condition: "MINT"
+        cardId: cId,
+        storeId: s,
+        condition: c.toUpperCase
       }
     })).then((data) => {
       console.log(data)
@@ -72,22 +72,36 @@ function testController(http, graphql) {
   }
   vm.getCard = () => {
     http.graphql(graphql.allCards({
-      data: ["id"]
+      data: ["id", 'name'],
+      format:{
+        first:30
+      }
     })).then((res) => {
-      console.log(res.data.data.allCards);
       vm.cards = res.data.data.allCards.edges;
     })
   }
-  vm.getStores = () => {
+  vm.getOrder = () => {
+    http.graphql(graphql.allOrders({
+      data: ["id", 'storeId', 'userId','orderStatus','price','createdAt']
+    })).then((res) => {
+      vm.orders = res.data.data.allOrders.edges;
+    })
+  }
+  vm.getStore = () => {
     http.graphql(graphql.allStores({
       data: ['name', 'id', 'email','phoneNumber', 'city', 'state', 'zipCode']
     })).then((res) => {
       vm.stores = res.data.data.allStores.edges;
     })
   }
+  vm.getInventory = () => {
+    http.graphql(graphql.allInventories({
+      data: ['id', 'storeId', 'cardId']
+    })).then((res) => {
+      vm.inventories = res.data.data.allInventories.edges;
+    })
+  }
   vm.getKeys = (data) =>{
     return Object.keys(data);
   }
-  // vm.getOrder = () =>{http.graphql(graphql.).then((data)=>{console.log(data)})}
-  // vm.getInventory = () =>{http.graphql(graphql.).then((data)=>{console.log(data)})}
 }
