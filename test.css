@@ -1,0 +1,21 @@
+.test-grid{
+  display:flex;
+  flex-direction: column;
+}
+.test-row{
+  display: flex;
+}
+.test-section{
+  height: 400px;
+  width:400px;
+  background-color: yellow;
+}
+.test-scroll{
+  margin-top: 90px;
+  height:300px;
+
+}
+.test-data{
+  max-width: 400px;
+  word-wrap: break-word;
+}

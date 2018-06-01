@@ -54,7 +54,7 @@
               tempData += element + "\n";
             }
           })
-          return `${tempName}{\nedges{\nnodes{\n${tempData}}\n}\n}\n`;
+          return `${tempName}{\n${tempData}}\n`; //`${tempName}{\nedges{\nnodes{\n${tempData}}\n}\n}\n`
         }
         outputData.data.forEach((element) => {
           if (element instanceof Object) {

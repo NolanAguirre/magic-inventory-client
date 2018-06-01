@@ -5,43 +5,89 @@ angular
 
 testController.$inject = ['httpService', 'GraphqlService'];
 
-function testController(httpService, graphqlService) {
+function testController(http, graphql) {
   var vm = this;
-  vm.http = httpService;
-  vm.graphql = graphqlService;
-  var input = {store:{
-    storeName: "Nolans magic shop"
-  }}
-  var output = [
-    "storeName",
-    "id"
-  ];
-  // input = {
-  //   id: "91815e21-0f52-4a99-8073-80dc13a7c846",
-  // }
-  vm.graphql.registerCRUD("store");
-  vm.graphql.registerQueries("store");
-  console.log();
-  vm.http.graphql(vm.graphql.allStores(input, output)).then(function(res) {
-    vm.datas = res.data;
-  })
+  vm.createUser = (n, e) => {
+    http.graphql(graphql.createUser({
+      data: ["id"]
+    }, {
+      user: {
+        name: n,
+        email: e
+      }
+    })).then((data) => {
+      console.log(data)
+    })
+  }
+  vm.createOrder = (storeID, userID, o, p) => {
+    http.graphql(graphql.createOrder({
+      data: ["id"],
+    },{
+      order:{
+        storeId: storeID,
+        userId: userID,
+        orderStatus: o,
+        price: p
+      }
+    })).then((data) => {
+      console.log(data)
+    })
+  }
+  vm.createStore = (n,e,p,c,s,z) => {
+    http.graphql(graphql.createStore({
+      data: ["id"]
+    }, {
+      store: {
+        name: n,
+        email: e,
+        phoneNumber: p,
+        city: c,
+        state: s.toUpperCase(),
+        zipCode: z
+      }
+    })).then((data) => {
+      console.log(data)
+    })
+  }
+  vm.createInventory = () => {
+    http.graphql(graphql.createInventory({
+      data:["id"]
+    }, {
+      inventory: {
+        cardId: vm.card,
+        storeId: vm.store,
+        condition: "MINT"
+      }
+    })).then((data) => {
+      console.log(data)
+    })
+  }
 
-  // vm.graphql.registerQueries({
-  //   user:{
-  //     name: true,
-  //     email: true,
-  //     id: false,
-  //     store_id: false
-  //   }
-  // }, {
-  //   byInputCondition: true,
-  //   byPrimaryKey: true,
-  //   byForigenKey: true,
-  // })
-  // vm.http.graphql(vm.graphql.createUser(input, output)).then(function(res) {
-  //   vm.data = res.data;
-  // })
-  // vm.http.graphql(vm.graphql.userById(input, output)).then(function(res) {
-  //   vm.datas = res.data;
-  // })
+  vm.getUser = () => {
+    http.graphql(graphql.allUsers({
+      data: ["id",'name', 'email']
+    })).then((res) => {
+      vm.users = res.data.data.allUsers.edges;
+    })
+  }
+  vm.getCard = () => {
+    http.graphql(graphql.allCards({
+      data: ["id"]
+    })).then((res) => {
+      console.log(res.data.data.allCards);
+      vm.cards = res.data.data.allCards.edges;
+    })
+  }
+  vm.getStores = () => {
+    http.graphql(graphql.allStores({
+      data: ['name', 'id', 'email','phoneNumber', 'city', 'state', 'zipCode']
+    })).then((res) => {
+      vm.stores = res.data.data.allStores.edges;
+    })
+  }
+  vm.getKeys = (data) =>{
+    return Object.keys(data);
+  }
+  // vm.getOrder = () =>{http.graphql(graphql.).then((data)=>{console.log(data)})}
+  // vm.getInventory = () =>{http.graphql(graphql.).then((data)=>{console.log(data)})}
 }
