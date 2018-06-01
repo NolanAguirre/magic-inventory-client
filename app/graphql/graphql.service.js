@@ -10,9 +10,14 @@
 
   function graphqlService() {
     function registerQueries(name) {
-      this["all" + toTitleCase(name) + "s"] = createQuery((output, input) => {
+      var pluralName = name;
+      if(name.substring(name.length - 1) == "y"){
+
+        pluralName = name.slice(0,-1) + "ie";
+      }
+      this["all" + toTitleCase(pluralName)  + "s"] = createQuery((output, input) => {
         return {
-          "query": `query ${input ? `($data:${toTitleCase(name) + "Condition"})`: ""}{\n${"all" + toTitleCase(name) + "s"} ${(input || output.format) ? `(${output.format ? output.format : ""} ${(input && output.format) ? "," : ""} ${input ? "condition:$data" : ""})` : ""} {\nedges{\nnode{\n${output.data}}\n}\n}\n}\n`,
+          "query": `query ${input ? `($data:${toTitleCase(name) + "Condition"})`: ""}{\n${"all" + toTitleCase(pluralName) + "s"} ${(input || output.format) ? `(${output.format ? output.format : ""} ${(input && output.format) ? "," : ""} ${input ? "condition:$data" : ""})` : ""} {\nedges{\nnode{\n${output.data}}\n}\n}\n}\n`,
           "variables": (input) ? JSON.stringify(input[0]) : ""
         }
       })
