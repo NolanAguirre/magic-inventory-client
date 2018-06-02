@@ -20,6 +20,7 @@ function testController(http, graphql) {
     })
   }
   vm.createOrder = (storeID, userID, o, p) => {
+    console.log(userID);
     http.graphql(graphql.createOrder({
       data: ["id"],
     },{
@@ -62,6 +63,20 @@ function testController(http, graphql) {
       console.log(data)
     })
   }
+  vm.createOrderItem = (n,card, c, p) => {
+    http.graphql(graphql.createOrderItem({
+      data:["id"]
+    }, {
+      orderItem: {
+        orderNumber: n,
+        cardId: card,
+        condition: c.toUpperCase,
+        price: p
+      }
+    })).then((data) => {
+      console.log(data)
+    })
+  }
 
   vm.getUser = () => {
     http.graphql(graphql.allUsers({
@@ -99,6 +114,13 @@ function testController(http, graphql) {
       data: ['id', 'storeId', 'cardId']
     })).then((res) => {
       vm.inventories = res.data.data.allInventories.edges;
+    })
+  }
+  vm.getOrderItem = () => {
+    http.graphql(graphql.allOrderItems({
+      data: ['id', 'price', 'cardId', 'orderNumber']
+    })).then((res) => {
+      vm.orderItems = res.data.data.allOrderItems.edges;
     })
   }
   vm.getKeys = (data) =>{

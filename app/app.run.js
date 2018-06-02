@@ -22,6 +22,8 @@
       graphqlService.registerQueries("inventory");
       graphqlService.registerCRUD("order");
       graphqlService.registerQueries("order");
+      graphqlService.registerCRUD("orderItem");
+      graphqlService.registerQueries("orderItem");
       // httpService.queryCard = httpService.createRequest("http://localhost:5000/graphql", {
       //     headers: {
       //       'Content-Type': 'application/x-www-form-urlencoded'

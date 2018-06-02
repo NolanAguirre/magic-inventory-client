@@ -36,7 +36,7 @@
         <input ng-model="vm.orderUserId" placeholder="user id"></input>
         <input ng-model="vm.orderStatus" placeholder="status default: sent"></input>
         <input ng-model="vm.orderPrice" placeholder="price"></input>
-        <button ng-click="vm.createOrder(vm.orderStoreId, vm.storeUserId, vm.orderStatus, vm.orderPrice)">create test order</button>
+        <button ng-click="vm.createOrder(vm.orderStoreId, vm.orderUserId, vm.orderStatus, vm.orderPrice)">create test order</button>
         <input ng-model="vm.getOrderStoreId" placeholder="get store id"></input>
         <input ng-model="vm.getOrderUserId" placeholder="get user id"></input>
         <button ng-click="vm.getOrder(vm.getOrderStoreId, vm.getOrderUserId)">get order</button>
@@ -77,7 +77,22 @@
           </div>
         </div>
       </div>
-      <div class="test-section"></div>
+      <div class="test-section">
+        <input ng-model="vm.orderItemNumber" placeholder="order number"></input>
+        <input ng-model="vm.orderItemCard" placeholder="card id"></input>
+        <input ng-model="vm.orderItemCondition" placeholder="card condition default: mint"></input>
+        <input ng-model="vm.orderItemPrice" placeholder="card price"></input>
+        <button ng-click="vm.createOrderItem(vm.orderItemStoreId,vm.orderItemUserId, vm.orderItemCondition,vm.orderItemPrice)">create order item</button>
+        <input ng-model="vm.getOrderItemStoreId" placeholder="store Id"></input>
+        <input ng-model="vm.getOrderItemUserId" placeholder="user id"></input>
+        <button ng-click="vm.getOrderItem(vm.getOrderItemStoreId,vm.getOrderItemUserId)">get order item</button>
+        <div class="test-scroll">
+          <div ng-repeat="orderItem in vm.orderItems">
+            <div ng-repeat="data in vm.getKeys(orderItem.node) track by $index">
+              {{data}}: {{orderItem.node[data]}}
+            </div>
+          </div>
+        </div></div>
     </div>
   </div>
 </div>
