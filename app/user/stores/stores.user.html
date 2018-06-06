@@ -11,8 +11,22 @@
       </div>
     </div>
     <div>
-      <div class="mi-store-view-inventory" ng-click="vm.loadStoreInventory(store)">
+      <div class="mi-store-view-inventory" ng-click="vm.viewInventory(store)">
         View Store Inventory
+      </div>
+    </div>
+  </div>
+  <div ng-if="vm.activeStore.id"class="mi-store-inventory-container">
+    <div class="mi-store-inventory">
+      <div>
+        <div>
+          <div class="mi-exit-icon" ng-click="vm.activeStore = {}">
+          </div>
+        </div>
+        {{vm.activeStore.name}}
+      </div>
+      <div ng-repeat="card in vm.activeStore.inventory"class="mi-inventory-card">
+          {{card}}
       </div>
     </div>
   </div>
