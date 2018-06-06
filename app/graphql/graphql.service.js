@@ -18,7 +18,7 @@
       this["all" + toTitleCase(pluralName)  + "s"] = createQuery((output, input) => {
         return {
           "query": `query ${input ? `($data:${toTitleCase(name) + "Condition"})`: ""}{\n${"all" + toTitleCase(pluralName) + "s"} ${(input || output.format) ? `(${output.format ? output.format : ""} ${(input && output.format) ? "," : ""} ${input ? "condition:$data" : ""})` : ""} {\nedges{\nnode{\n${output.data}}\n}\n}\n}\n`,
-          "variables": (input) ? JSON.stringify(input[0]) : ""
+          "variables": (input) ? JSON.stringify(input) : ""
         }
       })
     }
@@ -29,7 +29,7 @@
       ["update", "create", "delete"].forEach((type) => {
         graphql[type + toTitleCase(name)] = createQuery((output, input) => {
           return {
-            "query": `mutation($data:${toTitleCase(type) + toTitleCase(name) + "Input!"}){\n${type + toTitleCase(name)}(input:$data){\n${name.toLowerCase()}{\n${output.data}}\n}\n}\n`,
+            "query": `mutation($data:${toTitleCase(type) + toTitleCase(name) + "Input!"}){\n${type + toTitleCase(name)}(input:$data){\n${name}{\n${output.data}}\n}\n}\n`,
             "variables": JSON.stringify(input)
           }
         })
@@ -54,16 +54,18 @@
           let tempName = Object.keys(obj)[0];
           obj[tempName].forEach((element) => {
             if (element instanceof Object) {
-              tempData += formatObject(element[0]);
+              tempData += formatObject(element);
             } else {
               tempData += element + "\n";
             }
           })
-          return `${tempName}{\n${tempData}}\n`; //`${tempName}{\nedges{\nnodes{\n${tempData}}\n}\n}\n`
+          if(tempName.split("By")[0].endsWith("s")){
+            return `${tempName}{\nedges{\nnode{\n${tempData}}\n}\n}\n`
+          }
+          return `${tempName}{\n${tempData}}\n`;
         }
         outputData.data.forEach((element) => {
           if (element instanceof Object) {
-            console.log();
             formattedOutput.data += formatObject(element);
           } else {
             formattedOutput.data += element + "\n";
