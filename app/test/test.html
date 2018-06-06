@@ -2,7 +2,7 @@
   <div class="test-grid">
     <div class="test-row">
       <div class="test-section">
-        <input ng-model="vm.storenNme" placeholder="store name"></input>
+        <input ng-model="vm.storeName" placeholder="store name"></input>
         <input ng-model="vm.storeEmail" placeholder="store email"></input>
         <input ng-model="vm.storePhone" placeholder="store phone number"></input>
         <input ng-model="vm.storeCity" placeholder="store city"></input>
@@ -54,8 +54,8 @@
         <input ng-model="vm.inventoryCardId" placeholder="card id"></input>
         <input ng-model="vm.inventoryStoreId" placeholder="store id"></input>
         <input ng-model="vm.invetoryCondition" placeholder="condition default: mint"></input>
-        <input placeholder="none"></input>
-        <button ng-click="vm.createInventory(vm.inventoryCardId,vm.inventoryStoreId,vm.invetoryCondition)">create test inventory</button>
+        <input ng-model="vm.inventoryPrice" placeholder="price"></input>
+        <button ng-click="vm.createInventory(vm.inventoryCardId,vm.inventoryStoreId,vm.invetoryCondition, vm.inventoryPrice)">create test inventory</button>
         <input ng-model="vm.getInventoryCardId" placeholder="get card id"></input>
         <input ng-model="vm.getInventoryStoreId" placeholder="get store id"></input>
         <button ng-click="vm.getInventory(vm.getInventoryStoreId)">get inventory</button>
@@ -79,10 +79,8 @@
       </div>
       <div class="test-section">
         <input ng-model="vm.orderItemNumber" placeholder="order number"></input>
-        <input ng-model="vm.orderItemCard" placeholder="card id"></input>
-        <input ng-model="vm.orderItemCondition" placeholder="card condition default: mint"></input>
-        <input ng-model="vm.orderItemPrice" placeholder="card price"></input>
-        <button ng-click="vm.createOrderItem(vm.orderItemStoreId,vm.orderItemUserId, vm.orderItemCondition,vm.orderItemPrice)">create order item</button>
+        <input ng-model="vm.orderItemInventory" placeholder="Inventory id"></input>
+        <button ng-click="vm.createOrderItem(vm.orderItemNumber, vm.orderItemInventory)">create order item</button>
         <input ng-model="vm.getOrderItemStoreId" placeholder="store Id"></input>
         <input ng-model="vm.getOrderItemUserId" placeholder="user id"></input>
         <button ng-click="vm.getOrderItem(vm.getOrderItemStoreId,vm.getOrderItemUserId)">get order item</button>

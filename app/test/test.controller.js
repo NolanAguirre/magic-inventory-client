@@ -50,28 +50,27 @@ function testController(http, graphql) {
       console.log(data)
     })
   }
-  vm.createInventory = (cId,s,c) => {
+  vm.createInventory = (cId,s,c, p) => {
     http.graphql(graphql.createInventory({
       data:["id"]
     }, {
       inventory: {
         cardId: cId,
         storeId: s,
-        condition: c.toUpperCase
+        condition: c.toUpperCase,
+        price: p
       }
     })).then((data) => {
       console.log(data)
     })
   }
-  vm.createOrderItem = (n,card, c, p) => {
+  vm.createOrderItem = (n,i) => {
     http.graphql(graphql.createOrderItem({
       data:["id"]
     }, {
       orderItem: {
-        orderNumber: n,
-        cardId: card,
-        condition: c.toUpperCase,
-        price: p
+        orderId: n,
+        inventoryId: i
       }
     })).then((data) => {
       console.log(data)
@@ -87,7 +86,7 @@ function testController(http, graphql) {
   }
   vm.getCard = () => {
     http.graphql(graphql.allCards({
-      data: ["id", 'name'],
+      data: ["id", 'name', 'setName'],
       format:{
         first:30
       }
@@ -111,14 +110,14 @@ function testController(http, graphql) {
   }
   vm.getInventory = () => {
     http.graphql(graphql.allInventories({
-      data: ['id', 'storeId', 'cardId']
+      data: ['id', 'storeId', 'cardId', {cardByCardId:["name", "setName", "multiverseId"]}]
     })).then((res) => {
       vm.inventories = res.data.data.allInventories.edges;
     })
   }
   vm.getOrderItem = () => {
     http.graphql(graphql.allOrderItems({
-      data: ['id', 'price', 'cardId', 'orderNumber']
+      data: ['id', 'inventoryId', 'orderId']
     })).then((res) => {
       vm.orderItems = res.data.data.allOrderItems.edges;
     })
