@@ -58,8 +58,8 @@
         controllerAs: 'vm'
       }).state('admin.orders', {
         url: '/orders',
-        controller: 'OrdersController',
-        templateUrl: 'app/admin/orders/orders.html',
+        controller: 'AdminOrdersController',
+        templateUrl: 'app/admin/orders/orders.admin.html',
         controllerAs: 'vm'
       }).state('admin.settings', {
         url: '/settings',

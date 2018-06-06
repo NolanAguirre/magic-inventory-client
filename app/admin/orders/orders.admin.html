@@ -1,0 +1,28 @@
+<div class="mi-body">
+  <div class="mi-order-container">
+    <div class="mi-order-sort-by">
+      
+    </div>
+    <div ng-repeat="order in vm.orders" class="mi-admin-order">
+      Order Status: {{order.node.orderStatus}}
+      Date Placed: {{order.node.createdAt}}
+      Total: {{order.node.price}}
+      From: {{order.node.userByUserId.name}}<br>
+      <table class="mi-admin-order-cards">
+        <tr>
+          <th>Name</th>
+          <th>Set</th>
+          <th>Condition</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        </tr>
+        <tr class="mi-admin-order-card" ng-repeat="card in order.node.orderItemsByOrderId.edges">
+          <td>{{card.node.inventoryByInventoryId.cardByCardId.name}}</td>
+          <td>{{card.node.inventoryByInventoryId.cardByCardId.setName}}</td>
+          <td>{{card.node.inventoryByInventoryId.condition}}</td>
+          <td>{{card.node.inventoryByInventoryId.price}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

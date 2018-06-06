@@ -1,0 +1,30 @@
+.mi-order-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 500px;
+}
+.mi-order-sort-by{
+  display: flex;
+}
+.mi-order-sort-by-item{
+  height:100px;
+  background-color: white;
+  padding: 0 10px;
+  margin: 0 2px;
+}
+.mi-admin-order-cards {
+  width:100%;
+}
+.mi-admin-order-cards tr:first-child{
+  background: #f8f8f8;
+}
+.mi-admin-order-cards tr:nth-child(2n+3){
+  background: rgb(207, 207, 207);
+}
+.mi-admin-order-cards tr:nth-child(2n){
+  background: rgb(144, 144, 144);
+}
+/* .mi-admin-order-card{
+  background-color: rgb(80, 80, 80);
+} */
