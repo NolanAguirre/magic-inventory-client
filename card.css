@@ -1,0 +1,10 @@
+.mi-card{
+  display: flex;
+}
+.mi-card-image-container img{
+  max-width: 10rem;
+}
+.mi-card-info{
+  display: flex;
+  flex-direction: column;
+}

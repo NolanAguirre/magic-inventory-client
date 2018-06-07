@@ -133,79 +133,13 @@ body {
     text-align: center;
     margin: 0;
 }
-.mi-card-container{
-    height: 525px;
-    overflow: auto;
-}
-.mi-card-container h1{
-    text-align: center
-}
-.mi-cart-options{
-    height:75px;
-    display:flex;
-    justify-content: space-around;
-    align-items:  center;
-}
-.mi-cart-options-container{
-    font-size: 1.25em;
-}
-.mi-card{
-    font-family: 'Open Sans', sans-serif;
-    font-size: .8em;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 2;
-    height: 110px;
-    border-bottom: 3px solid #f8f8f8;
-    margin-bottom: 1px;
-}
-.mi-card-section{
-    position: relative;
-}
-.mi-card-price-container{
-    display:flex;
-    height:100%;
-}
-.mi-card-price-section{
-    display:flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 0 3;
-    height: 100%;
-}
-.mi-card-price-section input{
-    padding: 1px;
-    text-align: center;
-    width: 40px;
-    margin-left: 4px;
-}
-.mi-card-image{
-    height:103px;
-    width:75px;
-    position: relative;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-.mi-card-image:active{
-    position:absolute;
-    top:0;
-    left: 0;
-    height:310;
-    width:223;
-    z-index: 2;
-}
+
 .mi-search-row button{
     display: block;
     width: 100px;
     font-size: 16px;
     padding: 6px 11px;
-}
-.mi-card-container{
-  height:500px;
-  overflow:auto;
-}
+
 /*
 TODO:
 make expanding image not scroll on the x axis
