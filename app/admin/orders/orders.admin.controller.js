@@ -24,7 +24,7 @@ function adminOrdersController(http, graphql) {
     })).then((res) => {
       orders = res.data.data.allOrders.edges.map((element) => {
         element.node.createdAt = new Date(element.node.createdAt);
-        return element;
+        return element.node;
       });
     })
   }
