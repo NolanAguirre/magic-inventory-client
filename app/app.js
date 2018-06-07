@@ -51,13 +51,13 @@
         resolve: {
           authenticate: authenticateAdmin
         }
-      }).state('admin.inventory', {
-        url: '/inventory',
+      }).state('adminInventory', {
+        url: '/adminInventory',
         controller: 'InventoryController',
         templateUrl: 'app/admin/inventory/inventory.admin.html',
         controllerAs: 'vm'
-      }).state('admin.orders', {
-        url: '/orders',
+      }).state('adminOrders', {
+        url: '/adminOrders',
         controller: 'AdminOrdersController',
         templateUrl: 'app/admin/orders/orders.admin.html',
         controllerAs: 'vm'
