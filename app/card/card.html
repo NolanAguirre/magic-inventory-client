@@ -1,14 +1,21 @@
 <div class="mi-card">
   <div class="mi-card-image-container">
-    <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{cardInfo.card.multiverseId}}&type=card"></img>
+    <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseId}}&type=card"></img>
   </div>
-  <div class="mi-card-info">
-    <div>
-      {{cardInfo.card.name}}
-    </div>
-    <div>
-      {{cardInfo.card.setName}}
-    </div>
-
+  <div class="mi-card-text-container">
+      <div class="mi-card-info">
+        <div>
+          {{card.name}}
+        </div>
+        <div>
+          {{card.setName}}
+        </div>
+      </div>
+      <div class="mi-card-condition" ng-if="card.condition">
+        {{card.condition}}
+      </div>
+      <div class="mi-card-quantity" ng-if="card.price">
+        <input placeholder="1"></input> <pre> of {{card.quantity}}</pre>
+      </div>
   </div>
 </div>

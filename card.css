@@ -1,10 +1,43 @@
 .mi-card{
   display: flex;
+  margin: 1rem 0;
+  background-color: white;
+  border-radius: 4px;
+  max-height: 250px;
+}
+.mi-card-image-container{
+  margin: 1rem 0;
+  padding-right: 1rem;
+  border-right: 1px solid rgb(175,175,175);
 }
 .mi-card-image-container img{
-  max-width: 10rem;
+  max-width: 8rem;
+}
+.mi-card-text-container{
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+}
+.mi-card-condition{
+  display: flex;
+  align-items: center;
+  padding-right: 30px;
+}
+.mi-card-quantity{
+  display: flex;
+  align-items: center;
+}
+.mi-card-quantity input{
+  width: 50px;
+  text-align: center;
 }
 .mi-card-info{
   display: flex;
   flex-direction: column;
+  padding-right: 20px;
+}
+.mi-card-info div:first-child{
+  font-size: 20px;
+  padding-bottom: 5px;
 }
