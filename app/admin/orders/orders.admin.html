@@ -47,11 +47,11 @@
           <th>Price</th>
           <th>Quantity</th>
         </tr>
-        <tr class="mi-admin-order-card" ng-repeat="card in order.node.orderItemsByOrderId.edges">
-          <td>{{card.inventoryByInventoryId.cardByCardId.name}}</td>
-          <td>{{card.inventoryByInventoryId.cardByCardId.setName}}</td>
-          <td>{{card.inventoryByInventoryId.condition}}</td>
-          <td>{{card.inventoryByInventoryId.price}}</td>
+        <tr class="mi-admin-order-card" ng-repeat="card in order.orderItemsByOrderId.edges">
+          <td>{{card.node.inventoryByInventoryId.cardByCardId.name}}</td>
+          <td>{{card.node.inventoryByInventoryId.cardByCardId.setName}}</td>
+          <td>{{card.node.inventoryByInventoryId.condition}}</td>
+          <td>{{card.node.inventoryByInventoryId.price}}</td>
           <td></td>
         </tr>
       </table>
