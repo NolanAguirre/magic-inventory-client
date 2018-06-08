@@ -1,4 +1,50 @@
 <div class="mi-body">
+  <div class="mi-manage-inventory-header">
+    <div>
+      <h2>Add Inventory</h2>
+      <div>
+        Add By Set: <input></input><button>add condition</button> Add By Rarity: <input></input><button>add condition</button>
+      </div>
+      <div class="mi-add-inventory-container">
+        <div>
+          <div class="mi-add-inventroy-section">
+            <div class="mi-column">
+              <div>name:</div>
+              <div> set or set code:</div>
+            </div>
+            <div class="mi-add-inventory-inputs">
+              <input></input>
+              <input></input>
+            </div>
+          </div>
+          <div style="display:flex;justify-content: center;">or</div>
+          <div class="mi-add-inventroy-section">
+            <div class="mi-column">
+              <div> set or set code:</div>
+              <div> collectors number:</div>
+            </div>
+            <div class="mi-add-inventory-inputs">
+              <input></input>
+              <input></input>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="mi-add-inventroy-section">
+            <div class="mi-column">
+              <div> price:</div>
+              <div> condition:</div>
+            </div>
+            <div class="mi-add-inventory-inputs">
+              <input></input>
+              <input></input>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div>
-  <card ng-repeat="inventoryItem in vm.inventory"info="inventoryItem"></card>
+    <card ng-repeat="inventoryItem in vm.inventory track by $index" info="inventoryItem"></card>
+  </div>
 </div>
