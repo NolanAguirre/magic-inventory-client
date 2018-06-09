@@ -1,17 +1,29 @@
 .mi-add-inventory-container{
   display:flex;
   align-items: center;
-  font-size: 20px;
 }
 .mi-add-inventory-inputs{
   display:flex;
   flex-direction: column;
   float:right;
   padding-left: 10px;
+  width: 150px;
 }
 .mi-add-inventroy-section{
   display: flex;
-  max-width: 340px;
+  max-width: 450px;
   justify-content: space-between;
   padding: 0 2rem;
+}
+.mi-add-inventory-condition{
+  min-width: 500px;
+  display:flex;
+}
+.mi-add-inventory-condition input{
+  margin: 0 1rem;
+}
+.mi-add-inventory-condition-item{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
 }
