@@ -15,8 +15,18 @@
   flex-direction: row;
   justify-content: space-around;
 }
+.mi-order-filter-by{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 .mi-order-sort-by div{
-
+  padding: 1rem 2rem;
+  background: rgb(247, 202, 213);
+  transition: .2s background-color;
+}
+.mi-order-sort-by div:hover{
+  background-color: rgb(245, 168, 187);
 }
 .mi-order-sort-by-item{
   height:100px;

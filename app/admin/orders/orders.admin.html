@@ -2,7 +2,7 @@
   <div class="mi-order-container">
     <div class="mi-order-sort-by-container">
       <div>Filter By:</div>
-      <div class="mi-order-sort-by">
+      <div class="mi-order-filter-by">
         <div ng-repeat="orderFilter in vm.orderFilters track by $index">
           <div>{{orderFilter.name}}
             <select ng-model="vm[orderFilter.id]" ng-change="vm.activeOrderFilters[$index] = orderFilter.filterOrder(vm[orderFilter.id])">
@@ -17,8 +17,8 @@
       </div>
       <div>Sort By:</div>
       <div class="mi-order-sort-by">
-        <div ng-repeat="orderSort in vm.orderSorts">
-          <div ng-click="vm.activeSort = orderSort.sort">{{orderSort.name}}</div>
+        <div ng-click="vm.activeSort = orderSort.sort" ng-repeat="orderSort in vm.orderSorts">
+          {{orderSort.name}}
         </div>
       </div>
     </div>

@@ -47,7 +47,7 @@ function adminOrdersController(http, graphql) {
         if (data == "ANY") {
           return true;
         }
-        return element.node.orderStatus == data
+        return element.orderStatus == data
       }
     },
     options: [{
@@ -77,7 +77,7 @@ function adminOrdersController(http, graphql) {
         if (data == "ANY") {
           return true;
         }
-        return data >= Math.ceil(Math.abs(element.node.createdAt.getTime() - new Date().getTime()) / (1000 * 3600 * 24));
+        return data >= Math.ceil(Math.abs(element.createdAt.getTime() - new Date().getTime()) / (1000 * 3600 * 24));
       }
     },
     options: [{
@@ -107,7 +107,7 @@ function adminOrdersController(http, graphql) {
         if (data == "ANY") {
           return true;
         }
-        return data.low <= element.node.price && element.node.price <= data.high;
+        return data.low <= element.price && element.price <= data.high;
       }
     },
     options: [{
@@ -148,20 +148,20 @@ function adminOrdersController(http, graphql) {
     name: "Date Placed",
     sort: function(a, b) {
       let date = new Date();
-      return Math.ceil(Math.abs(a.node.createdAt.getTime() - date.getTime()) / (1000 * 3600)) > Math.ceil(Math.abs(b.node.createdAt.getTime() - date.getTime()) / (1000 * 3600))
+      return Math.ceil(Math.abs(a.createdAt.getTime() - date.getTime()) / (1000 * 3600)) > Math.ceil(Math.abs(b.createdAt.getTime() - date.getTime()) / (1000 * 3600))
     }
   }, {
     name: "Order Total",
     sort: function(a, b) {
-      return a.node.price > b.node.price
+      return a.price > b.price
     }
   }, {
     name: "By Senders Name",
     sort: function(a, b) {
-      if (a.node.userByUserId.name < b.node.userByUserId.name) {
+      if (a.userByUserId.name < b.userByUserId.name) {
         return -1;
       }
-      if (a.node.userByUserId.name > b.node.userByUserId.name) {
+      if (a.userByUserId.name > b.userByUserId.name) {
         return 1;
       }
       return 0;
@@ -174,7 +174,7 @@ function adminOrdersController(http, graphql) {
     http.graphql(graphql.updateOrder({
       data: ["id"]
     }, {
-      nodeId: order.node.nodeId,
+      nodeId: order.nodeId,
       orderPatch: {
         orderStatus: newStatus
       }
