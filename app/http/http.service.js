@@ -24,10 +24,14 @@
     function graphql(data){
       return $http.post('http://localhost:3002/graphql', data);
     }
+    function getPrice(data){
+      return $http.post(`http://localhost:3003`, data);
+    }
     return {
       createRequest: createRequest,
-      graphql, graphql,
-      testAuth, testAuth
+      graphql: graphql,
+      testAuth: testAuth,
+      getPrice: getPrice
     }
   }
 })();
