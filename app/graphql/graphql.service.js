@@ -11,18 +11,16 @@
   function graphqlService() {
     function registerQueries(name) {
       var pluralName = name;
-      if(name.substring(name.length - 1) == "y"){
-
-        pluralName = name.slice(0,-1) + "ie";
+      if (name.substring(name.length - 1) == "y") {
+        pluralName = name.slice(0, -1) + "ie";
       }
-      this["all" + toTitleCase(pluralName)  + "s"] = createQuery((output, input) => {
+      this["all" + toTitleCase(pluralName) + "s"] = createQuery((output, input) => {
         return {
           "query": `query ${input ? `($data:${toTitleCase(name) + "Condition"})`: ""}{\n${"all" + toTitleCase(pluralName) + "s"} ${(input || output.format) ? `(${output.format ? output.format : ""} ${(input && output.format) ? "," : ""} ${input ? "condition:$data" : ""})` : ""} {\nedges{\nnode{\n${output.data}}\n}\n}\n}\n`,
           "variables": (input) ? JSON.stringify(input) : ""
         }
       })
     }
-
     function registerCRUD(name) {
       var graphql = this;
       var mutationName;
@@ -59,10 +57,20 @@
               tempData += element + "\n";
             }
           })
-          if(tempName.split("By")[0].endsWith("s")){
+          if (tempName.split("By")[0].endsWith("s")) {
             return `${tempName}{\nedges{\nnode{\n${tempData}}\n}\n}\n`
           }
           return `${tempName}{\n${tempData}}\n`;
+        }
+
+        function formatFormatObject(key, obj) {
+          for (var foo in obj) {
+            if (obj instanceof Object) {
+              return key + ":{" +formatFormatObject(foo, obj[foo]) + '}';
+            }else{
+              return `${key}:${JSON.stringify(obj)}`
+            }
+          }
         }
         outputData.data.forEach((element) => {
           if (element instanceof Object) {
@@ -73,7 +81,11 @@
         })
         if (outputData.format) {
           for (var key in outputData.format) {
-            formattedOutput.format += key + ":" + outputData.format[key] + ",";
+            if (outputData.format[key] instanceof Object) {
+              formattedOutput.format += formatFormatObject(key, outputData.format[key]) + "}";
+            } else {
+              formattedOutput.format += key + ":" + outputData.format[key] + ",";
+            }
           }
           formattedOutput.format = formattedOutput.format.slice(0, -1)
         }
