@@ -6,9 +6,9 @@
       .module('app')
       .run(run);
 
-    run.$inject = ['authService', 'httpService', "GraphqlService"];
+    run.$inject = ['authService', 'httpService', "GraphqlService", "StorageService"];
 
-    function run(authService, httpService, graphqlService) {
+    function run(authService, httpService, graphqlService, storage) {
       // Handle the authentication
       // result in the hash
       authService.handleAuthentication();
@@ -24,6 +24,9 @@
       graphqlService.registerQueries("order");
       graphqlService.registerCRUD("orderItem");
       graphqlService.registerQueries("orderItem");
+      graphqlService.registerQueries("cardName");
+      graphqlService.registerQueries("cardSet");
+      storage.addData("storeId", "78b72b9c-9e09-419e-a18d-8f2e50ca9593");
       // httpService.queryCard = httpService.createRequest("http://localhost:5000/graphql", {
       //     headers: {
       //       'Content-Type': 'application/x-www-form-urlencoded'
