@@ -57,8 +57,9 @@ function testController(http, graphql) {
       inventory: {
         cardId: cId,
         storeId: s,
-        condition: c.toUpperCase,
-        price: p
+        condition: c.toUpperCase(),
+        price: p,
+        status: "AVAILABLE"
       }
     })).then((data) => {
       console.log(data)
@@ -86,7 +87,7 @@ function testController(http, graphql) {
   }
   vm.getCard = () => {
     http.graphql(graphql.allCards({
-      data: ["id", 'name', 'setName'],
+      data: ["id", 'name', 'setName', 'multiverseId'],
       format:{
         first:30
       }
@@ -110,7 +111,7 @@ function testController(http, graphql) {
   }
   vm.getInventory = () => {
     http.graphql(graphql.allInventories({
-      data: ['id', 'storeId', 'cardId', {cardByCardId:["name", "setName", "multiverseId"]}]
+      data: ['id', 'storeId', 'status', 'cardId', {cardByCardId:["name", "setName", "multiverseId"]}]
     })).then((res) => {
       vm.inventories = res.data.data.allInventories.edges;
     })

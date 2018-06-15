@@ -19,7 +19,7 @@ function adminOrdersController(http, graphql) {
         }]
       }]
     }, {
-      storeId: "bfba1d4c-7842-42a8-9884-a201af2a96fc"
+      storeId: "878927df-30bd-4f86-829b-bfceb1a212ed"
       // TODO: create local storage service to store a admin's store id
     })).then((res) => {
       orders = res.data.data.allOrders.edges.map((element) => {
@@ -182,5 +182,8 @@ function adminOrdersController(http, graphql) {
       vm.getOrders();
     })
   }
+  vm.date = "ANY";
+  vm.status = "ANY";
+  vm.total = "ANY";
   vm.getOrders();
 }
