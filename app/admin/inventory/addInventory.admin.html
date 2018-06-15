@@ -1,0 +1,66 @@
+<div class="mi-body">
+  <div class="mi-manage-inventory-header">
+    <div style="display:flex; justify-content:space-around;">
+      <button ng-click=" vm.collapseAddInventory=0">Add by name and set</button>
+      <button ng-click=" vm.collapseAddInventory=1">Add by image and name</button>
+      <button ng-click=" vm.collapseAddInventory=2">mass entry</button>
+    </div>
+  </div>
+    <div>
+      <div ng-hide="vm.collapseAddInventory != 0">
+        <div style="display:flex;">
+          <div class="mi-add-inventory-condition">
+            Add By Set: <input ng-model="vm.setConditionInbetween"></input>
+            <button ng-click="vm.setCondition = vm.setConditionInbetween">add condition</button>
+            <div class="mi-add-inventory-condition-item" ng-show="vm.setCondition">{{vm.setCondition}}</div>
+          </div>
+        </div>
+        <div class="mi-add-inventory-container">
+          <div>
+            <div class="mi-add-inventroy-section">
+              <div class="mi-column">
+                <div>name:</div>
+                <div> set or set code:</div>
+              </div>
+              <div class="mi-add-inventory-inputs">
+                <input></input>
+                <input ng-model="vm.setCondition"></input>
+              </div>
+            </div>
+            <div style="display:flex;justify-content: center;">or</div>
+            <div class="mi-add-inventroy-section">
+              <div class="mi-column">
+                <div> set or set code:</div>
+                <div> collectors number:</div>
+              </div>
+              <div class="mi-add-inventory-inputs">
+                <input ng-model="vm.setCondition"></input>
+                <input></input>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="mi-add-inventroy-section">
+              <div class="mi-column">
+                <div> price:</div>
+                <div> condition:</div>
+              </div>
+              <div class="mi-add-inventory-inputs">
+                <input></input>
+                <input></input>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-hide="vm.collapseAddInventory != 1">
+        <search info="vm"></search>
+      </div>
+      <div ng-hide="vm.collapseAddInventory != 2">
+        text box
+      </div>
+    </div>
+    <card ng-repeat="inventoryItem in vm.searchResults track by $index" behaviour="vm.addInventory" info="inventoryItem"></card>
+    <card ng-repeat="inventoryItem in vm.inventory track by $index" info="inventoryItem"></card>
+  </div>
+</div>

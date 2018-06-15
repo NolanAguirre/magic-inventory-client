@@ -51,20 +51,40 @@
         resolve: {
           authenticate: authenticateAdmin
         }
-      }).state('adminInventory', {
-        url: '/adminInventory',
-        controller: 'InventoryController',
-        templateUrl: 'app/admin/inventory/inventory.admin.html',
+      }).state('adminUpdateInventory', {
+        url: '/adminUpdateInventory',
+        controller: 'AdminUpdateInventoryController',
+        templateUrl: 'app/admin/inventory/updateInventory.admin.html',
+        controllerAs: 'vm'
+      }).state('adminAddInventory', {
+        url: '/adminAddInventory',
+        controller: 'AdminAddInventoryController',
+        templateUrl: 'app/admin/inventory/addInventory.admin.html',
+        controllerAs: 'vm'
+      }).state('adminViewInventory', {
+        url: '/adminViewInventory',
+        controller: 'AdminViewInventoryController',
+        templateUrl: 'app/admin/inventory/viewInventory.admin.html',
+        controllerAs: 'vm'
+      }).state('adminPricing', {
+        url: '/adminPricing',
+        controller: 'AdminPricingController',
+        templateUrl: 'app/admin/pricing/pricing.admin.html',
         controllerAs: 'vm'
       }).state('adminOrders', {
         url: '/adminOrders',
         controller: 'AdminOrdersController',
         templateUrl: 'app/admin/orders/orders.admin.html',
         controllerAs: 'vm'
-      }).state('admin.settings', {
-        url: '/settings',
-        controller: 'SettingsController',
+      }).state('adminSettings', {
+        url: '/adminSettings',
+        controller: 'AdminSettingsController',
         templateUrl: 'app/admin/settings/settings.admin.html',
+        controllerAs: 'vm'
+      }).state('adminLocalSale', {
+        url: '/adminLocalSale',
+        controller: 'AdminLocalSaleController',
+        templateUrl: 'app/admin/localSale/localSale.admin.html',
         controllerAs: 'vm'
       }).state('admin.owner', {
         url: '/owner',
