@@ -12,14 +12,27 @@
           {{card.setName}}
         </div>
       </div>
-      <div class="mi-card-condition" ng-if="card.condition">
+      <div class="mi-card-condition" ng-if="card.condition && !card.addingInventory">
         {{card.condition}}
       </div>
-      <div class="mi-card-quantity" ng-if="card.quantity">
-        <input placeholder="1"></input> <pre> of {{card.quantity}}</pre>
+      <div class="mi-card-quantity" ng-if="card.quantity && !card.addingInventory">
+        <input ng-if="!card.viewInventory" placeholder="1"></input> <pre> of {{card.quantity}}</pre>
       </div>
-      <div class="mi-card-price" ng-if="card.price">
+      <div class="mi-card-price" ng-if="card.price && !card.addingInventory">
         {{card.price.toFixed(2)}}
+      </div>
+      <div class="mi-column" ng-if="card.addingInventory">
+        <input type="number" ng-model="card.price" placeholder="price"></input>
+        <input type="number" placeholder="quantity"></input>
+        <select ng-model="card.condition">
+          <option value="MINT">Mint</option>
+          <option value="NEAR_MINT">Near Mint</option>
+          <option value="LIGHTLY_PLAYED">Lightly Played</option>
+          <option value="MODERATELY_PLAYED">Moderately Played</option>
+          <option value="HEAVILY PLAYED">Heavily Played</option>
+          <option value="DAMAGED">Damaged</option>
+        </select>
+        <button ng-click="method(card)">add card</button>
       </div>
   </div>
 </div>

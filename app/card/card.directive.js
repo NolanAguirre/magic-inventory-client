@@ -10,7 +10,8 @@
     return {
       restrict: 'E',
       scope: {
-        card: '=info'
+        card: '=info',
+        method: "=behaviour"
       },
       templateUrl: 'app/card/card.html'
     };
