@@ -49,29 +49,36 @@
           My Store
         </div>
       </a>
-      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.inventory">
+      <div class="mi-dropdown">
+      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="adminInventory">
         <div class="mi-header-link-box">
-          Manage Inventory
-        </div>
+            Manage Inventory
+          </div>
       </a>
-      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.orders">
+      <div class="mi-dropdown-content">
+        <a ui-sref="adminAddInventory">Add</a>
+        <a ui-sref="adminViewInventory">View</a>
+        <a ui-sref="adminUpdateInventory">Update</a>
+      </div>
+      </div>
+      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="adminOrders">
         <div class="mi-header-link-box">
           View Orders
         </div>
       </a>
-      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.settings">
+      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="adminSettings">
         <div class="mi-header-link-box">
           Settings
         </div>
       </a>
-      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.localSale">
+      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="adminLocalSale">
         <div class="mi-header-link-box">
           Local Sale
         </div>
       </a>
-      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.cardPrice">
+      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="adminPricing">
         <div class="mi-header-link-box">
-          Find Card prive
+          Find Card price
         </div>
       </a>
 
