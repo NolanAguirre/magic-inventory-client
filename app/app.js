@@ -55,37 +55,58 @@
         url: '/adminUpdateInventory',
         controller: 'AdminUpdateInventoryController',
         templateUrl: 'app/admin/inventory/updateInventory.admin.html',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          authenticate: authenticateAdmin
+        }
       }).state('adminAddInventory', {
         url: '/adminAddInventory',
         controller: 'AdminAddInventoryController',
         templateUrl: 'app/admin/inventory/addInventory.admin.html',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          authenticate: authenticateAdmin
+        }
       }).state('adminViewInventory', {
         url: '/adminViewInventory',
         controller: 'AdminViewInventoryController',
         templateUrl: 'app/admin/inventory/viewInventory.admin.html',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          authenticate: authenticateAdmin
+        }
       }).state('adminPricing', {
         url: '/adminPricing',
         controller: 'AdminPricingController',
         templateUrl: 'app/admin/pricing/pricing.admin.html',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          authenticate: authenticateAdmin
+        }
       }).state('adminOrders', {
         url: '/adminOrders',
         controller: 'AdminOrdersController',
         templateUrl: 'app/admin/orders/orders.admin.html',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          authenticate: authenticateAdmin
+        }
       }).state('adminSettings', {
         url: '/adminSettings',
         controller: 'AdminSettingsController',
         templateUrl: 'app/admin/settings/settings.admin.html',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          authenticate: authenticateAdmin
+        }
       }).state('adminLocalSale', {
         url: '/adminLocalSale',
         controller: 'AdminLocalSaleController',
         templateUrl: 'app/admin/localSale/localSale.admin.html',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          authenticate: authenticateAdmin
+        }
       }).state('admin.owner', {
         url: '/owner',
         abstract: true,
