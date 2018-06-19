@@ -33,7 +33,11 @@
         })
       })
     }
-
+    function fragment(query){
+      return {
+        "query" : query
+      }
+    }
     function createQuery(templateString) {
       return function(outputData, inputData) {
         var data;
@@ -101,7 +105,8 @@
 
     return {
       registerCRUD: registerCRUD,
-      registerQueries: registerQueries
+      registerQueries: registerQueries,
+      fragment: fragment
     }
   }
 })();
