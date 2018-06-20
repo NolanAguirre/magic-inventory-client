@@ -1,17 +1,12 @@
-<div class="mi-search-container">
-  <script type="text/ng-template" id="customPopupTemplate.html">
-    <div class="custom-popup-wrapper" ng-style="{top: position().top+'px', left: position().left+'px'}" style="display: block; min-width:300px;" ng-show="isOpen() && !moveInProgress" aria-hidden="{{!isOpen()}}">
-      <ul class="dropdown-menu" role="listbox">
-        <li class="uib-typeahead-match" ng-repeat="match in matches track by $index" ng-class="{active: isActive($index) }" ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="{{::match.id}}">
-          <div uib-typeahead-match index="$index" match="match" query="query" template-url="templateUrl"></div>
-        </li>
-      </ul>
-    </div>
-  </script>
-  <div>
-    <input type="text" ng-model="queryParams" placeholder="search for a card" uib-typeahead="card for card in search.typeahead($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="mi-input">
+<script type="text/ng-template" id="customPopupTemplate.html">
+  <div class="custom-popup-wrapper" ng-style="{top: position().top+'px', left: position().left+'px'}" style="display: block; min-width:300px;" ng-show="isOpen() && !moveInProgress" aria-hidden="{{!isOpen()}}">
+    <ul class="dropdown-menu" role="listbox">
+      <li class="uib-typeahead-match" ng-repeat="match in matches track by $index" ng-class="{active: isActive($index) }" ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="{{::match.id}}">
+        <div uib-typeahead-match index="$index" match="match" query="query" template-url="templateUrl"></div>
+      </li>
+    </ul>
   </div>
-  <div>
-    <button ng-click="search.query(queryParams)">search</button>
-  </div>
+</script>
+<div>
+  <input type="text" ng-model="queryParams" placeholder="search for a card" uib-typeahead="card for card in search.typeahead($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="mi-input">
 </div>
