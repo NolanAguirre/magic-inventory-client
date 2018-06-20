@@ -6,22 +6,25 @@ adminUpdateInventoryController.$inject = ["httpService", "GraphqlService", "Stor
 
 function adminUpdateInventoryController(http, graphql, storage) {
   var vm = this;
-  vm.loadInventory = () => {
-    http.graphql(graphql.allInventories({
-      data: ['nodeId', 'condition', 'price', {
-        cardByCardId: ['name', 'setName', 'multiverseId']
-      }]
-    }, {
-      storeId: storage.data.storeId
-    })).then((res) => {
-      vm.inventory = res.data.data.allInventories.edges.map((element) => {
-        let temp = element.node.cardByCardId;
-        temp.condition = element.node.condition;
-        temp.price = element.node.price;
-        temp.nodeId = element.node.nodeId;
-        return temp;
-      });
-    })
+  vm.updateInventory = function(card){
+      http.graphql(graphql.fragment(`
+        mutation{
+          updateInventoryById(input:{id:"${card.id}", inventoryPatch:{price:${card.price},condition:${card.condition}}}){
+            inventory{
+              price
+              condition
+              id
+              cardByCardId{
+                setName
+                name
+                multiverseId
+              }
+            }
+          }
+        }
+        `)).then((res)=>{
+          
+        })
   }
   vm.query = function(queryParams) {
     http.graphql(graphql.fragment(`
@@ -31,7 +34,7 @@ function adminUpdateInventoryController(http, graphql, storage) {
             node{
               price
               condition
-              nodeId
+              id
               cardByCardId{
                 name
                 multiverseId
@@ -44,11 +47,7 @@ function adminUpdateInventoryController(http, graphql, storage) {
       `
     )).then((res) => {
       vm.searchResults = res.data.data.inventoryByCardNameAndStoreId.edges.map((element) => {
-        let temp = element.node.cardByCardId;
-        temp.condition = element.node.condition;
-        temp.price = element.node.price;
-        temp.nodeId = element.node.nodeId;
-        return temp;
+        return {...element.node, ...element.node.cardByCardId, isUpdatingInventory:true}
       });
     })
   }
