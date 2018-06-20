@@ -15,7 +15,10 @@ function adminPricingController(http, graphql) {
       vm.searchResults = res.data.data.allCards.edges.map((element) => {
         http.getPrice(element.node).then((res) => {
           element.node.price = res.data
+        }).catch((err) => {
+          element.node.price = -1
         });
+        element.node.showPrice = true;
         return element.node;
       })
     })
