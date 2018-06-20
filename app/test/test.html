@@ -60,7 +60,7 @@
         <input ng-model="vm.getInventoryStoreId" placeholder="get store id"></input>
         <button ng-click="vm.getInventory(vm.getInventoryStoreId)">get inventory</button>
         <div class="test-scroll">
-          <div ng-repeat="inventory in vm.inventories">
+          <div class="test-data"ng-repeat="inventory in vm.inventories">
             <div ng-repeat="data in vm.getKeys(inventory.node) track by $index">
               {{data}}: {{inventory.node[data]}}
             </div>
@@ -70,7 +70,7 @@
       <div class="test-section">
         <button ng-click="vm.getCard()">get card</button>
         <div class="test-scroll">
-          <div ng-repeat="card in vm.cards">
+          <div class="test-data"ng-repeat="card in vm.cards">
             <div ng-repeat="data in vm.getKeys(card.node) track by $index">
               {{data}}: {{card.node[data]}}
             </div>
@@ -85,7 +85,7 @@
         <input ng-model="vm.getOrderItemUserId" placeholder="user id"></input>
         <button ng-click="vm.getOrderItem(vm.getOrderItemStoreId,vm.getOrderItemUserId)">get order item</button>
         <div class="test-scroll">
-          <div ng-repeat="orderItem in vm.orderItems">
+          <div class="test-data"ng-repeat="orderItem in vm.orderItems">
             <div ng-repeat="data in vm.getKeys(orderItem.node) track by $index">
               {{data}}: {{orderItem.node[data]}}
             </div>

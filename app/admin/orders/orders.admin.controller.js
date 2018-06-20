@@ -2,9 +2,9 @@ angular
   .module('app')
   .controller('AdminOrdersController', adminOrdersController)
 
-adminOrdersController.$inject = ['httpService', 'GraphqlService']
+adminOrdersController.$inject = ['httpService', 'GraphqlService', 'StorageService']
 
-function adminOrdersController(http, graphql) {
+function adminOrdersController(http, graphql, storage) {
   var vm = this;
   var orders;
   vm.getOrders = () => {
@@ -19,7 +19,7 @@ function adminOrdersController(http, graphql) {
         }]
       }]
     }, {
-      storeId: "878927df-30bd-4f86-829b-bfceb1a212ed"
+      storeId: storage.data.storeId
       // TODO: create local storage service to store a admin's store id
     })).then((res) => {
       orders = res.data.data.allOrders.edges.map((element) => {

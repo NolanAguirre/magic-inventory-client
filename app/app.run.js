@@ -26,16 +26,6 @@
       graphqlService.registerQueries("orderItem");
       graphqlService.registerQueries("cardName");
       graphqlService.registerQueries("cardSet");
-      storage.addData("storeId", "78b72b9c-9e09-419e-a18d-8f2e50ca9593");
-      // httpService.queryCard = httpService.createRequest("http://localhost:5000/graphql", {
-      //     headers: {
-      //       'Content-Type': 'application/x-www-form-urlencoded'
-      //     }
-      //   },
-      //   data => {return data.data.allCards.edges.map(a => a.node)},
-      //   data => {return urlencoded(data.collectorsNumber ?
-      //       `{allCards(condition:{setCode:"${data.name}",collectorsNumber:${data.collectorsNumber}}){edges{node{id,name,setName,tcgId,multiverseId}}}}` :
-      //       `{allCards(condition:{name:"${data.name}"}){edges{node{id,name,setName,tcgId,multiverseId}}}}`});
-      // );
+      storage.addData("storeId", "2a03fabf-dc41-4f1c-a6be-23a0f6ad77a1");
     }
   })();

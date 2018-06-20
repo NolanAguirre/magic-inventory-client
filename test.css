@@ -23,4 +23,5 @@
 .test-data{
   max-width: 400px;
   word-wrap: break-word;
+  border: 2px solid black;
 }
