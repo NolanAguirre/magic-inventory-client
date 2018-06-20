@@ -23,7 +23,7 @@
                 <div> set or set code:</div>
               </div>
               <div class="mi-add-inventory-inputs">
-                <input></input>
+                <input ng-model="vm.cardName"></input>
                 <input ng-model="vm.setCondition"></input>
               </div>
             </div>
@@ -35,7 +35,7 @@
               </div>
               <div class="mi-add-inventory-inputs">
                 <input ng-model="vm.setCondition"></input>
-                <input></input>
+                <input ng-model="vm.collectorsNumber"></input>
               </div>
             </div>
           </div>
@@ -46,21 +46,21 @@
                 <div> condition:</div>
               </div>
               <div class="mi-add-inventory-inputs">
-                <input></input>
-                <input></input>
+                <input ng-model="vm.price"></input>
+                <input ng-model="vm.condition"></input>
               </div>
             </div>
           </div>
         </div>
+        <button ng-click="vm.addInventory()">add item</button>
       </div>
       <div ng-hide="vm.collapseAddInventory != 1">
-        <search info="vm"></search>
+        <search info="vm.addByName"></search>
       </div>
       <div ng-hide="vm.collapseAddInventory != 2">
         text box
       </div>
     </div>
-    <card ng-repeat="inventoryItem in vm.searchResults track by $index" behaviour="vm.addInventory" info="inventoryItem"></card>
-    <card ng-repeat="inventoryItem in vm.inventory track by $index" info="inventoryItem"></card>
+    <card ng-hide="vm.collapseAddInventory != 1" ng-repeat="inventoryItem in vm.addByName.searchResults track by $index" behaviour="vm.addInventory" info="inventoryItem"></card>
   </div>
 </div>
