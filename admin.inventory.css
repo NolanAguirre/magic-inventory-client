@@ -6,8 +6,8 @@
   display:flex;
   flex-direction: column;
   float:right;
-  padding-left: 10px;
-  width: 150px;
+  padding-left: 20px;
+  max-width: 220px;
 }
 .mi-add-inventroy-section{
   display: flex;

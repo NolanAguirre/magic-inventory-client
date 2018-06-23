@@ -94,6 +94,13 @@ body {
     display: none;
 }
 
+.mi-body {
+    margin: 0 auto;
+    padding-top: 75px;
+    max-width: 1200px;
+    min-height: 600px;
+}
+
 @media only screen and (max-width: 800px) {
     .mi-header-desktop {
         display: none;
@@ -103,12 +110,7 @@ body {
     }
 }
 
-.mi-body {
-    margin: 0 auto;
-    padding-top: 75px;
-    width: 1200px;
-    min-height: 600px;
-}
+
 
 .mi-pricing {
     display: flex;
@@ -187,26 +189,4 @@ make expanding image not scroll on the x axis
 }
 .dropdown-menu li:hover{
     background-color: #337ab7;
-}
-.mi-saved-orders{
-    position: absolute;
-    top:85;
-    left:0;
-    height:500;
-    width: 300;
-}
-.mi-saved-order{
-
-}
-.mi-mini-card{
-    font-family: 'Open Sans', sans-serif;
-    font-size: .8em;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 2;
-    height: 40px;
-    border-bottom: 3px solid #f8f8f8;
-    margin-bottom: 1px;
 }
