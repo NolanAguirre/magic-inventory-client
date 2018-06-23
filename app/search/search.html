@@ -8,5 +8,5 @@
   </div>
 </script>
 <div>
-  <input type="text" ng-model="queryParams" placeholder="search for a card" uib-typeahead="card for card in search.typeahead($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="mi-input">
+  <input type="text" ng-model="search.queryResult" uib-typeahead="card for card in search.typeahead($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults">
 </div>
