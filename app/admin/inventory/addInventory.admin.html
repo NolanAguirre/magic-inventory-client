@@ -18,44 +18,53 @@
         <div class="mi-add-inventory-container">
           <div>
             <div class="mi-add-inventroy-section">
-              <div class="mi-column">
-                <div>name:</div>
-                <div> set or set code:</div>
-              </div>
-              <div class="mi-add-inventory-inputs">
-                <input ng-model="vm.cardName"></input>
-                <input ng-model="vm.setCondition"></input>
-              </div>
+              <table>
+                <tr>
+                  <td>name</td>
+                  <td><input ng-model="vm.cardName"></input></td>
+                </tr>
+                <tr>
+                  <td> set or set code:</td>
+                  <td><search info="vm.setCondition"></search></td>
+                </tr>
+              </table>
             </div>
             <div style="display:flex;justify-content: center;">or</div>
             <div class="mi-add-inventroy-section">
-              <div class="mi-column">
-                <div> set or set code:</div>
-                <div> collectors number:</div>
-              </div>
-              <div class="mi-add-inventory-inputs">
-                <search info="vm.addBySet"></search>
-                <input ng-model="vm.collectorsNumber"></input>
-              </div>
+              <table>
+                <tr>
+                  <td> set or set code:</td>
+                  <td><search info="vm.addBySet"></search></td>
+                </tr>
+                <tr>
+                  <td>collectors number:</td>
+                  <td><input ng-model="vm.collectorsNumber"></input></td>
+                </tr>
+              </table>
             </div>
           </div>
           <div>
             <div class="mi-add-inventroy-section">
-              <div class="mi-column">
-                <div> price:</div>
-                <div> condition:</div>
-              </div>
-              <div class="mi-add-inventory-inputs">
-                <input ng-model="vm.price"></input>
-                <input ng-model="vm.condition"></input>
-              </div>
+              <table>
+                <tr>
+                  <td>price:</td>
+                  <td><input ng-model="vm.condition"></input></td>
+                </tr>
+                <tr>
+                  <td>condition:</td>
+                  <td><input ng-model="vm.price"></input></td>
+                </tr>
+              </table>
             </div>
           </div>
         </div>
         <button ng-click="vm.addInventory()">add item</button>
       </div>
       <div ng-hide="vm.collapseAddInventory != 1">
-        <search info="vm.addByName"></search>
+        <div class="mi-search-container">
+          <search  info="vm.addByName"></search>
+          <button ng-click="vm.addByName.query()">Search for card</button>
+        </div>
       </div>
       <div ng-hide="vm.collapseAddInventory != 2">
         text box
