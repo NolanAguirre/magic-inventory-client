@@ -25,12 +25,30 @@ function adminAddInventoryController(http, graphql, storage) {
       }
     }
   }
+  vm.addBySet = {};
+  vm.addBySet.typeahead = function(name) {
+      return http.graphql(graphql.allCardSets({
+        data: ['setName'],
+        format: {
+          first: 10,
+          filter: {
+            setName: {
+              startsWith: name
+            }
+          }
+        }
+      })).then((res) => {
+        return res.data.data.allCardSets.edges.map((element) => {
+          return element.node.setName
+        })
+      })
+    }
   vm.addByName = {};
-  vm.addByName.query = function(queryParams) {
+  vm.addByName.query = function() {
     http.graphql(graphql.allCards({
       data: ['nodeId', 'id', 'name', 'setName', 'setCode', 'multiverseId']
     }, {
-      name: queryParams
+      name: vm.addByName.queryResult
     })).then((res) => {
       vm.addByName.searchResults = res.data.data.allCards.edges.map((element) => {
         element.node.isCreatingInventory = true;
