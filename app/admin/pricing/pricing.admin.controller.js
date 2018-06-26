@@ -28,12 +28,7 @@ function adminPricingController(http, graphql) {
     return http.graphql(graphql.allCardNames({
       data: ['name'],
       format: {
-        first: 10,
-        filter: {
-          name: {
-            startsWith: name
-          }
-        }
+        first: 10
       }
     })).then((res) => {
       return res.data.data.allCardNames.edges.map((element) => {

@@ -44,6 +44,11 @@
         controller: 'CartController',
         templateUrl: 'app/user/cart/cart.user.html',
         controllerAs: 'vm'
+      }).state('sellwithus', {
+        url: '/seller',
+        controller: '',
+        templateUrl: 'app//cart/cart.user.html',
+        controllerAs: 'vm'
       }).state('admin', {
         url: '/admin',
         abstract: true,

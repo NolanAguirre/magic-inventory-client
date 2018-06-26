@@ -1,0 +1,7 @@
+auth0 needs stuff to be deployed in order to test it
+
+dont worry about auth, just make the front end work without it
+
+the backend needs a jwt token type, along with long and lat for the stores
+
+graphql service needs to create fragments

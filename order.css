@@ -33,6 +33,10 @@
   padding: 0 10px;
   margin: 0 2px;
 }
+.mi-admin-order-container-pagination{
+  display:flex;
+  justify-content: center;
+}
 .mi-admin-order{
   padding: 20 40px;
   box-sizing: border-box;
