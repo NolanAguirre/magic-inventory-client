@@ -1,0 +1,11 @@
+<div class="mi-body">
+  <div class="mi-manage-inventory-header">
+    <div style="display:flex; justify-content:space-around;">
+    </div>
+  </div>
+    <div>
+      <search class="mi-search-container" info="vm"></search>
+    </div>
+    <card ng-repeat="inventoryItem in vm.searchResults track by $index" behaviour="vm.updateInventory" info="inventoryItem"></card>
+  </div>
+</div>

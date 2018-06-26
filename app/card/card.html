@@ -1,0 +1,47 @@
+<div class="mi-card">
+  <div class="mi-card-image-container">
+    <img ng-if="card.multiverseId" src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseId}}&type=card"></img>
+    <img ng-if="!card.multiverseId" src="http://via.placeholder.com/80x112"></img>
+  </div>
+  <div class="mi-card-text-container">
+      <div class="mi-card-info">
+        <div>
+          {{card.name}}
+        </div>
+        <div>
+          {{card.setName}}
+        </div>
+      </div>
+      <div class="mi-card-condition" ng-if="card.condition && card.showCondition">
+          {{card.condition}}
+      </div>
+      <div class="mi-card-quantity" ng-if="card.quantity && card.showQuantity">
+        <div ng-if="!card.showAdvancedQuantity">
+          In Stock: {{card.quantity}}
+        </div>
+        <div ng-if="card.showAdvancedQuantity">
+          <input placeholder="1"></input> <pre> of {{card.quantity}}</pre>
+        </div>
+      </div>
+      <div class="mi-card-price" ng-if="card.price && card.showPrice">
+        {{card.price.toFixed(2)}}
+      </div>
+      <div class="mi-column" ng-if="card.isCreatingInventory || card.isUpdatingInventory">
+        <input type="number" ng-model="card.price" placeholder="price"></input>
+        <input  ng-if="card.isCreatingInventory" type="number" ng-model="card.quantity"placeholder="quantity"></input>
+        <select ng-model="card.condition">
+          <option value="MINT">Mint</option>
+          <option value="NEAR_MINT">Near Mint</option>
+          <option value="LIGHTLY_PLAYED">Lightly Played</option>
+          <option value="MODERATELY_PLAYED">Moderately Played</option>
+          <option value="HEAVILY PLAYED">Heavily Played</option>
+          <option value="DAMAGED">Damaged</option>
+        </select>
+        <button ng-click="method(card)">add card</button>
+      </div>
+      <div ng-if="card.isPlacingOrder">
+        <input></input>
+        <input></input>
+      </div>
+  </div>
+</div>

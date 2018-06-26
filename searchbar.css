@@ -1,0 +1,12 @@
+.mi-search-container{
+  display:flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.mi-search-container input{
+  min-width: 300px;
+  padding: 1rem 2rem;
+}
+.mi-search-container button{
+  padding: 1rem;
+}

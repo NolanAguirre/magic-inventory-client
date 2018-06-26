@@ -5,13 +5,20 @@
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="style.css">
-        <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="store.css">
+    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="order.css">
+    <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="searchbar.css">
+    <link rel="stylesheet" href="admin.inventory.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 
 <body>
     <navbar></navbar>
     <ui-view></ui-view>
+    <!-- <footer><footer> -->
     <script type="text/javascript" src="node_modules/auth0-js/build/auth0.js"></script>
     <script type="text/javascript" src="auth0-variables.js"></script>
     <script type="text/javascript" src="node_modules/angular/angular.js"></script>
@@ -21,17 +28,36 @@
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.1.js"></script>
     <script type="text/javascript" src="app/app.js"></script>
     <script type="text/javascript" src="app/app.run.js"></script>
-    <script type="text/javascript" src="app/pricing/pricing.controller.js"></script>
-    <script type="text/javascript" src="app/pricing/cart.service.js"></script>
-    <script type="text/javascript" src="app/pricing/cart/cart.controller.js"></script>
-    <script type="text/javascript" src="app/pricing/search/search.controller.js"></script>
+    <!-- admin controllers -->
+    <script type="text/javascript" src="app/admin/inventory/addInventory.admin.controller.js"></script>
+    <script type="text/javascript" src="app/admin/inventory/updateInventory.admin.controller.js"></script>
+    <script type="text/javascript" src="app/admin/inventory/viewInventory.admin.controller.js"></script>
+    <script type="text/javascript" src="app/admin/localSale/localSale.admin.controller.js"></script>
+    <script type="text/javascript" src="app/admin/orders/orders.admin.controller.js"></script>
+    <script type="text/javascript" src="app/admin/pricing/pricing.admin.controller.js"></script>
+    <script type="text/javascript" src="app/admin/settings/settings.admin.controller.js"></script>
+    <script type="text/javascript" src="app/admin/owner/employees/employees.owner.controller.js"></script>
+    <!-- user controllers -->
+    <script type="text/javascript" src="app/user/cart/cart.user.controller.js"></script>
+    <script type="text/javascript" src="app/user/orders/orders.user.controller.js"></script>
+    <script type="text/javascript" src="app/user/profile/profile.user.controller.js"></script>
+    <script type="text/javascript" src="app/user/stores/stores.user.controller.js"></script>
+    <!-- directives -->
     <script type="text/javascript" src="app/navbar/navbar.directive.js"></script>
+    <script type="text/javascript" src="app/search/search.directive.js"></script>
+    <script type="text/javascript" src="app/card/card.directive.js"></script>
+    <script type="text/javascript" src="app/footer/footer.directive.js"></script>
+    <!-- global controller -->
     <script type="text/javascript" src="app/home/home.controller.js"></script>
-    <script type="text/javascript" src="app/profile/profile.controller.js"></script>
-    <script type="text/javascript" src="app/admin/admin.controller.js"></script>
     <script type="text/javascript" src="app/callback/callback.controller.js"></script>
-    <script type="text/javascript" src="app/auth/auth.service.js"></script>
+    <!-- services -->
     <script type="text/javascript" src="app/http/http.service.js"></script>
+    <script type="text/javascript" src="app/auth/auth.service.js"></script>
+    <script type="text/javascript" src="app/storage/storage.service.js"></script>
+    <!-- test -->
+    <script type="text/javascript" src="app/test/test.controller.js"></script>
+    <script type="text/javascript" src="app/graphql/graphql.service.js"></script>
+
 
 </body>
 
