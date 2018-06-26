@@ -16,7 +16,7 @@
       }
       this["all" + toTitleCase(pluralName) + "s"] = createQuery((output, input) => {
         return {
-          "query": `query ${input ? `($data:${toTitleCase(name) + "Condition"})`: ""}{\n${"all" + toTitleCase(pluralName) + "s"} ${(input || output.format) ? `(${output.format ? output.format : ""} ${(input && output.format) ? "," : ""} ${input ? "condition:$data" : ""})` : ""} {\nedges{\nnode{\n${output.data}}\n}\n}\n}\n`,
+          "query": `query ($condition:${toTitleCase(name) + "Condition"}, $filter:${toTitleCase(name) + "Filter"}){\n${"all" + toTitleCase(pluralName) + "s"}(condition:$condition, filter:$filter ${output.format ? ","+output.format : ""}) {\ntotalCount\npageInfo{\nstartCursor\nendCursor\n}\nedges{\nnode{\n${output.data}}\n}\n}\n}\n`,
           "variables": (input) ? JSON.stringify(input) : ""
         }
       })
@@ -27,7 +27,7 @@
       ["update", "create", "delete"].forEach((type) => {
         graphql[type + toTitleCase(name)] = createQuery((output, input) => {
           return {
-            "query": `mutation($data:${toTitleCase(type) + toTitleCase(name) + "Input!"}){\n${type + toTitleCase(name)}(input:$data){\n${name}{\n${output.data}}\n}\n}\n`,
+            "query": `mutation($input:${toTitleCase(type) + toTitleCase(name) + "Input!"}){\n${type + toTitleCase(name)}(input:$input){\n${name}{\n${output.data}}\n}\n}\n`,
             "variables": JSON.stringify(input)
           }
         })
@@ -40,12 +40,6 @@
     }
     function createQuery(templateString) {
       return function(outputData, inputData) {
-        var data;
-        if (inputData) {
-          data = {
-            data: inputData
-          };
-        }
         var formattedOutput = {
           format: "",
           data: ""
@@ -93,7 +87,7 @@
           }
           formattedOutput.format = formattedOutput.format.slice(0, -1)
         }
-        return templateString(formattedOutput, data);
+        return templateString(formattedOutput, inputData);
       }
     }
 
