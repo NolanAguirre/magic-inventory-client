@@ -6,50 +6,55 @@ adminOrdersController.$inject = ['httpService', 'GraphqlService', 'StorageServic
 
 function adminOrdersController(http, graphql, storage) {
   var vm = this;
-  var orders;
+  orderOrdersBy = "NATURAL";
+  vm.orderSet = {}
+  let anyTotal = {
+    low: 0,
+    high: 100000000
+  };
+  vm.pagination = {
+    totalItems: 100,
+    currentPage: 1,
+    maxSize: 5
+  }
   vm.getOrders = () => {
-    http.graphql(graphql.allOrders({
-      data: ['orderStatus', 'price', 'createdAt', 'nodeId', {
-        userByUserId: ['name', 'email']
-      }, {
-        orderItemsByOrderId: [{
-          inventoryByInventoryId: ['price', 'condition', {
-            cardByCardId: ["name", "setName"]
-          }]
-        }]
-      }]
-    }, {
-      storeId: storage.data.storeId
-      // TODO: create local storage service to store a admin's store id
-    })).then((res) => {
-      orders = res.data.data.allOrders.edges.map((element) => {
-        element.node.createdAt = new Date(element.node.createdAt);
-        return element.node;
-      });
-    })
-  }
-  vm.filterOrders = function() {
-    let tempOrder = orders;
-    vm.activeOrderFilters.forEach((orderFilter) => {
-      tempOrder = tempOrder.filter(orderFilter);
-    })
-    if (vm.activeSort) {
-      return tempOrder.sort(vm.activeSort);
+    let tempOrderStatus = {
+      isNull: false
     }
-    return tempOrder;
+    if (vm.status != "ANY") {
+      tempOrderStatus.equalTo = vm.status
+    }
+    http.graphql(graphql.allOrders({
+      data: ["createdAt", "orderStatus", "price", "nodeId", {
+        userByUserId: ["name"]
+      }],
+      format: {
+        first: 5,
+        offset: (vm.pagination.currentPage - 1) * 5,
+        orderBy: orderOrdersBy
+      }
+    }, {
+      filter: {
+        price: {
+          greaterThan: vm.total.low,
+          lessThanOrEqualTo: vm.total.high
+        },
+        createdAt: {
+          greaterThan: vm.date
+        },
+        orderStatus: tempOrderStatus
+      },
+      condition: {
+        storeId: storage.data.storeId
+      }
+    })).then((res) => {
+      vm.orderSet = res.data.data.allOrders;
+      vm.pagination.totalItems = res.data.data.allOrders.totalCount;
+    })
   }
-  vm.activeOrderFilters = [];
   vm.orderFilters = [{
     name: "Order Status",
     id: "status",
-    filterOrder: function(data) {
-      return function(element) {
-        if (data == "ANY") {
-          return true;
-        }
-        return element.orderStatus == data
-      }
-    },
     options: [{
       name: "Any",
       value: "ANY"
@@ -72,47 +77,31 @@ function adminOrdersController(http, graphql, storage) {
   }, {
     name: "Date Placed",
     id: "date",
-    filterOrder: function(data) {
-      return function(element) {
-        if (data == "ANY") {
-          return true;
-        }
-        return data >= Math.ceil(Math.abs(element.createdAt.getTime() - new Date().getTime()) / (1000 * 3600 * 24));
-      }
-    },
     options: [{
       name: "Any",
-      value: "ANY"
+      value: "2017-06-26T01:10:54.640Z"
     }, {
       name: "Today",
-      value: 1
+      value: new Date(Math.abs(new Date() - 86400000)).toISOString()
     }, {
       name: "Past 3 days",
-      value: 3
+      value: new Date(Math.abs(new Date() - 86400000 * 3)).toISOString()
     }, {
       name: "Past Week",
-      value: 7
+      value: new Date(Math.abs(new Date() - 86400000 * 7)).toISOString()
     }, {
       name: "Past Month",
-      value: 31
+      value: new Date(Math.abs(new Date() - 86400000 * 31)).toISOString() //not exact, bite me
     }, {
       name: "Past Year",
-      value: 365
+      value: new Date(Math.abs(new Date() - 86400000 * 365)).toISOString() //not exact either, forget leap years
     }]
   }, {
     name: "Order Total",
     id: "total",
-    filterOrder: function(data) {
-      return function(element) {
-        if (data == "ANY") {
-          return true;
-        }
-        return data.low <= element.price && element.price <= data.high;
-      }
-    },
     options: [{
       name: "Any",
-      value: "ANY"
+      value: anyTotal
     }, {
       name: "Under 10$",
       value: {
@@ -135,36 +124,39 @@ function adminOrdersController(http, graphql, storage) {
       name: "Over 200$",
       value: {
         low: 200,
-        high: Infinity
+        high: 100000000
       }
     }]
   }]
   vm.orderSorts = [{
     name: "Order Status",
-    sort: function(a, b) {
-      // TODO determine how i wannt to sort by order status
+    sort: () => {
+      if (orderOrdersBy == "ORDER_STATUS_ASC") {
+        orderOrdersBy = "ORDER_STATUS_DESC"
+      } else {
+        orderOrdersBy = "ORDER_STATUS_ASC"
+      }
+      vm.getOrders()
     }
   }, {
     name: "Date Placed",
-    sort: function(a, b) {
-      let date = new Date();
-      return Math.ceil(Math.abs(a.createdAt.getTime() - date.getTime()) / (1000 * 3600)) > Math.ceil(Math.abs(b.createdAt.getTime() - date.getTime()) / (1000 * 3600))
+    sort: () => {
+      if (orderOrdersBy == "CREATED_AT_ASC") {
+        orderOrdersBy = "CREATED_AT_DESC"
+      } else {
+        orderOrdersBy = "CREATED_AT_ASC"
+      }
+      vm.getOrders()
     }
   }, {
     name: "Order Total",
-    sort: function(a, b) {
-      return a.price > b.price
-    }
-  }, {
-    name: "By Senders Name",
-    sort: function(a, b) {
-      if (a.userByUserId.name < b.userByUserId.name) {
-        return -1;
+    sort: () => {
+      if (orderOrdersBy == "PRICE_ASC") {
+        orderOrdersBy = "PRICE_DESC"
+      } else {
+        orderOrdersBy = "PRICE_ASC"
       }
-      if (a.userByUserId.name > b.userByUserId.name) {
-        return 1;
-      }
-      return 0;
+      vm.getOrders()
     }
   }]
   vm.updateOrder = function(newStatus, order) {
@@ -174,16 +166,19 @@ function adminOrdersController(http, graphql, storage) {
     http.graphql(graphql.updateOrder({
       data: ["id"]
     }, {
-      nodeId: order.nodeId,
-      orderPatch: {
-        orderStatus: newStatus
+      input: {
+        nodeId: order.node.nodeId,
+        orderPatch: {
+          orderStatus: newStatus
+        }
       }
     })).then((res) => {
+      console.log(res)
       vm.getOrders();
     })
   }
-  vm.date = "ANY";
+  vm.date = "2017-06-26T01:10:54.640Z";
   vm.status = "ANY";
-  vm.total = "ANY";
+  vm.total = anyTotal;
   vm.getOrders();
 }

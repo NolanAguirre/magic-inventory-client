@@ -5,7 +5,7 @@
       <div class="mi-order-filter-by">
         <div ng-repeat="orderFilter in vm.orderFilters track by $index">
           <div>{{orderFilter.name}}
-            <select ng-model="vm[orderFilter.id]" ng-change="vm.activeOrderFilters[$index] = orderFilter.filterOrder(vm[orderFilter.id])">
+            <select ng-model="vm[orderFilter.id]" ng-change="vm.getOrders()">
                <option ng-repeat="option in orderFilter.options" ng-value="option.value">{{option.name}}</option>
             </select>
           </div>
@@ -17,52 +17,55 @@
       </div>
       <div>Sort By:</div>
       <div class="mi-order-sort-by">
-        <div ng-click="vm.activeSort = orderSort.sort" ng-repeat="orderSort in vm.orderSorts">
+        <div ng-click="orderSort.sort()" ng-repeat="orderSort in vm.orderSorts">
           {{orderSort.name}}
         </div>
       </div>
     </div>
-    <div ng-repeat="order in vm.filterOrders() track by $index" class="mi-admin-order">
-      <table class="mi-admin-order-cards">
-        <tr>
-          <th>Order Status</th>
-          <th>Date Placed</th>
-          <th>Total</th>
-          <th>From</th>
-          <th>contact</th>
-        </tr>
-        <tr>
-          <th>{{order.orderStatus}}</th>
-          <th>{{order.createdAt.toDateString()}}</th>
-          <th>{{order.price}}</th>
-          <th>{{order.userByUserId.name}}</th>
-          <th>{{order.userByUserId.email}}</th>
-        </tr>
-      </table>
-      <table class="mi-admin-order-cards">
-        <tr>
-          <th>Name</th>
-          <th>Set</th>
-          <th>Condition</th>
-          <th>Price</th>
-          <th>Quantity</th>
-        </tr>
-        <tr class="mi-admin-order-card" ng-repeat="card in order.orderItemsByOrderId.edges">
-          <td>{{card.node.inventoryByInventoryId.cardByCardId.name}}</td>
-          <td>{{card.node.inventoryByInventoryId.cardByCardId.setName}}</td>
-          <td>{{card.node.inventoryByInventoryId.condition}}</td>
-          <td>{{card.node.inventoryByInventoryId.price}}</td>
-          <td></td>
-        </tr>
-      </table>
-      <button ng-click="vm.updateOrder(vm[newStatus+$index], order)">Update order status</button>
-      <select ng-model="vm[newStatus+$index]">
+    <div class="mi-admin-order-container">
+      <div ng-repeat="order in vm.orderSet.edges track by $index" class="mi-admin-order">
+        <table class="mi-admin-order-cards">
+          <tr>
+            <th>Order Status</th>
+            <th>Date Placed</th>
+            <th>Total</th>
+            <th>From</th>
+            <th>contact</th>
+          </tr>
+          <tr>
+            <th>{{order.node.orderStatus}}</th>
+            <th>{{order.node.createdAt}}</th>
+            <th>{{order.node.price}}</th>
+            <th>{{order.node.userByUserId.name}}</th>
+            <th>{{order.node.userByUserId.email}}</th>
+          </tr>
+        </table>
+        <table class="mi-admin-order-cards">
+          <tr>
+            <th>Name</th>
+            <th>Set</th>
+            <th>Condition</th>
+            <th>Price</th>
+            <th>Quantity</th>
+          </tr>
+          <tr class="mi-admin-order-card" ng-repeat="card in order.orderItemsByOrderId.edges">
+            <td>{{card.node.inventoryByInventoryId.cardByCardId.name}}</td>
+            <td>{{card.node.inventoryByInventoryId.cardByCardId.setName}}</td>
+            <td>{{card.node.inventoryByInventoryId.condition}}</td>
+            <td>{{card.node.inventoryByInventoryId.price}}</td>
+            <td></td>
+          </tr>
+        </table>
+        <button ng-click="vm.updateOrder(vm[newStatus+$index], order)">Update order status</button>
+        <select ng-model="vm[newStatus+$index]">
         <option value="SENT">Recived</option>
         <option value="READY">Ready</option>
         <option value="COMPLETE">Complete</option>
         <option value="CANCLED">Cancled</option>
         <option value="UNFULFILLABLE">Unfulfillable</option>
       </select>
+      </div>
+      <ul uib-pagination ng-change="vm.getOrders()" direction-links="false" items-per-page="5" total-items="vm.pagination.totalItems" ng-model="vm.pagination.currentPage" max-size="vm.pagination.maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
     </div>
   </div>
 </div>
