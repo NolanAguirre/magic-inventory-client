@@ -2,10 +2,11 @@ angular
   .module('app')
   .controller('AdminUpdateInventoryController', adminUpdateInventoryController)
 
-adminUpdateInventoryController.$inject = ["httpService", "GraphqlService", "StorageService"];
+adminUpdateInventoryController.$inject = ["httpService", "GraphqlService", "StorageService", "TypeaheadService"];
 
-function adminUpdateInventoryController(http, graphql, storage) {
+function adminUpdateInventoryController(http, graphql, storage, typeahead) {
   var vm = this;
+  vm.typeahead = typeahead;
   vm.updateInventory = function(card){
       http.graphql(graphql.fragment(`
         mutation{
@@ -23,7 +24,7 @@ function adminUpdateInventoryController(http, graphql, storage) {
           }
         }
         `)).then((res)=>{
-          
+
         })
   }
   vm.query = function(queryParams) {
@@ -49,21 +50,8 @@ function adminUpdateInventoryController(http, graphql, storage) {
       vm.searchResults = res.data.data.inventoryByCardNameAndStoreId.edges.map((element) => {
         return {...element.node, ...element.node.cardByCardId, isUpdatingInventory:true}
       });
+      console.log(vm.searchResults)
     })
   }
-  vm.typeahead = function(name) {
-    return http.graphql(graphql.fragment(`
-        {
-          inventoryTypeahead(argOne:"${name + "%"}", argTwo:"${storage.data.storeId}"){
-            edges{
-              node
-            }
-          }
-        }
-      `)).then((res) => {
-      return res.data.data.inventoryTypeahead.edges.map((element) => {
-        return element.node
-      })
-    })
-  }
+ // vm.typeahead =
 }

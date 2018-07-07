@@ -2,70 +2,12 @@ angular
     .module('app')
     .controller('AdminAddInventoryController', adminAddInventoryController)
 
-adminAddInventoryController.$inject = ["httpService", "GraphqlService", "StorageService"];
+adminAddInventoryController.$inject = ["httpService", "GraphqlService", "StorageService", "TypeaheadService","$scope"];
 
-function adminAddInventoryController(http, graphql, storage) {
+function adminAddInventoryController(http, graphql, storage, typeahead, $scope) {
     var vm = this;
-    vm.addByName = {
-        typeahead: (name) => {
-            let query;
-            if (vm.addBySet.queryResult) {
-                query = graphql.allCards({
-                    data: ['name'],
-                    format: {
-                        first: 10
-                    }
-                }, {
-                    filter: {
-                        name: {
-                            startsWith: name
-                        },
-                        setName: {
-                            equalTo: vm.addBySet.queryResult
-                        }
-                    }
-                })
-            } else {
-                query = graphql.allCardNames({
-                    data: ['name'],
-                    format: {
-                        first: 10
-                    }
-                }, {
-                    filter: {
-                        name: {
-                            startsWith: name
-                        }
-                    }
-                })
-            }
-            return http.graphql(query).then((res) => {
-                return res.data.data[Object.keys(res.data.data)[0]].edges.map((element) => {
-                    return element.node.name
-                })
-            })
-        }
-    };
-    vm.addBySet = {
-        typeahead: (name) => {
-            return http.graphql(graphql.allCardSets({
-                data: ['setName'],
-                format: {
-                    first: 10
-                }
-            }, {
-                filter: {
-                    setName: {
-                        startsWith: name
-                    }
-                }
-            })).then((res) => {
-                return res.data.data.allCardSets.edges.map((element) => {
-                    return element.node.setName
-                })
-            })
-        }
-    };
+    vm.typeahead = typeahead;
+    $scope.$watch('vm.cardSetName',()=>{typeahead.cardSet = vm.cardSetName})
     vm.addInventory = function(card) {
         if (card.id && card.condition) {
             for (var x = 0; x < card.quantity; x++) {

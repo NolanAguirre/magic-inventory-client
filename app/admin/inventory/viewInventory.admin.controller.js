@@ -2,31 +2,15 @@ angular
     .module('app')
     .controller('AdminViewInventoryController', adminViewInventoryController)
 
-adminViewInventoryController.$inject = ["httpService", "GraphqlService", "StorageService"];
+adminViewInventoryController.$inject = ["httpService", "GraphqlService", "StorageService", "TypeaheadService"];
 
-function adminViewInventoryController(http, graphql, storage) {
+function adminViewInventoryController(http, graphql, storage, typeahead) {
     var vm = this;
-    vm.typeahead = {
-        typeahead: (name) => {
-            return http.graphql(graphql.fragment(`
-            {
-              inventoryTypeahead(argOne:"${name + "%"}", argTwo:"${storage.data.storeId}"){
-                edges{
-                  node
-                }
-              }
-            }
-          `)).then((res) => {
-                return res.data.data.inventoryTypeahead.edges.map((element) => {
-                    return element.node
-                })
-            })
-        }
-    };
-    vm.query = function() {
+    vm.typeahead = typeahead;
+    vm.query = function(name) {
         http.graphql(graphql.fragment(`
       {
-        inventoryByCardNameAndStoreId(argOne:"${vm.typeahead.queryResult}", argTwo:"${storage.data.storeId}"){
+        inventoryByCardNameAndStoreId(argOne:"${name}", argTwo:"${storage.data.storeId}"){
           edges{
             node{
               price

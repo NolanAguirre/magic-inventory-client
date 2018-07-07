@@ -4,8 +4,8 @@
     </div>
   </div>
     <div class="mi-search-container">
-      <search info="vm"></search>
-      <button ng-click="vm.query(vm.queryResult)">search inventory</button>
+      <search model="vm.cardName" query="vm.typeahead.inventoryName"></search>
+      <button ng-click="vm.query(vm.cardName)">search inventory</button>
     </div>
     <card ng-repeat="inventoryItem in vm.searchResults track by $index" behaviour="vm.updateInventory" info="inventoryItem"></card>
   </div>

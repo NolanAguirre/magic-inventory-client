@@ -2,16 +2,17 @@ angular
     .module('app')
     .controller('AdminPricingController', adminPricingController)
 
-adminPricingController.$inject = ['httpService', 'GraphqlService', 'StorageService']
+adminPricingController.$inject = ['httpService', 'GraphqlService', 'StorageService', 'TypeaheadService']
 
-function adminPricingController(http, graphql, storage) {
+function adminPricingController(http, graphql, storage, typeahead) {
     var vm = this;
+    vm.typeahead = typeahead;
     vm.query = function() {
         http.graphql(graphql.allCards({
             data: ['id', 'name', 'setName', 'setCode', 'multiverseId']
         }, {
             condition: {
-                name: vm.queryResult
+                name: vm.cardName
             }
         })).then((res) => {
             vm.searchResults = res.data.data.allCards.edges.map((element) => {
@@ -26,22 +27,4 @@ function adminPricingController(http, graphql, storage) {
         })
     }
 
-    vm.typeahead = function(name) {
-        return http.graphql(graphql.allCardNames({
-            data: ['name'],
-            format:{
-                first:10
-            }
-        },{
-            filter:{
-                name:{
-                    startsWith:name
-                }
-            }
-        })).then((res) => {
-            return res.data.data.allCardNames.edges.map((element) => {
-                return element.node.name
-            })
-        })
-    }
 }
