@@ -1,0 +1,10 @@
+<div class="mi-body local-sale-container">
+    <div class="mi-column">
+        <div class="mi-search-container">
+            <search model="vm.cardName" query="vm.typeahead.cardName"></search>
+            <button ng-click="vm.query()">Find inventory</button>
+        </div>
+        <card ng-repeat="inventoryItem in vm.searchResults track by $index" info="inventoryItem"></card>
+    </div>
+    <div>Cart</div>
+</div>
