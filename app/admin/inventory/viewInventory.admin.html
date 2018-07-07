@@ -1,6 +1,9 @@
 <div class="mi-body">
-  <div class="mi-manage-inventory-header">
-    <search class="mi-search-container" info="vm"></search>
-    <card ng-repeat="inventoryItem in vm.searchResults track by $index" info="inventoryItem"></card>
-  </div>
+    <div class="mi-manage-inventory-header">
+        <div class="mi-search-container">
+            <search info="vm.typeahead"></search>
+            <button ng-click="vm.query()">View Inventory</button>
+        </div>
+        <card ng-repeat="inventoryItem in vm.searchResults track by $index" info="inventoryItem"></card>
+    </div>
 </div>

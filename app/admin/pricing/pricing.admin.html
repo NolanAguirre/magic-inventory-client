@@ -1,5 +1,8 @@
 <div class="mi-body">
-  <search class="mi-search-container" info="vm"></search>
+    <div class="mi-search-container">
+        <search info="vm"></search>
+        <button ng-click="vm.query()">price card</button>
+    </div>
   <div class="mi-card-container">
     <card ng-repeat="card in vm.searchResults" info="card"></card>
   </div>
