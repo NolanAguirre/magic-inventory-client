@@ -10,7 +10,8 @@
     return {
       restrict: 'E',
       scope: {
-        search: '=info'
+        search: '=query',
+        model: '=model'
       },
       templateUrl: 'app/search/search.html'
     };
