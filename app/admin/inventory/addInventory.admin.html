@@ -10,9 +10,7 @@
       <div ng-hide="vm.collapseAddInventory != 0">
         <div style="display:flex;">
           <div class="mi-add-inventory-condition">
-            Add By Set: <input ng-model="vm.setConditionInbetween"></input>
-            <button ng-click="vm.setCondition = vm.setConditionInbetween">add condition</button>
-            <div class="mi-add-inventory-condition-item" ng-show="vm.setCondition">{{vm.setCondition}}</div>
+            Add By Set: <search info="vm.addBySet"></search>
           </div>
         </div>
         <div class="mi-add-inventory-container">
@@ -21,11 +19,11 @@
               <table>
                 <tr>
                   <td>name</td>
-                  <td><input ng-model="vm.cardName"></input></td>
+                  <td><search info="vm.addByName"></search></td>
                 </tr>
                 <tr>
                   <td> set or set code:</td>
-                  <td><search info="vm.setCondition"></search></td>
+                  <td>{{vm.addBySet.queryResult}}</td>
                 </tr>
               </table>
             </div>
@@ -34,42 +32,30 @@
               <table>
                 <tr>
                   <td> set or set code:</td>
-                  <td><search info="vm.addBySet"></search></td>
+                  <td>{{vm.addBySet.queryResult}}</td>
                 </tr>
                 <tr>
                   <td>collectors number:</td>
-                  <td><input ng-model="vm.collectorsNumber"></input></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <div>
-            <div class="mi-add-inventroy-section">
-              <table>
-                <tr>
-                  <td>price:</td>
-                  <td><input ng-model="vm.condition"></input></td>
-                </tr>
-                <tr>
-                  <td>condition:</td>
-                  <td><input ng-model="vm.price"></input></td>
+                  <!-- TODO -->
+                  <td><input placeholder="this doesnt work yet" ng-model="vm.collectorsNumber"></input></td>
                 </tr>
               </table>
             </div>
           </div>
         </div>
-        <button ng-click="vm.addInventory()">add item</button>
+        <button ng-click="vm.queryCard(vm.addByName.queryResult, vm.addBySet.queryResult)">Search for card</button>
       </div>
       <div ng-hide="vm.collapseAddInventory != 1">
         <div class="mi-search-container">
           <search  info="vm.addByName"></search>
-          <button ng-click="vm.addByName.query()">Search for card</button>
+          <button ng-click="vm.queryCard(vm.addByName.queryResult)">Search for card</button>
         </div>
       </div>
+      <!-- TODO -->
       <div ng-hide="vm.collapseAddInventory != 2">
-        text box
+        this doesn't work yet
       </div>
     </div>
-    <card ng-hide="vm.collapseAddInventory != 1" ng-repeat="inventoryItem in vm.addByName.searchResults track by $index" behaviour="vm.addInventory" info="inventoryItem"></card>
+    <card ng-hide="vm.collapseAddInventory == 3" ng-repeat="inventoryItem in vm.searchResults track by $index" behaviour="vm.addInventory" info="inventoryItem"></card>
   </div>
 </div>
