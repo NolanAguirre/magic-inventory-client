@@ -1,10 +1,28 @@
-<div class="mi-body local-sale-container">
+<div class="mi-body">
     <div class="mi-column">
         <div class="mi-search-container">
-            <search model="vm.cardName" query="vm.typeahead.cardName"></search>
+            <search model="vm.cardName" query="vm.typeahead.inventoryName"></search>
             <button ng-click="vm.query()">Find inventory</button>
         </div>
-        <card ng-repeat="inventoryItem in vm.searchResults track by $index" info="inventoryItem"></card>
+        <card ng-repeat="inventoryItem in vm.searchResults.list track by $index" behaviour="vm.addCardToOrder"info="inventoryItem"></card>
     </div>
-    <div>Cart</div>
+    <div class="mi-column">
+        <table class="mi-admin-order-cards">
+          <tr>
+            <th>Name</th>
+            <th>Set</th>
+            <th>Condition</th>
+            <th>Price</th>
+            <th>Quantity</th>
+          </tr>
+          <tr ng-click="vm.removeCardFromOrder(card)"class="mi-admin-order-card" ng-repeat="card in vm.storage.data.localOrder.list">
+            <td>{{card.name}}</td>
+            <td>{{card.setName}}</td>
+            <td>{{card.condition}}</td>
+            <td>{{card.price}}</td>
+            <td>{{card.quantity}}</td>
+          </tr>
+        </table>
+        Total: {{vm.storage.data.localOrder.total}}
+    </div>
 </div>

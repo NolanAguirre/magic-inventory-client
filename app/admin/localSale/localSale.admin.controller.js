@@ -4,18 +4,26 @@ angular
 
 adminLocalSaleController.$inject = ['httpService', 'GraphqlService', 'StorageService', 'TypeaheadService']
 
-function adminLocalSaleController(http, graphql, storage) {
+function adminLocalSaleController(http, graphql, storage, typeahead) {
     var vm = this;
     vm.typeahead = typeahead;
+    vm.storage = storage;
+    storage.addData('localOrder',new storage.compressedCardList());
+    vm.addCardToOrder = (card) =>{
+        storage.data.localOrder.add(vm.searchResults.remove(card));
+    }
+    vm.removeCardFromOrder = (card) =>{
+        storage.data.localOrder.remove(card);
+    }
     vm.query = function() {
         http.graphql(graphql.fragment(`
       {
-        inventoryByCardNameAndStoreId(argOne:"${vm.typeahead.queryResult}", argTwo:"${storage.data.storeId}"){
+        inventoryByCardNameAndStoreId(argOne:"${vm.cardName}", argTwo:"${storage.data.storeId}"){
           edges{
             node{
               price
               condition
-              nodeId
+              id
               cardByCardId{
                 name
                 multiverseId
@@ -26,30 +34,21 @@ function adminLocalSaleController(http, graphql, storage) {
         }
       }
       `)).then((res) => {
-            console.log(res.data.data);
-            vm.searchResults = res.data.data.inventoryByCardNameAndStoreId.edges.map((element) => {
+            vm.searchResults = new storage.compressedCardList();
+            res.data.data.inventoryByCardNameAndStoreId.edges.forEach((element) => {
                 let temp = element.node.cardByCardId;
                 temp.condition = element.node.condition;
                 temp.price = element.node.price;
-                temp.nodeId = [element.node.nodeId];
+                temp.id = [element.node.id];
                 temp.showQuantity = true;
-                temp.showAdvancedQuantity = false;
+                temp.showAdvancedQuantity = true;
                 temp.showPrice = true;
                 temp.showCondition = true;
+                temp.isPlacingOrder = true;
                 temp.quantity = 1;
-                return temp;
+                vm.searchResults.add(temp);
             });
-            for (var x = 0; x < vm.searchResults.length; x++) {
-                for (var y = x + 1; y < vm.searchResults.length; y++) {
-                    if (vm.searchResults[x].name == vm.searchResults[y].name &&
-                        vm.searchResults[x].condition == vm.searchResults[y].condition &&
-                        vm.searchResults[x].set == vm.searchResults[y].set) {
-                        vm.searchResults[x].quantity++;
-                        vm.searchResults[x].nodeId.push(vm.searchResults[y].nodeId[0]);
-                        vm.searchResults.splice(y--, 1);
-                    }
-                }
-            }
+
         })
     }
 }
