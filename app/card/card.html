@@ -19,12 +19,12 @@
         <div ng-if="!card.showAdvancedQuantity">
           In Stock: {{card.quantity}}
         </div>
-        <div ng-if="card.showAdvancedQuantity">
-          <input placeholder="1"></input> <pre> of {{card.quantity}}</pre>
+        <div class="mi-card-quantity" ng-if="card.showAdvancedQuantity">
+            <input type="number" max="{{card.quantity}}" placeholder="1"></input>  of {{card.quantity}}
         </div>
       </div>
       <div class="mi-card-price" ng-if="card.price && card.showPrice">
-        {{card.price.toFixed(2)}}
+        Price: {{card.price.toFixed(2)}}
       </div>
       <div class="mi-column" ng-if="card.isCreatingInventory || card.isUpdatingInventory">
         <input type="number" ng-model="card.price" placeholder="price"></input>
@@ -40,8 +40,7 @@
         <button ng-click="method(card)">add card</button>
       </div>
       <div ng-if="card.isPlacingOrder">
-        <input></input>
-        <input></input>
+          <button ng-click="method(card)">add to order</button>
       </div>
   </div>
 </div>
