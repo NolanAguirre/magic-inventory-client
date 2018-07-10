@@ -27,29 +27,20 @@ function adminViewInventoryController(http, graphql, storage, typeahead) {
       }
       `)).then((res) => {
             console.log(res.data.data);
-            vm.searchResults = res.data.data.inventoryByCardNameAndStoreId.edges.map((element) => {
+            vm.searchResults = new storage.compressedCardList();
+            res.data.data.inventoryByCardNameAndStoreId.edges.forEach((element) => {
                 let temp = element.node.cardByCardId;
                 temp.condition = element.node.condition;
                 temp.price = element.node.price;
-                temp.nodeId = [element.node.nodeId];
+                temp.id = [element.node.id];
                 temp.showQuantity = true;
-                temp.showAdvancedQuantity = false;
+                temp.showAdvancedQuantity = true;
                 temp.showPrice = true;
                 temp.showCondition = true;
+                temp.isPlacingOrder = true;
                 temp.quantity = 1;
-                return temp;
+                vm.searchResults.add(temp);
             });
-            for (var x = 0; x < vm.searchResults.length; x++) {
-                for (var y = x + 1; y < vm.searchResults.length; y++) {
-                    if (vm.searchResults[x].name == vm.searchResults[y].name &&
-                        vm.searchResults[x].condition == vm.searchResults[y].condition &&
-                        vm.searchResults[x].set == vm.searchResults[y].set) {
-                        vm.searchResults[x].quantity++;
-                        vm.searchResults[x].nodeId.push(vm.searchResults[y].nodeId[0]);
-                        vm.searchResults.splice(y--, 1);
-                    }
-                }
-            }
         })
     }
 }
