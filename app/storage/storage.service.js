@@ -21,10 +21,10 @@ function storageService() {
         }
         add(card){
             if(this.items.filter((element) =>{
-                return card.name == element.name && card.setName == element.setName && card.condition == element.condition
+                return card.name == element.name && card.setName == element.setName && card.condition == element.condition && element.price == card.price
             }).length > 0){
                 let tempCard = this.items.filter((element) =>{
-                    return card.name == element.name && card.setName == element.setName && card.condition == element.condition
+                    return card.name == element.name && card.setName == element.setName && card.condition == element.condition && element.price == card.price
                 })[0];
                 tempCard.id.push(card.id[0]);
                 tempCard.quantity++;
