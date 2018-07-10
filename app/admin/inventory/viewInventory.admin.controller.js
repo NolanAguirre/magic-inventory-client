@@ -26,7 +26,6 @@ function adminViewInventoryController(http, graphql, storage, typeahead) {
         }
       }
       `)).then((res) => {
-            console.log(res.data.data);
             vm.searchResults = new storage.compressedCardList();
             res.data.data.inventoryByCardNameAndStoreId.edges.forEach((element) => {
                 let temp = element.node.cardByCardId;
@@ -34,10 +33,9 @@ function adminViewInventoryController(http, graphql, storage, typeahead) {
                 temp.price = element.node.price;
                 temp.id = [element.node.id];
                 temp.showQuantity = true;
-                temp.showAdvancedQuantity = true;
+                temp.showAdvancedQuantity = false;
                 temp.showPrice = true;
                 temp.showCondition = true;
-                temp.isPlacingOrder = true;
                 temp.quantity = 1;
                 vm.searchResults.add(temp);
             });
