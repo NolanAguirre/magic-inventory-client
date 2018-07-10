@@ -29,8 +29,16 @@ function adminViewInventoryController(http, graphql, storage, typeahead) {
             vm.searchResults = new storage.compressedCardList();
             res.data.data.inventoryByCardNameAndStoreId.edges.forEach((element) => {
                 let temp = element.node.cardByCardId;
+                if(!element.node.price){
+                    http.getPrice(temp).then((res) => {
+                        temp.price = res.data
+                    }).catch((err) => {
+                        price.price = -1
+                    });
+                }else{
+                    temp.price = element.node.price;
+                }
                 temp.condition = element.node.condition;
-                temp.price = element.node.price;
                 temp.id = [element.node.id];
                 temp.showQuantity = true;
                 temp.showAdvancedQuantity = false;
