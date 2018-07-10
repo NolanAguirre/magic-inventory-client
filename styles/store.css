@@ -1,67 +1,75 @@
-.mi-store{
-  height: 12rem;
-  padding: 0 1rem;
-  width: 100%;
-  border-bottom: 2px solid rgb(189, 189, 189);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
+.mi-store {
+    height: 12rem;
+    padding: 0 1rem;
+    width: 100%;
+    border-bottom: 2px solid rgb(189, 189, 189);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
 }
-.mi-store-info{
-  display: flex;
-}
-.mi-store-info img{
-  padding-right: 1rem;
-}
-.mi-store-contact{
-  display: flex;
-  padding: 5 0;
-  align-items: center;
-  font-size: 20px;
-}
-.mi-store-section{
-  display: flex;
-  flex-direction: column;
-}
-.mi-store-view-inventory{
-  width: 10rem;
-  background-color: rgb(136, 228, 194);
-  padding: 2rem 3rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color .2s;
-}
-.mi-store-view-inventory:hover{
-  background-color: rgb(87, 223, 173);
-}
-.mi-store-inventory-container{
-  position: fixed;
-  width:100%;
-  height: 100%;
-  left:0;
-  top:0;
-  background-color: rgba(46, 46, 46, .7);
-  z-index: 3;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
-.mi-store-inventory{
-  width:1200px;
-  position: absolute;
-  background-color: yellow;
-  height: 90%;
-  opacity: .9;
-  display: flex;
-  flex-direction: column;
-}
-.mi-inventory-card{
 
+.mi-store-info {
+    display: flex;
 }
-.mi-exit-icon{
-  background: black;
-  height: 50px;
-  width: 50px;
-  float:right;
+
+.mi-store-info img {
+    padding-right: 1rem;
+}
+
+.mi-store-contact {
+    display: flex;
+    padding: 5 0;
+    align-items: center;
+    font-size: 20px;
+}
+
+.mi-store-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.mi-store-view-inventory {
+    width: 10rem;
+    background-color: rgb(136, 228, 194);
+    padding: 2rem 3rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color .2s;
+}
+
+.mi-store-view-inventory:hover {
+    background-color: rgb(87, 223, 173);
+}
+
+.mi-store-inventory-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(46, 46, 46, .7);
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mi-store-inventory {
+    width: 1200px;
+    position: absolute;
+    background-color: yellow;
+    height: 90%;
+    opacity: .9;
+    display: flex;
+    flex-direction: column;
+}
+
+.mi-inventory-card {}
+
+.mi-exit-icon {
+    background: black;
+    height: 50px;
+    width: 50px;
+    float: right;
 }
