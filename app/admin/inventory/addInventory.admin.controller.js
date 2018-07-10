@@ -7,7 +7,7 @@ adminAddInventoryController.$inject = ["httpService", "GraphqlService", "Storage
 function adminAddInventoryController(http, graphql, storage, typeahead, $scope) {
     var vm = this;
     vm.typeahead = typeahead;
-    $scope.$watch('vm.cardSetName',()=>{typeahead.cardSet = vm.cardSetName})
+    $scope.$watch('vm.cardSetName',()=>{typeahead.setCardSet(vm.cardSetName);})
     vm.addInventory = function(card) {
         if (card.id && card.condition) {
             for (var x = 0; x < card.quantity; x++) {
