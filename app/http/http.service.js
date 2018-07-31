@@ -21,8 +21,13 @@
     function testAuth(){
       return $http.post('http://localhost:3002/', {});
     }
-    function graphql(data){
-      return $http.post('http://localhost:3002/graphql', data);
+    function graphql(data, token){
+        let accessToken = localStorage.getItem('access_token') || token;
+        if(!accessToken){
+            return $http.post('http://localhost:3002/graphql', data);
+        }else{
+            return $http.post('http://localhost:3002/graphql', data, {headers:{"Authorization": `Bearer ${accessToken}`}});
+        }
     }
     function getPrice(data){
       return $http.post(`http://localhost:3003`, data);

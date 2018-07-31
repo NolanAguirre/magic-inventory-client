@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('app', ['auth0.auth0', 'angular-jwt', 'ui.router', 'ui.bootstrap'])
+    .module('app', ['angular-jwt', 'ui.router', 'ui.bootstrap'])
     .config(config);
 
   config.$inject = [
@@ -11,7 +11,6 @@
     '$locationProvider',
     '$urlRouterProvider',
     '$httpProvider',
-    'angularAuth0Provider',
     'jwtOptionsProvider'
   ];
 
@@ -20,7 +19,6 @@
     $locationProvider,
     $urlRouterProvider,
     $httpProvider,
-    angularAuth0Provider,
     jwtOptionsProvider
   ) {
     $stateProvider
@@ -181,15 +179,6 @@
         }
       }
     }
-    // Initialization for the angular-auth0 library
-    angularAuth0Provider.init({
-      clientID: AUTH0_CLIENT_ID,
-      domain: AUTH0_DOMAIN,
-      responseType: 'token id_token',
-      audience: AUTH0_AUDIENCE,
-      redirectUri: AUTH0_CALLBACK_URL,
-      scope: REQUESTED_SCOPES
-    });
 
     jwtOptionsProvider.config({
       tokenGetter: function() {

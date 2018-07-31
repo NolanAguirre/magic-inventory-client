@@ -9,9 +9,7 @@
     run.$inject = ['authService', 'httpService', "GraphqlService", "StorageService"];
 
     function run(authService, httpService, graphqlService, storage) {
-      // Handle the authentication
-      // result in the hash
-      authService.handleAuthentication();
+      //authService.getRole();
       graphqlService.registerCRUD("store");
       graphqlService.registerQueries("store");
       graphqlService.registerCRUD("card");
@@ -23,9 +21,10 @@
       graphqlService.registerCRUD("order");
       graphqlService.registerQueries("order");
       graphqlService.registerCRUD("orderItem");
+      graphqlService.registerCRUD("admin");
       graphqlService.registerQueries("orderItem");
       graphqlService.registerQueries("cardName");
       graphqlService.registerQueries("cardSet");
-      storage.addData("storeId", "2a03fabf-dc41-4f1c-a6be-23a0f6ad77a1");
+      storage.addData("storeId", "82c55e16-1895-47a9-95ac-e547e3641504");
     }
   })();
