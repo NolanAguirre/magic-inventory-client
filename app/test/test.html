@@ -19,9 +19,11 @@
         </div>
       </div>
       <div class="test-section">
-        <input ng-model="vm.userName" placeholder="name"></input>
-        <input ng-model="vm.userEmail" placeholder="email"></input>
-        <button ng-click="vm.createUser(vm.userName, vm.userEmail)">create test user</button>
+        <input ng-model="vm.fn" placeholder="first name"></input>
+        <input ng-model="vm.ln" placeholder="last name"></input>
+        <input ng-model="vm.e" placeholder="email"></input>
+        <input ng-model="vm.pw" placeholder="password"></input>
+        <button ng-click="vm.createUser(vm.fn, vm.ln, vm.e, vm.pw)">create test user</button>
         <button ng-click="vm.getUser()">get user</button>
         <div class="test-scroll">
           <div class="test-data" ng-repeat="user in vm.users">
@@ -93,4 +95,5 @@
         </div></div>
     </div>
   </div>
+  <button ng-click="vm.populateTestData()">populate test data</button>
 </div>
