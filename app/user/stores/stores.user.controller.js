@@ -15,10 +15,9 @@ function storesController(httpService, graphql) {
       first: 10
     }
   })).then((res) => {
+      console.log(res);
     vm.stores = res.data.data.allStores.edges.map((item) => item = item.node);
-  }, (err) => {
-    console.log(err);
-  })
+});
   vm.viewInventory = (store) => {
     vm.activeStore = store;
     httpService.graphql(graphql.allInventories({

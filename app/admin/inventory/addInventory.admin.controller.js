@@ -23,8 +23,8 @@ function adminAddInventoryController(http, graphql, storage, typeahead, $scope) 
                             status: "AVAILABLE"
                         }
                     }
-                })).then((data) => {
-                    console.log(data)
+                })).then((res) => {
+                    console.log(res)
                 })
             }
         }
@@ -44,6 +44,7 @@ function adminAddInventoryController(http, graphql, storage, typeahead, $scope) 
         }, {
             "condition": condition
         })).then((res) => {
+            console.log(res)
             vm.searchResults = res.data.data.allCards.edges.map((element) => {
                 element.node.isCreatingInventory = true;
                 element.node.condition = "LIGHTLY_PLAYED"
