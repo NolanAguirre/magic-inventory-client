@@ -1,24 +1,15 @@
 angular
     .module('app')
-    .controller('StoresController', storesController);
+    .controller('StoreController', storeController);
 
 
-storesController.$inject = ['httpService', 'GraphqlService', 'TypeaheadService', 'StorageService'];
+storeController.$inject = ['httpService', 'GraphqlService', 'TypeaheadService', 'StorageService'];
 
-function storesController(httpService, graphql, typeahead, storage) {
+function storeController(httpService, graphql, typeahead, storage) {
     var vm = this;
     vm.http = httpService;
-    vm.activeStore = {};
+    vm.activeStore = storage.data.activeStore;
     vm.typeahead = typeahead;
-    httpService.graphql(graphql.allStores({
-        data: ["name", "id", "phoneNumber", "email"],
-        format: {
-            first: 10
-        }
-    })).then((res) => {
-        console.log(res);
-        vm.stores = res.data.data.allStores.edges.map((item) => item = item.node);
-    });
     vm.query = (name) => {
         httpService.graphql(graphql.fragment(`
       {
@@ -41,15 +32,15 @@ function storesController(httpService, graphql, typeahead, storage) {
             vm.searchResults = new storage.compressedCardList();
             res.data.data.inventoryByCardNameAndStoreId.edges.forEach((element) => {
                 let temp = element.node.cardByCardId;
-                // if (!element.node.price) {
-                //     http.getPrice(temp).then((res) => {
-                //         temp.price = res.data
-                //     }).catch((err) => {
-                //         price.price = -1
-                //     });
-                // } else {
-                //     temp.price = element.node.price;
-                // }
+                if (element.node.price == -1) {
+                    http.getPrice(temp).then((res) => {
+                        temp.price = res.data
+                    }).catch((err) => {
+                        price.price = "Price not avialable at this time"
+                    });
+                } else {
+                    temp.price = element.node.price;
+                }
                 temp.condition = element.node.condition;
                 temp.id = [element.node.id];
                 temp.showQuantity = true;
