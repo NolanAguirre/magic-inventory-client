@@ -6,14 +6,9 @@
         .module('app')
         .service('authService', authService);
 
-    authService.$inject = ['$state', '$timeout', 'httpService', 'GraphqlService'];
+    authService.$inject = ['$state', '$timeout', 'httpService', 'GraphqlService', 'StorageService'];
 
-    function authService($state, $timeout, httpService, graphql) {
-
-        var userProfile;
-        var role;
-        var id;
-
+    function authService($state, $timeout, httpService, graphql, storage) {
         function login(email, password) {
             return httpService.graphql(graphql.fragment(`
                 mutation{
@@ -21,13 +16,18 @@
                            jwtTokenType
                        }
                    }
-                `)).then((res) => {
+                `)).then(async (res) => {
                 localStorage.setItem('access_token', res.data.data.authenticate.jwtTokenType);
-                getRole();
-                getId();
+                getUserProfile();
             })
         }
-
+        async function getUserProfile(){
+            await getRole();
+            await getId();
+            if(isAdmin()){
+                await getStore();
+            }
+        }
         function setSession(authResult) {
 
             // Set the time that the access token will expire at
@@ -37,53 +37,50 @@
             // localStorage.setItem('expires_at', expiresAt);
         }
 
-        function getRole() {
-            if (role) {
-                return role;
+        async function getRole() {
+            if (storage.data.userProfile.role) {
+                return storage.data.userProfile.role;
             } else if (localStorage.getItem('access_token')) {
-                role = httpService.graphql(graphql.fragment(`
+                let role = await httpService.graphql(graphql.fragment(`
                     {
                         getRole
                     }
-                    `)).then((res) => {
-                    return res.data.data.getRole
-                })
+                    `));
+                storage.data.userProfile.role = role.data.data.getRole
                 return role;
             }
             return null;
         }
 
         async function getId() {
-            if (id) {
-                return id;
+            if (storage.data.userProfile.id) {
+                return storage.data.userProfile.id;
             }else if(localStorage.getItem('access_token')){
-                id = await httpService.graphql(graphql.fragment(`
+                let id = await httpService.graphql(graphql.fragment(`
                     {
                         getId
                     }
                 `));
-                return id.data.data.getId;
+                storage.data.userProfile.id = id.data.data.getId;
+                return id;
             }
             return null;
         }
-
-        function getProfile() {
-            var accessToken = localStorage.getItem('access_token');
-            if (!accessToken) {
-                throw new Error('Access token must exist to fetch profile');
-            } else {
-                getRole();
+        async function getStore() {
+            if (storage.data.userProfile.store) {
+                return storage.data.userProfile.store;
+            }else if(localStorage.getItem('access_token')){
+                let store = await httpService.graphql(graphql.fragment(`
+                    {
+                        getAdminStore
+                    }
+                `));
+                console.log(store);
+                storage.data.userProfile.store = store.data.data.getAdminStore;
+                return store;
             }
+            return null;
         }
-
-        function setUserProfile(profile) {
-            userProfile = profile;
-        }
-
-        function getCachedProfile() {
-            return userProfile;
-        }
-
 
         function logout() {
             // Remove tokens and expiry time from localStorage
@@ -92,6 +89,7 @@
             localStorage.removeItem('expires_at');
             localStorage.removeItem('role');
             localStorage.removeItem('store');
+            storage.data.userProfile = {};
             //$state.go('home');
         }
 
@@ -104,17 +102,17 @@
         }
 
         function isAdmin() {
-            return role == 'MAGIC_INVENTORY_EMPLOYEE';
+            return storage.data.userProfile.role == 'MAGIC_INVENTORY_EMPLOYEE' || isOwner();
         }
 
         function isOwner() {
-            return role == 'MAGIC_INVENTORY_STORE_OWNER';
+            return storage.data.userProfile.role == 'MAGIC_INVENTORY_STORE_OWNER';
         }
         return {
             login: login,
-            getProfile: getProfile,
             logout: logout,
             getId: getId,
+            getUserProfile: getUserProfile,
             isAuthenticated: isAuthenticated,
             isAdmin: isAdmin,
             isOwner: isOwner,

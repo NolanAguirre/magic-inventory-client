@@ -53,11 +53,7 @@
         }
 
         function addData(key, value) {
-            if (data[key]) {
-                //if the key exists do nothing
-            } else {
-                data[key] = value;
-            }
+            data[key] = value;
         }
         return {
             compressedCardList: compressedCardList,
