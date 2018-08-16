@@ -14,7 +14,7 @@
         card: '=info',
         method: "=behaviour"
       },
-      templateUrl: 'app/card/card.html'
+      templateUrl: 'app/directive/card/card.html'
     };
   }
 

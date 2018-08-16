@@ -13,7 +13,7 @@
         search: '=query',
         model: '=model'
       },
-      templateUrl: 'app/search/search.html'
+      templateUrl: 'app/directive/search/search.html'
     };
   }
 })();

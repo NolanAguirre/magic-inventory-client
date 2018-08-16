@@ -8,7 +8,7 @@
 
   function footer() {
     return {
-      templateUrl: 'app/footer/footer.html'
+      templateUrl: 'app/directive/footer/footer.html'
     }
   }
 })();
