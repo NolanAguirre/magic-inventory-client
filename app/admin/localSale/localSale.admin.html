@@ -5,7 +5,7 @@
             <button ng-click="vm.query()">Find inventory</button>
         </div>
         <div class="mi-card-scrollable">
-            <card ng-repeat="inventoryItem in vm.searchResults.list track by $index" behaviour="vm.addCardToOrder"info="inventoryItem"></card>
+            <card ng-repeat="inventoryItem in vm.searchResults.list track by $index" behaviour="vm.addCardToOrder"card="inventoryItem"></card>
         </div>
     </div>
     <div class="mi-column">

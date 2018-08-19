@@ -4,6 +4,6 @@
             <search model="vm.cardName" query="vm.typeahead.inventoryName"></search>
             <button ng-click="vm.query(vm.cardName)">View Inventory</button>
         </div>
-        <card ng-repeat="inventoryItem in vm.searchResults.list track by $index" info="inventoryItem"></card>
+        <card ng-repeat="inventoryItem in vm.searchResults.list track by $index" card="inventoryItem"></card>
     </div>
 </div>

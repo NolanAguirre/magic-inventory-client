@@ -11,8 +11,7 @@
       restrict: 'E',
       transclude: true,
       scope: {
-        card: '=info',
-        method: "=behaviour"
+        card: '=card'
       },
       templateUrl: 'app/directive/card/card.html'
     };
