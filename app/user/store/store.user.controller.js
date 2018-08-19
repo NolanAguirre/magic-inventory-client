@@ -9,6 +9,7 @@ function storeController(httpService, graphql, typeahead, storage) {
     var vm = this;
     vm.http = httpService;
     vm.activeStore = storage.data.activeStore;
+    typeahead.setStore(storage.data.activeStore.id);
     vm.typeahead = typeahead;
     vm.query = (name) => {
         httpService.graphql(graphql.fragment(`

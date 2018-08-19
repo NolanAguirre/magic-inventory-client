@@ -1,1 +1,48 @@
-
+<div class="mi-body">
+    <div>
+        <button>View By Set</button>
+        <button>Search for Card</button>
+        <button>Browse Cards</button>
+    </div>
+    <div class="mi-column">
+        <div class="mi-search-container">
+          <search model="vm.cardName" query="vm.typeahead.inventoryName"></search>
+          <button ng-click="vm.query(vm.cardName)">Search for card</button>
+        </div>
+        <div class="mi-card-scrollable">
+            <card ng-repeat="inventoryItem in vm.searchResults.list track by $index" card="inventoryItem">
+                <innerCardCart></innerCardCart>
+            </card>
+        </div>
+    </div>
+</div>
+<!-- <div class="mi-card-condition" ng-if="card.condition && card.showCondition">
+    {{card.condition}}
+</div>
+<div class="mi-card-quantity" ng-if="card.quantity && card.showQuantity">
+  <div ng-if="!card.showAdvancedQuantity">
+    In Stock: {{card.quantity}}
+  </div>
+  <div class="mi-card-quantity" ng-if="card.showAdvancedQuantity">
+      <input type="number" max="{{card.quantity}}" placeholder="1"></input>  of {{card.quantity}}
+  </div>
+</div>
+<div class="mi-card-price" ng-if="card.price && card.showPrice">
+  Price: {{card.price.toFixed(2)}}
+</div>
+<div class="mi-column" ng-if="card.isCreatingInventory || card.isUpdatingInventory">
+  <input type="number" ng-model="card.price" placeholder="price"></input>
+  <input  ng-if="card.isCreatingInventory" type="number" ng-model="card.quantity"placeholder="quantity"></input>
+  <select ng-model="card.condition">
+    <option value="MINT">Mint</option>
+    <option value="NEAR_MINT">Near Mint</option>
+    <option value="LIGHTLY_PLAYED">Lightly Played</option>
+    <option value="MODERATELY_PLAYED">Moderately Played</option>
+    <option value="HEAVILY PLAYED">Heavily Played</option>
+    <option value="DAMAGED">Damaged</option>
+  </select>
+  <button ng-click="method(card)">add card</button>
+</div>
+<div ng-if="card.isPlacingOrder">
+    <button ng-click="method(card)">add to order</button>
+</div> -->
