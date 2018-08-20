@@ -11,7 +11,7 @@
         </div>
         <div class="mi-card-scrollable">
             <card ng-repeat="inventoryItem in vm.searchResults.list track by $index" card="inventoryItem">
-                <innerCardCart></innerCardCart>
+                <innercardcart card="inventoryItem"></innercardcart>
             </card>
         </div>
     </div>

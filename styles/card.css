@@ -29,16 +29,6 @@
     padding-right: 30px;
 }
 
-.mi-card-quantity {
-    display: flex;
-    align-items: center;
-}
-
-.mi-card-quantity input {
-    width: 50px;
-    text-align: center;
-}
-
 .mi-card-info {
     display: flex;
     flex-direction: column;
@@ -49,4 +39,27 @@
 .mi-card-info div:first-child {
     font-size: 20px;
     padding-bottom: 5px;
+}
+
+.mi-card-quantity {
+    width: 40px;
+    background-color: rgb(200, 200, 200);
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.mi-card-cart-button{
+    font-size: 12px;
+    margin-left: 20px;
+    padding: 2px 15px;
+    border-radius: 5px;
+    border: none;
+    transition: box-shadow .4s;
+}
+.mi-card-cart-button:focus{
+    outline:none;
+    box-shadow: 0 0 0 .2rem red;
 }

@@ -11,6 +11,10 @@ a {
     flex-direction: column;
 }
 
+.mi-row {
+    display: flex;
+}
+
 .mi-margin-bottom {
     margin-bottom: 20px;
 }
