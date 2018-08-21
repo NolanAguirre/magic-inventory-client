@@ -4,7 +4,7 @@
 
   angular
     .module('app')
-    .directive('add', card);
+    .directive('innercardadd', card);
 
   function card() {
     return {

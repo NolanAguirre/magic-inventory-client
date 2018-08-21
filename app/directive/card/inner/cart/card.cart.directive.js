@@ -4,14 +4,14 @@
 
   angular
     .module('app')
-    .directive('innerCardCart', card);
+    .directive('innercardcart', card);
 
   function card() {
     return {
       restrict: 'E',
       transclude: true,
       scope: {
-        innerCard: '=card'
+        card: '=card'
       },
       templateUrl: 'app/directive/card/inner/cart/card.cart.html'
     };
