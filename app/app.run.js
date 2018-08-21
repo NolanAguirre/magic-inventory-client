@@ -9,7 +9,8 @@
     run.$inject = ['authService', 'httpService', "GraphqlService", "StorageService"];
 
     function run(authService, httpService, graphqlService, storage) {
-      //authService.getRole();
+      storage.addData('userProfile', {role:null, id:null, store:null});
+      authService.getUserProfile();
       graphqlService.registerCRUD("store");
       graphqlService.registerQueries("store");
       graphqlService.registerCRUD("card");
@@ -25,6 +26,5 @@
       graphqlService.registerQueries("orderItem");
       graphqlService.registerQueries("cardName");
       graphqlService.registerQueries("cardSet");
-      storage.addData("storeId", "82c55e16-1895-47a9-95ac-e547e3641504");
     }
   })();
