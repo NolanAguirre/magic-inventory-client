@@ -1,10 +1,12 @@
-<div style="justify-content:space-between"class="mi-row">
-    <div>
-        Condition: {{card.condition}} <br> Price: {{card.price}}
-    </div>
-    <div style="padding:0 80px;"class="mi-row">
-        <input style="width:50px;text-align:center" min="0" max="{{card.quantity}}"type="number"></input>
-        <div class="mi-card-quantity"> of {{card.quantity}}</div>
-        <button class="mi-card-cart-button">Add to Card</button>
+<div class="mi-column" style="justify-content:center; flex:1;">
+    <div style="justify-content:space-between" class="mi-row">
+        <div>
+            Condition: {{card.condition}} <br> Price: {{card.price}}
+        </div>
+        <div style="padding:0 80px;" class="mi-row">
+            <input style="width:50px;text-align:center" min="0" max="{{card.quantity}}" type="number"></input>
+            <div class="mi-card-quantity"> of {{card.quantity}}</div>
+            <button class="mi-card-cart-button">Add to Card</button>
+        </div>
     </div>
 </div>

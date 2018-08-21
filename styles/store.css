@@ -35,3 +35,6 @@
     background-color: rgb(87, 223, 173);
 }
 /* store css */
+.mi-card-scrollable {
+    overflow: auto;
+}
