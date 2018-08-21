@@ -1,0 +1,86 @@
+.dropdown-menu {
+    margin: 0;
+    position: absolute;
+    z-index: 2;
+    background-color: white;
+    min-width: 300px;
+    padding: 0;
+    border: 1px solid black;
+}
+
+.dropdown-menu li {
+    list-style-type: none;
+}
+
+.dropdown-menu li a {
+    color: black;
+    text-decoration: none !important;
+}
+
+.dropdown-menu li:hover {
+    background-color: #337ab7;
+}
+.mi-nav-contaier {
+    position: fixed;
+    height: 75px;
+    background-color: rgb(65, 65, 65);
+    left: 0;
+    right: 0;
+}
+
+.mi-header-desktop {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.mi-header-section {
+    flex: 0 1 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none !important;
+}
+
+.mi-header-link {
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 15px;
+    position: relative;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.mi-header-link-box {
+    height: 100%;
+    align-items: center;
+    display: flex;
+    box-sizing: border-box;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    transition: border-bottom-color .2s ease;
+}
+
+.mi-header-link-box:hover {
+    border-bottom-color: black;
+}
+
+.mi-header-mobile {
+    display: none;
+}
+@media only screen and (max-width: 800px) {
+    .mi-header-desktop {
+        display: none;
+    }
+    .mi-header-mobile {
+        display: block;
+    }
+}
