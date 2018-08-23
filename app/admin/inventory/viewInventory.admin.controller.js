@@ -40,10 +40,6 @@ function adminViewInventoryController(http, graphql, storage, typeahead) {
                 }
                 temp.condition = element.node.condition;
                 temp.id = [element.node.id];
-                temp.showQuantity = true;
-                temp.showAdvancedQuantity = false;
-                temp.showPrice = true;
-                temp.showCondition = true;
                 temp.quantity = 1;
                 vm.searchResults.add(temp);
             });

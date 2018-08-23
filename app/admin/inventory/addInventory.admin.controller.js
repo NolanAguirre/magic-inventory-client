@@ -46,7 +46,6 @@ function adminAddInventoryController(http, graphql, storage, typeahead, $scope) 
         })).then((res) => {
             console.log(res)
             vm.searchResults = res.data.data.allCards.edges.map((element) => {
-                element.node.isCreatingInventory = true;
                 element.node.condition = "LIGHTLY_PLAYED"
                 return element.node;
             })

@@ -21,7 +21,6 @@ function adminPricingController(http, graphql, storage, typeahead) {
                 }).catch((err) => {
                     element.node.price = -1
                 });
-                element.node.showPrice = true;
                 return element.node;
             })
         })

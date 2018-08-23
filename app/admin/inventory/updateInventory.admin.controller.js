@@ -48,7 +48,7 @@ function adminUpdateInventoryController(http, graphql, storage, typeahead) {
       `
     )).then((res) => {
       vm.searchResults = res.data.data.inventoryByCardNameAndStoreId.edges.map((element) => {
-        return {...element.node, ...element.node.cardByCardId, isUpdatingInventory:true}
+        return {...element.node, ...element.node.cardByCardId}
       });
       console.log(vm.searchResults)
     })

@@ -46,10 +46,6 @@ function storeController(http, graphql, typeahead, storage) {
                     temp.price = element.node.price;
                 }
                 temp.condition = element.node.condition;
-                temp.showQuantity = true;
-                temp.showAdvancedQuantity = false;
-                temp.showPrice = true;
-                temp.showCondition = true;
                 temp.quantity = 1;
                 vm.searchResults.add(temp);
             })
