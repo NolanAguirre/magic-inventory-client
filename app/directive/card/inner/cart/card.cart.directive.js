@@ -11,7 +11,8 @@
       restrict: 'E',
       transclude: true,
       scope: {
-        card: '=card'
+        card: '=card',
+        buttonpress: '=buttonpress'
       },
       templateUrl: 'app/directive/card/inner/cart/card.cart.html'
     };

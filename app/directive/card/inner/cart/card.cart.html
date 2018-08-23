@@ -4,9 +4,9 @@
             Condition: {{card.condition}} <br> Price: {{card.price}}
         </div>
         <div style="padding:0 80px;" class="mi-row">
-            <input style="width:50px;text-align:center" min="0" max="{{card.quantity}}" type="number"></input>
+            <input ng-model="card.requestedQuantity"style="width:50px;text-align:center" min="0" max="{{card.quantity}}" type="number"></input>
             <div class="mi-card-quantity"> of {{card.quantity}}</div>
-            <button class="mi-card-cart-button">Add to Card</button>
+            <button ng-click="buttonpress(card)" class="mi-card-cart-button">Add to Card</button>
         </div>
     </div>
 </div>

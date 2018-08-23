@@ -3,10 +3,11 @@ angular
     .controller('StoreController', storeController);
 
 
-storeController.$inject = ['httpService', 'GraphqlService', 'TypeaheadService', 'StorageService'];
+storeController.$inject = ['httpService', 'GraphqlService', 'TypeaheadService', 'StorageService', 'CartService'];
 
-function storeController(http, graphql, typeahead, storage) {
+function storeController(http, graphql, typeahead, storage, cart) {
     var vm = this;
+    vm.cart = cart;
     storage.data.activeStore = {
         id:'6cefb59a-3d71-462a-8862-e8f7f9ee7515'
     }

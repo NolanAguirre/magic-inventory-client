@@ -13,7 +13,7 @@
     <div style="flex:1" class="mi-column">
         <div class="mi-card-scrollable">
             <card ng-repeat="inventoryItem in vm.searchResults.list track by $index" card="inventoryItem">
-                <innercardcart style="flex:1; display:flex;" card="inventoryItem"></innercardcart>
+                <innercardcart style="flex:1; display:flex;" buttonpress="vm.cart.addItem"card="inventoryItem"></innercardcart>
             </card>
         </div>
     </div>
