@@ -7,15 +7,16 @@ adminViewInventoryController.$inject = ["httpService", "GraphqlService", "Storag
 function adminViewInventoryController(http, graphql, storage, typeahead) {
     var vm = this;
     vm.typeahead = typeahead;
-    vm.query = function(name) {
+    vm.query = (name) => {
         http.graphql(graphql.fragment(`
       {
-        inventoryByCardNameAndStoreId(argOne:"${name}", argTwo:"${storage.data.storeId}"){
+        inventoryByCardNameAndStoreId(argOne:"${name}", argTwo:"${vm.activeStore.id}"){
           edges{
             node{
+              id
               price
               condition
-              nodeId
+              cardId
               cardByCardId{
                 name
                 multiverseId
@@ -29,20 +30,22 @@ function adminViewInventoryController(http, graphql, storage, typeahead) {
             vm.searchResults = new storage.compressedCardList();
             res.data.data.inventoryByCardNameAndStoreId.edges.forEach((element) => {
                 let temp = element.node.cardByCardId;
-                if(!element.node.price){
+                temp.id = [element.node.id]
+                if (element.node.price == 0) {
                     http.getPrice(temp).then((res) => {
                         temp.price = res.data
                     }).catch((err) => {
-                        price.price = -1
+                        price.price = "Price not avialable at this time"
                     });
-                }else{
+                } else {
                     temp.price = element.node.price;
                 }
                 temp.condition = element.node.condition;
-                temp.id = [element.node.id];
+                temp.cardId = element.node.cardId;
                 temp.quantity = 1;
                 vm.searchResults.add(temp);
-            });
+            })
         })
+    }
     }
 }

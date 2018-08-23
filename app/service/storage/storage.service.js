@@ -24,15 +24,15 @@
                 return this.items
             }
             add(card) {
-                if (this.items.filter((element) => {
-                        return card.name == element.name && card.setName == element.setName && card.condition == element.condition && element.price == card.price
-                    }).length > 0) {
-                    let tempCard = this.items.filter((element) => {
-                        return card.name == element.name && card.setName == element.setName && card.condition == element.condition && element.price == card.price
-                    })[0];
-                    tempCard.id.push(card.id[0]);
-                    tempCard.quantity++;
-
+                function equalTo(element){
+                    return card.cardId == element.cardId &&
+                           card.condition == element.condition &&
+                           card.price == element.price;
+                }
+                if (this.items.filter(equalTo).length > 0) {
+                    let temp = this.items.filter(equalTo)[0]
+                    temp.id.push(card.id[0]);
+                    temp.quantity++;
                 } else {
                     card.quantity = 1;
                     this.items.push(card);

@@ -20,13 +20,14 @@ function storeController(http, graphql, typeahead, storage, cart) {
         inventoryByCardNameAndStoreId(argOne:"${name}", argTwo:"${vm.activeStore.id}"){
           edges{
             node{
+              id
               price
               condition
+              cardId
               cardByCardId{
                 name
                 multiverseId
                 setName
-                id
               }
             }
           }
@@ -36,7 +37,7 @@ function storeController(http, graphql, typeahead, storage, cart) {
             vm.searchResults = new storage.compressedCardList();
             res.data.data.inventoryByCardNameAndStoreId.edges.forEach((element) => {
                 let temp = element.node.cardByCardId;
-                temp.id = [element.node.cardByCardId.id]
+                temp.id = [element.node.id]
                 if (element.node.price == 0) {
                     http.getPrice(temp).then((res) => {
                         temp.price = res.data
@@ -47,6 +48,7 @@ function storeController(http, graphql, typeahead, storage, cart) {
                     temp.price = element.node.price;
                 }
                 temp.condition = element.node.condition;
+                temp.cardId = element.node.cardId;
                 temp.quantity = 1;
                 vm.searchResults.add(temp);
             })
