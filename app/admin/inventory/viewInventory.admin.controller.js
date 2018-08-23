@@ -47,5 +47,4 @@ function adminViewInventoryController(http, graphql, storage, typeahead) {
             })
         })
     }
-    }
 }

@@ -11,7 +11,12 @@
   function cartService(http, graphql) {
       let items = [];
       function addItem(item){
-          items.push(item);
+          for(let x = 0; x < item.requestedQuantity; x++){
+              let tempItem = Object.assign({}, item);
+              tempItem.id = item.id.pop();
+              item.quantity--;
+              items.push(tempItem);
+          }
       }
       function getItems(){
           return items;
