@@ -50,6 +50,10 @@
                 tempCard.quantity = 1;
                 return tempCard;
             }
+            fetchPrices(callback){
+                this.items.filter((card)=>{return card.price == "fetching price";})
+                     .forEach((card)=>{callback(card)});
+            }
         }
 
         function addData(key, value) {
