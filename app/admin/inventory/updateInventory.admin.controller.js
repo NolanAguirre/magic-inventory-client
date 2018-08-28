@@ -27,10 +27,10 @@ function adminUpdateInventoryController(http, graphql, storage, typeahead) {
 
         })
   }
-  vm.query = function(queryParams) {
+  vm.query = function(name) {
     http.graphql(graphql.fragment(`
       {
-        inventoryByCardNameAndStoreId(argOne:"${queryParams}", argTwo:"${storage.data.storeId}"){
+        adminInventoryByCardNameAndStoreId(argOne:"${name}"){
           edges{
             node{
               price
@@ -47,7 +47,7 @@ function adminUpdateInventoryController(http, graphql, storage, typeahead) {
       }
       `
     )).then((res) => {
-      vm.searchResults = res.data.data.inventoryByCardNameAndStoreId.edges.map((element) => {
+      vm.searchResults = res.data.data.adminInventoryByCardNameAndStoreId.edges.map((element) => {
         return {...element.node, ...element.node.cardByCardId}
       });
       console.log(vm.searchResults)

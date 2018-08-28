@@ -10,7 +10,7 @@ function adminViewInventoryController(http, graphql, storage, typeahead) {
     vm.query = (name) => {
         http.graphql(graphql.fragment(`
       {
-        inventoryByCardNameAndStoreId(argOne:"${name}", argTwo:"${vm.activeStore.id}"){
+        adminInventoryByCardNameAndStoreId(argOne:"${name}"){
           edges{
             node{
               id
@@ -28,7 +28,7 @@ function adminViewInventoryController(http, graphql, storage, typeahead) {
       }
       `)).then((res) => {
             vm.searchResults = new storage.compressedCardList();
-            res.data.data.inventoryByCardNameAndStoreId.edges.forEach((element) => {
+            res.data.data.adminInventoryByCardNameAndStoreId.edges.forEach((element) => {
                 let temp = element.node.cardByCardId;
                 temp.id = [element.node.id]
                 if (element.node.price == 0) {

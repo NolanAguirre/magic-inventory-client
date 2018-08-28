@@ -34,6 +34,7 @@
 	                    getUserData{
                             lastName
                             firstName
+                            role
                             store
                             expiresAt
   	                        id
@@ -41,6 +42,7 @@
                      }
                 `))
                 profile = result.data.data.getUserData;
+                console.log(profile);
                 return profile;
             }
         }
@@ -70,15 +72,23 @@
             // access token's expiry time
             // let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
             // return new Date().getTime() < expiresAt;
-            return localStorage.getItem('access_token');
+            return localStorage.getItem('access_token') != null;
         }
 
         function isAdmin() {
-            return storage.data.userProfile.role == 'MAGIC_INVENTORY_EMPLOYEE' || isOwner();
+            if(!profile){
+                return false;
+            }
+            return isAuthenticated()
+                   && profile.role == 'MAGIC_INVENTORY_EMPLOYEE'
+                   || isOwner();
         }
 
         function isOwner() {
-            return storage.data.userProfile.role == 'MAGIC_INVENTORY_STORE_OWNER';
+            if(!profile){
+                return false;
+            }
+            return  isAuthenticated() && profile.role == 'MAGIC_INVENTORY_STORE_OWNER';
         }
         return {
             login: login,

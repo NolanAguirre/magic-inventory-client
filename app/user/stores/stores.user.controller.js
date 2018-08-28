@@ -9,7 +9,7 @@ function storesController(httpService, graphql, typeahead, storage) {
     var vm = this;
     vm.http = httpService;
     vm.setStore = (store)=>{
-        storage.addData("activeStore", store);
+        sessionStorage.setItem("activeStore", JSON.stringify(store));
     }
     vm.typeahead = typeahead;
     httpService.graphql(graphql.allStores({

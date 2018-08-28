@@ -8,16 +8,12 @@ storeController.$inject = ['httpService', 'GraphqlService', 'TypeaheadService', 
 function storeController(http, graphql, typeahead, storage, cart) {
     var vm = this;
     vm.cart = cart;
-    storage.data.activeStore = {
-        id:'6cefb59a-3d71-462a-8862-e8f7f9ee7515'
-    }
-    vm.activeStore = storage.data.activeStore;
-    typeahead.setStore(storage.data.activeStore.id);
+    typeahead.setStore(JSON.parse(sessionStorage.getItem("activeStore")).id);
     vm.typeahead = typeahead;
     vm.query = (name) => {
         http.graphql(graphql.fragment(`
       {
-        inventoryByCardNameAndStoreId(argOne:"${name}", argTwo:"${vm.activeStore.id}"){
+        inventoryByCardNameAndStoreId(argOne:"${name}", argTwo:"${JSON.parse(sessionStorage.getItem("activeStore")).id}"){
           edges{
             node{
               id
@@ -45,7 +41,12 @@ function storeController(http, graphql, typeahead, storage, cart) {
                 vm.searchResults.add(temp);
             })
             vm.searchResults.fetchPrices((card)=>{
-                http.getPrice(card).then((res) => {
+                let tempCard = {
+                    condition:card.condition,
+                    setName: card.setName,
+                    name: card.name
+                }
+                http.getPrice(tempCard).then((res) => {
                     card.price = res.data;
                 }).catch((err) => {
                     card.price = "Failed to fetch";

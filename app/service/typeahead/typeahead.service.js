@@ -10,7 +10,6 @@
 
     function typeaheadService(http, graphql, storage) {
         var cardSet;
-        var storeId;
         var cardSetName = {
             query: (name) => {
                 return http.graphql(graphql.allCardSets({
@@ -55,7 +54,7 @@
             query: (name) => {
                 return http.graphql(graphql.fragment(`
             {
-              inventoryTypeahead(argOne:"${name + "%"}", argTwo:"${storeId || storage.data.userProfile.store}"){
+              inventoryTypeahead(argOne:"${name + "%"}", argTwo:"${JSON.parse(sessionStorage.getItem("activeStore")).id}"){
                 edges{
                   node
                 }
@@ -112,17 +111,12 @@
         function setCardSet(set) {
             cardSet = set;
         }
-
-        function setStore(id) {
-            storeId = id;
-        }
         return {
             cardSetName: cardSetName,
             cardName: cardName,
             cardNameBySet: cardNameBySet,
             inventoryName: inventoryName,
-            setCardSet: setCardSet,
-            setStore: setStore
+            setCardSet: setCardSet
         }
     }
 })();
