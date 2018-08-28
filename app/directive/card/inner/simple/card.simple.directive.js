@@ -11,7 +11,7 @@
       restrict: 'E',
       transclude: true,
       scope: {
-        innerCard: '=card'
+        card: '=card'
       },
       templateUrl: 'app/directive/card/inner/simple/card.simple.html'
     };

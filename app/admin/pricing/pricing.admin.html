@@ -4,6 +4,8 @@
         <button ng-click="vm.query()">price card</button>
     </div>
     <div class="mi-card-container">
-        <card ng-repeat="card in vm.searchResults" card="card"></card>
+        <card ng-repeat="card in vm.searchResults" card="card">
+            <innercardsimple style="display:flex;" card="card"></innercardsimple>
+        </card>
     </div>
 </div>
