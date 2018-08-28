@@ -15,13 +15,19 @@ function adminPricingController(http, graphql, storage, typeahead) {
                 name: vm.cardName
             }
         })).then((res) => {
-            vm.searchResults = res.data.data.allCards.edges.map((element) => {
-                http.getPrice(element.node).then((res) => {
-                    element.node.price = res.data
+            vm.searchResults = res.data.data.allCards.edges.map((card) => {
+                card = card.node;
+                let tempCard = {
+                    condition: card.condition,
+                    setName: card.setName,
+                    name: card.name
+                }
+                http.getPrice(tempCard).then((res) => {
+                    card.price = res.data;
                 }).catch((err) => {
-                    element.node.price = -1
+                    card.price = "Failed to fetch";
                 });
-                return element.node;
+                return card;
             })
         })
     }

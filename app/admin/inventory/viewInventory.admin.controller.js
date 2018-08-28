@@ -31,19 +31,23 @@ function adminViewInventoryController(http, graphql, storage, typeahead) {
             res.data.data.adminInventoryByCardNameAndStoreId.edges.forEach((element) => {
                 let temp = element.node.cardByCardId;
                 temp.id = [element.node.id]
-                if (element.node.price == 0) {
-                    http.getPrice(temp).then((res) => {
-                        temp.price = res.data
-                    }).catch((err) => {
-                        price.price = "Price not avialable at this time"
-                    });
-                } else {
-                    temp.price = element.node.price;
-                }
                 temp.condition = element.node.condition;
                 temp.cardId = element.node.cardId;
                 temp.quantity = 1;
+                temp.price = (element.node.price == 0) ? "fetching price" : element.node.price;
                 vm.searchResults.add(temp);
+            })
+            vm.searchResults.fetchPrices((card) => {
+                let tempCard = {
+                    condition: card.condition,
+                    setName: card.setName,
+                    name: card.name
+                }
+                http.getPrice(tempCard).then((res) => {
+                    card.price = res.data;
+                }).catch((err) => {
+                    card.price = "Failed to fetch";
+                });
             })
         })
     }
