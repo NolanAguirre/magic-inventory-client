@@ -10,17 +10,19 @@
 
     function authService($state, $timeout, httpService, graphql, storage) {
         let profile;
-        function login(email, password) {
+         function login(email, password) {
+            $state.go('callback')
             return httpService.graphql(graphql.fragment(`
                 mutation{
 	                   authenticate(input:{arg0:"${email}", password:"${password}"}){
                            jwtTokenType
                        }
                    }
-                `)).then((res) => {
+                `)).then(async (res) => {
                 console.log(res)
                 localStorage.setItem('access_token', res.data.data.authenticate.jwtTokenType);
-                getUserProfile();
+                await getUserProfile();
+                $state.go('home')
             })
         }
         async function getUserProfile() {
