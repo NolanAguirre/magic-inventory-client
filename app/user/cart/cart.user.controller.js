@@ -3,8 +3,10 @@ angular
     .controller('CartController', cartController);
 
 
-cartController.$inject = [];
+cartController.$inject = ['CartService'];
 
-function cartController() {
+function cartController(cart) {
     var vm = this;
+    vm.cart = cart;
+    vm.cartItems = cart.getItems();
 }
