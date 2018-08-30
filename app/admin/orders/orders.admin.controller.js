@@ -26,7 +26,7 @@ function adminOrdersController(http, graphql, storage) {
     }
     http.graphql(graphql.allOrders({
       data: ["createdAt", "orderStatus", "price", "nodeId", {
-        userByUserId: ["name"]
+        userByUserId: ["firstName", "lastName"]
       }],
       format: {
         first: 5,

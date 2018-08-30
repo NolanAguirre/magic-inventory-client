@@ -9,7 +9,6 @@
     run.$inject = ['authService', 'httpService', "GraphqlService", "StorageService"];
 
     function run(authService, httpService, graphqlService, storage) {
-      storage.addData('userProfile', {role:null, id:null, store:null});
       authService.getUserProfile();
       graphqlService.registerCRUD("store");
       graphqlService.registerQueries("store");

@@ -53,5 +53,4 @@ function adminUpdateInventoryController(http, graphql, storage, typeahead) {
       console.log(vm.searchResults)
     })
   }
- // vm.typeahead =
 }

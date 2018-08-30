@@ -8,7 +8,6 @@ storeController.$inject = ['httpService', 'GraphqlService', 'TypeaheadService', 
 function storeController(http, graphql, typeahead, storage, cart) {
     var vm = this;
     vm.cart = cart;
-    typeahead.setStore(JSON.parse(sessionStorage.getItem("activeStore")).id);
     vm.typeahead = typeahead;
     vm.query = (name) => {
         http.graphql(graphql.fragment(`
