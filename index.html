@@ -10,16 +10,18 @@
     <link rel="stylesheet" href="styles/test.css">
     <link rel="stylesheet" href="styles/order.css">
     <link rel="stylesheet" href="styles/card.css">
+    <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/localsale.css">
     <link rel="stylesheet" href="styles/searchbar.css">
     <link rel="stylesheet" href="styles/admin.inventory.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 </head>
 
 <body>
     <navbar></navbar>
-    <ui-view></ui-view>
+    <ui-view class="mi-row"></ui-view>
     <!-- <footer><footer> -->
     <script type="text/javascript" src="node_modules/angular/angular.js"></script>
     <script type="text/javascript" src="node_modules/@uirouter/angularjs/release/angular-ui-router.js"></script>
@@ -53,6 +55,7 @@
     <script type="text/javascript" src="app/directive/card/inner/cart/card.cart.directive.js"></script>
     <!-- global controller -->
     <script type="text/javascript" src="app/home/home.controller.js"></script>
+    <script type="text/javascript" src="app/login/login.controller.js"></script>
     <script type="text/javascript" src="app/callback/callback.controller.js"></script>
     <!-- services -->
     <script type="text/javascript" src="app/service/http/http.service.js"></script>

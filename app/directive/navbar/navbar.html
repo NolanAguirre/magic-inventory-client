@@ -1,7 +1,7 @@
 <div class="mi-nav-contaier">
   <div class="mi-header-desktop">
     <div class="mi-header-section">
-      <a class="navbar-brand" href="#">Magic Inventory System</a>
+      <a class="mi-row"  ui-sref="home"><div class="mi-logo">LGS</div>&nbsp;&nbsp; <div class="mi-logo-buddy">Buddy</div></a>
     </div>
     <div></div>
     <div></div>
@@ -38,19 +38,19 @@
           Cart
         </div>
       </a>
-      <a ng-if="!vm.auth.isAuthenticated()" class="mi-header-link" ng-click="vm.auth.login()">
+      <a ng-if="!vm.auth.isAuthenticated()" class="mi-header-link" ui-sref="login">
         <div class="mi-header-link-box">
           Log in
         </div>
       </a>
 
-      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.store">
+      <a ng-if="vm.auth.isAdmin()" class="mi-header-link" ui-sref="admin.store">
         <div class="mi-header-link-box">
           My Store
         </div>
       </a>
       <div class="mi-dropdown">
-      <a ng-if="vm.auth.isAuthenticated() && vm.auth.isAdmin()" class="mi-header-link" ui-sref="adminInventory">
+      <a ng-if="vm.auth.isAdmin()" class="mi-header-link" ui-sref="adminInventory">
         <div class="mi-header-link-box">
             Manage Inventory
           </div>

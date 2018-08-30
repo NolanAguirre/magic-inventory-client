@@ -1,0 +1,33 @@
+.mi-login{
+    display: flex;
+    flex-direction: column;
+    height:400px;
+    width:500px;
+    padding: 40px;
+    box-sizing: border-box;
+    background-color: white;
+    margin-bottom: 200px;
+}
+
+.mi-login-form{
+
+}
+.mi-login-form input {
+    margin-top: 40px;
+    display: block;
+    height: 40px;
+    width: 100%;
+    padding: .65rem 1rem;
+    font-size: 2rem;
+    line-height: 1.25;
+    color: #1a2e34;
+    background-color: #fff;
+    border: 1px solid #cdd6e4;
+    border-radius: .1875rem;
+    box-shadow: none;
+    background-clip: padding-box;
+}
+.mi-login-form button{
+    margin-top: 60px;
+    padding: 10px 40px;
+}

@@ -32,6 +32,11 @@
                 controller: 'TestController',
                 templateUrl: 'app/test/test.html',
                 controllerAs: 'vm'
+            }).state('login', {
+                url: '/login',
+                controller: 'LoginController',
+                templateUrl: 'app/login/login.html',
+                controllerAs: 'vm'
             }).state('store', {
                 url: '/store',
                 controller: 'StoreController',

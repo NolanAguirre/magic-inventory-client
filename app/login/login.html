@@ -1,0 +1,12 @@
+<div class="mi-body mi-column" style="justify-content:center;">
+    <div class="mi-column mi-login">
+        <div class="mi-login-headers">
+             <a class="mi-row"  ui-sref="home"><div class="mi-logo">LGS</div>&nbsp;&nbsp; <div class="mi-logo-buddy">Buddy</div></a>
+        </div>
+        <div class="mi-login-form">
+            <input ng-model="vm.email"placeholder="email"></input>
+            <input ng-model="vm.password"placeholder="password"></input>
+            <button ng-click="vm.auth.login(vm.email, vm.password)">Sign In</button>
+        </div>
+    </div>
+</div>
