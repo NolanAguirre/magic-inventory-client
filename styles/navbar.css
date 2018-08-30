@@ -1,24 +1,27 @@
-.mi-logo{
+.mi-logo {
     font-family: 'Roboto Slab', serif;
-    color:blue;
+    color: blue;
     font-size: 40px;
 }
-.mi-logo-buddy{
+
+.mi-logo-buddy {
     margin-top: 3px;
     font-family: 'Roboto Slab', serif;
-    color:blue;
+    color: blue;
     position: relative;
     font-size: 34px;
 }
+
 .mi-logo-buddy:before {
-  content : "";
-  position: absolute;
-  left    : 0;
-  bottom  : 10px;
-  height  : 1px;
-  width   : 80%;  /* or 100px */
-  border-bottom:2.5px solid blue;
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    height: 1px;
+    width: 80%;
+    border-bottom: 2.5px solid blue;
 }
+
 .dropdown-menu {
     margin: 0;
     position: absolute;
@@ -41,6 +44,7 @@
 .dropdown-menu li:hover {
     background-color: #337ab7;
 }
+
 .mi-nav-contaier {
     position: fixed;
     height: 75px;
@@ -97,6 +101,7 @@
 .mi-header-mobile {
     display: none;
 }
+
 @media only screen and (max-width: 800px) {
     .mi-header-desktop {
         display: none;

@@ -1,10 +1,20 @@
 body {
     margin: 0;
-    background-color: #f8f8f8 !important;
+    background-color: #f3f3f3 !important;
 }
 
 a {
     cursor: pointer;
+    text-decoration: none !important;
+}
+
+.loading img {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 
 .mi-column {
@@ -12,8 +22,8 @@ a {
     flex-direction: column;
 }
 
-.mi-full-height{
-    height:100%;
+.mi-full-height {
+    flex: 1;
 }
 
 .mi-row {
@@ -34,4 +44,5 @@ a {
     box-sizing: border-box;
     max-width: 1200px;
     min-height: 600px;
+    height: 100%;
 }

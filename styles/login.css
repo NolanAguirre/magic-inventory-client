@@ -1,17 +1,14 @@
-.mi-login{
+.mi-login {
     display: flex;
     flex-direction: column;
-    height:400px;
-    width:500px;
+    height: 400px;
+    width: 500px;
     padding: 40px;
     box-sizing: border-box;
     background-color: white;
     margin-bottom: 200px;
 }
 
-.mi-login-form{
-
-}
 .mi-login-form input {
     margin-top: 40px;
     display: block;
@@ -27,7 +24,8 @@
     box-shadow: none;
     background-clip: padding-box;
 }
-.mi-login-form button{
+
+.mi-login-form button {
     margin-top: 60px;
     padding: 10px 40px;
 }

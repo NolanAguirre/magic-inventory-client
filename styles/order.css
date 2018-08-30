@@ -1,7 +1,6 @@
-/* TODO: improve the names of the classes */
-
 .mi-order-container {
     display: flex;
+    height: 100%;
     flex-direction: column;
     width: 100%;
 }
@@ -26,12 +25,12 @@
 
 .mi-order-sort-by div {
     padding: 1rem 2rem;
-    background: rgb(247, 202, 213);
+    background: rgb(168, 231, 245);
     transition: .2s background-color;
 }
 
 .mi-order-sort-by div:hover {
-    background-color: rgb(245, 168, 187);
+    background-color: rgb(138, 213, 230);
 }
 
 .mi-order-sort-by-item {
@@ -39,6 +38,11 @@
     background-color: white;
     padding: 0 10px;
     margin: 0 2px;
+}
+
+.mi-admin-order-container {
+    flex: 1;
+    display: flex;
 }
 
 .mi-admin-order-container-pagination {

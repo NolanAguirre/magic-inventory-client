@@ -1,5 +1,7 @@
 /* stores css */
+
 .mi-store {
+    background-color: white;
     min-height: 150px;
     padding: 1rem;
     width: 100%;
@@ -11,7 +13,7 @@
 }
 
 .mi-store-info img {
-    padding-right: 1rem;
+    margin-right: 1rem;
 }
 
 .mi-store-contact {
@@ -34,7 +36,9 @@
 .mi-store-view-inventory:hover {
     background-color: rgb(87, 223, 173);
 }
+
 /* store css */
-.mi-card-scrollable {
+
+.mi-scrollable {
     overflow: auto;
 }
