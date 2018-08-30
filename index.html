@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/store.css">
+    <link rel="stylesheet" href="styles/stores.css">
     <link rel="stylesheet" href="styles/test.css">
     <link rel="stylesheet" href="styles/order.css">
     <link rel="stylesheet" href="styles/card.css">
@@ -21,8 +22,10 @@
 </head>
 
 <body>
-    <navbar></navbar>
-    <ui-view class="mi-row"></ui-view>
+    <div class="app">
+        <navbar class="header"></navbar>
+        <ui-view class="content"></ui-view>
+    </div>
     <!-- <footer><footer> -->
     <script type="text/javascript" src="node_modules/angular/angular.js"></script>
     <script type="text/javascript" src="node_modules/@uirouter/angularjs/release/angular-ui-router.js"></script>

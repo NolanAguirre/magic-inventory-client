@@ -8,15 +8,19 @@ a {
     text-decoration: none !important;
 }
 
-.loading img {
-    position: absolute;
-    margin: auto;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+ul{
+    padding-left: 0px;
+    margin:0 !important;
 }
-
+.app{
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+}
+.content{
+    flex:1;
+    display: flex;
+}
 .mi-column {
     display: flex;
     flex-direction: column;
@@ -38,11 +42,9 @@ a {
     margin-bottom: 20px;
 }
 
-.mi-body {
+.body {
     margin: 0 auto;
-    padding-top: 75px;
-    box-sizing: border-box;
     max-width: 1200px;
-    min-height: 600px;
-    height: 100%;
+    display: flex;
+    flex:1;
 }
