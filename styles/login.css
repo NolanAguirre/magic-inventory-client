@@ -1,15 +1,15 @@
-.mi-login {
-    display: flex;
-    flex-direction: column;
+.login-container{
+    margin: auto;
+}
+.login-widget{
     height: 400px;
     width: 500px;
+    margin-bottom: 200px;
     padding: 40px;
     box-sizing: border-box;
     background-color: white;
-    margin-bottom: 200px;
 }
-
-.mi-login-form input {
+.login-form input {
     margin-top: 40px;
     display: block;
     height: 40px;
@@ -25,7 +25,11 @@
     background-clip: padding-box;
 }
 
-.mi-login-form button {
+.login-form button {
     margin-top: 60px;
     padding: 10px 40px;
+}
+.login-headers{
+    display: flex;
+    justify-content: center;
 }
