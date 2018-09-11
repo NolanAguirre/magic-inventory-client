@@ -1,15 +1,15 @@
-<div class="mi-body">
-    <div class="mi-column">
-        <div class="mi-search-container">
+<div class="body">
+    <div class="column">
+        <div class="search-container">
             <search model="vm.cardName" query="vm.typeahead.inventoryName"></search>
             <button ng-click="vm.query()">Find inventory</button>
         </div>
-        <div class="mi-card-scrollable">
+        <div class="card-scrollable">
             <card ng-repeat="inventoryItem in vm.searchResults.list track by $index" behaviour="vm.addCardToOrder"card="inventoryItem"></card>
         </div>
     </div>
-    <div class="mi-column">
-        <table class="mi-admin-order-cards mi-margin-bottom">
+    <div class="column">
+        <table class="admin-order-cards margin-bottom">
           <tr>
             <th>Name</th>
             <th>Set</th>
@@ -17,7 +17,7 @@
             <th>Price</th>
             <th>Quantity</th>
           </tr>
-          <tr ng-click="vm.removeCardFromOrder(card)"class="mi-admin-order-card" ng-repeat="card in vm.storage.data.localOrder.list">
+          <tr ng-click="vm.removeCardFromOrder(card)"class="admin-order-card" ng-repeat="card in vm.storage.data.localOrder.list">
             <td>{{card.name}}</td>
             <td>{{card.setName}}</td>
             <td>{{card.condition}}</td>

@@ -1,8 +1,8 @@
-<div class="mi-body">
-  <div class="mi-order-container">
-    <div class="mi-order-sort-by-container">
+<div class="body">
+  <div class="order-container">
+    <div class="order-sort-by-container">
       <div>Filter By:</div>
-      <div class="mi-order-filter-by">
+      <div class="order-filter-by">
         <div ng-repeat="orderFilter in vm.orderFilters track by $index">
           <div>{{orderFilter.name}}
             <select ng-model="vm[orderFilter.id]" ng-change="vm.getOrders()">
@@ -16,16 +16,16 @@
         </div>
       </div>
       <div>Sort By:</div>
-      <div class="mi-order-sort-by">
+      <div class="order-sort-by">
         <div ng-click="orderSort.sort()" ng-repeat="orderSort in vm.orderSorts">
           {{orderSort.name}}
         </div>
       </div>
     </div>
-    <div class="mi-admin-order-container mi-column">
+    <div class="admin-order-container column">
         <div style="flex:1;">
-      <div ng-repeat="order in vm.orderSet.edges track by $index" class="mi-admin-order">
-        <table class="mi-admin-order-cards">
+      <div ng-repeat="order in vm.orderSet.edges track by $index" class="admin-order">
+        <table class="admin-order-cards">
           <tr>
             <th>Order Status</th>
             <th>Date Placed</th>
@@ -41,7 +41,7 @@
             <th>{{order.node.userByUserId.email}}</th>
           </tr>
         </table>
-        <table class="mi-admin-order-cards">
+        <table class="admin-order-cards">
           <tr>
             <th>Name</th>
             <th>Set</th>
@@ -49,7 +49,7 @@
             <th>Price</th>
             <th>Quantity</th>
           </tr>
-          <tr class="mi-admin-order-card" ng-repeat="card in order.orderItemsByOrderId.edges">
+          <tr class="admin-order-card" ng-repeat="card in order.orderItemsByOrderId.edges">
             <td>{{card.node.inventoryByInventoryId.cardByCardId.name}}</td>
             <td>{{card.node.inventoryByInventoryId.cardByCardId.setName}}</td>
             <td>{{card.node.inventoryByInventoryId.condition}}</td>
@@ -67,7 +67,7 @@
       </select>
       </div>
   </div>
-      <div class="mi-admin-order-container-pagination">
+      <div class="admin-order-container-pagination">
         <ul uib-pagination ng-change="vm.getOrders()" direction-links="false" items-per-page="5" total-items="vm.pagination.totalItems" ng-model="vm.pagination.currentPage" max-size="vm.pagination.maxSize" class="pagination-lg" boundary-links="true" force-ellipses="true"></ul>
       </div>
     </div>

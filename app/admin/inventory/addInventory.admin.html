@@ -1,4 +1,4 @@
-<div class="mi-body">
+<div class="body">
   <div>
     <div style="display:flex; justify-content:space-around;">
       <button ng-click=" vm.collapseAddInventory=0">Add by name and set</button>
@@ -9,13 +9,13 @@
     <div>
       <div ng-hide="vm.collapseAddInventory != 0">
         <div style="display:flex;">
-          <div class="mi-add-inventory-condition">
+          <div class="add-inventory-condition">
             Add By Set: <search model="vm.cardSetName" query="vm.typeahead.cardSetName"></search>
           </div>
         </div>
-        <div class="mi-add-inventory-container">
+        <div class="add-inventory-container">
           <div>
-            <div class="mi-add-inventroy-section">
+            <div class="add-inventroy-section">
               <table>
                 <tr>
                   <td>name</td>
@@ -28,7 +28,7 @@
               </table>
             </div>
             <div style="display:flex;justify-content: center;">or</div>
-            <div class="mi-add-inventroy-section">
+            <div class="add-inventroy-section">
               <table>
                 <tr>
                   <td> set or set code:</td>
@@ -46,7 +46,7 @@
         <button ng-click="vm.queryCard(vm.cardName, vm.cardSetName)">Search for card</button>
       </div>
       <div ng-hide="vm.collapseAddInventory != 1">
-        <div class="mi-search-container">
+        <div class="search-container">
           <search model="vm.cardName" query="vm.typeahead.cardName"></search>
           <button ng-click="vm.queryCard(vm.cardName)">Search for card</button>
         </div>

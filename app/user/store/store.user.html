@@ -1,19 +1,17 @@
-<div class="mi-body mi-full-height mi-column">
-    <div class="mi-column">
-        <div>
-            <button>View By Set</button>
-            <button>Search for Card</button>
-            <button>Browse Cards</button>
+<div class="body">
+    <div class="store-inventory-container">
+        <div class="search-options">
+            <button class="search-option-btn">View By Set</button>
+            <button class="search-option-btn">Search for Card</button>
+            <button class="search-option-btn">Browse Cards</button>
         </div>
-        <div class="mi-search-container">
+        <div class="search-container">
             <search model="vm.cardName" query="vm.typeahead.inventoryName"></search>
             <button ng-click="vm.query(vm.cardName)">Search for card</button>
         </div>
-    </div>
-    <div style="flex:1" class="mi-column">
-        <div class="mi-card-scrollable">
+        <div class="card-scrollable">
             <card ng-repeat="inventoryItem in vm.searchResults.list track by $index" card="inventoryItem">
-                <innercardcart style="flex:1; display:flex;" buttonpress="vm.cart.addItem"card="inventoryItem"></innercardcart>
+                <innercardcart style="flex:1; display:flex;" buttonpress="vm.cart.addItem" card="inventoryItem"></innercardcart>
             </card>
         </div>
     </div>

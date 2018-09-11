@@ -1,73 +1,73 @@
-.mi-order-container {
+.order-container {
     display: flex;
     height: 100%;
     flex-direction: column;
     width: 100%;
 }
 
-.mi-order-sort-by-container {
+.order-sort-by-container {
     display: flex;
     flex-direction: column;
     font-size: 20px;
 }
 
-.mi-order-sort-by {
+.order-sort-by {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.mi-order-filter-by {
+.order-filter-by {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.mi-order-sort-by div {
+.order-sort-by div {
     padding: 1rem 2rem;
     background: rgb(168, 231, 245);
     transition: .2s background-color;
 }
 
-.mi-order-sort-by div:hover {
+.order-sort-by div:hover {
     background-color: rgb(138, 213, 230);
 }
 
-.mi-order-sort-by-item {
+.order-sort-by-item {
     height: 100px;
     background-color: white;
     padding: 0 10px;
     margin: 0 2px;
 }
 
-.mi-admin-order-container {
+.admin-order-container {
     flex: 1;
     display: flex;
 }
 
-.mi-admin-order-container-pagination {
+.admin-order-container-pagination {
     display: flex;
     justify-content: center;
 }
 
-.mi-admin-order {
+.admin-order {
     padding: 20 40px;
     box-sizing: border-box;
     border: 4px solid grey;
 }
 
-.mi-admin-order-cards {
+.admin-order-cards {
     width: 100%;
 }
 
-.mi-admin-order-cards tr:first-child {
+.admin-order-cards tr:first-child {
     background: #f8f8f8;
 }
 
-.mi-admin-order-cards tr:nth-child(2n+3) {
+.admin-order-cards tr:nth-child(2n+3) {
     background: rgb(207, 207, 207);
 }
 
-.mi-admin-order-cards tr:nth-child(2n) {
+.admin-order-cards tr:nth-child(2n) {
     background: rgb(175, 175, 175);
 }

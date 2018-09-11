@@ -1,18 +1,21 @@
-<div class='mi-body'>
-    <div class='mi-store' ng-repeat='store in vm.stores'>
-        <div class="mi-row">
-            <img src="http://via.placeholder.com/350x150"></img>
+<div class='body'>
+    <!-- TODO add search store by name, location or card? -->
+    <div class="stores-container">
+        <div class='store-container' ng-repeat='store in vm.stores'>
             <div>
+                <img src="http://via.placeholder.com/350x150"></img>
+            </div>
+            <div class="store-info">
                 <h3>{{store.name}}</h3>
-                <div class="mi-column">
-                    <div class="mi-store-contact"><img src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/phone-32.png"></img>{{store.phoneNumber}}</div>
-                    <div class="mi-store-contact"><img src="https://cdn4.iconfinder.com/data/icons/black-white-social-media/32/mail_email_envelope_send_message-32.png"></img>{{store.email}}</div>
+                <div class="column">
+                    <div class="store-contact"><img src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/phone-32.png"></img>{{store.phoneNumber}}</div>
+                    <div class="store-contact"><img src="https://cdn4.iconfinder.com/data/icons/black-white-social-media/32/mail_email_envelope_send_message-32.png"></img>{{store.email}}</div>
                 </div>
             </div>
-        </div>
-        <div>
-            <div class="mi-store-view-inventory" ng-click="vm.setStore(store)" ui-sref="store">
-                View Store Inventory
+            <div class="store-view-inventory">
+                <div class="store-view-inventory-btn" ng-click="vm.setStore(store)" ui-sref="store">
+                    View Store Inventory
+                </div>
             </div>
         </div>
     </div>

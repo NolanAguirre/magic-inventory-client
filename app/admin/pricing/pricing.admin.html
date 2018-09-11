@@ -1,9 +1,9 @@
-<div class="mi-body">
-    <div class="mi-search-container">
+<div class="body column">
+    <div class="search-container">
         <search model="vm.cardName" query="vm.typeahead.cardName"></search>
         <button ng-click="vm.query()">price card</button>
     </div>
-    <div class="mi-card-container">
+    <div class="column scrollable full-height">
         <card ng-repeat="card in vm.searchResults" card="card">
             <innercardsimple style="display:flex;" card="card"></innercardsimple>
         </card>
