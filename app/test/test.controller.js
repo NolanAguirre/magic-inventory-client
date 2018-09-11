@@ -105,7 +105,7 @@ function testController(http, graphql, auth) {
         return http.graphql(graphql.allCards({
             data: ["id", 'name', 'setName', 'multiverseId'],
             format: {
-                first: 30
+                first: 300
             }
         })).then((res) => {
             vm.cards = res.data.data.allCards.edges;
@@ -144,6 +144,8 @@ function testController(http, graphql, auth) {
     vm.getKeys = (data) => {
         return Object.keys(data);
     }
+
+    vm.populateCardData = http.createRequest("http://localhost:3002/api/update", (view, data)=>{console.log(data)})
     vm.populateTestData = (async () => {
         let createUsers = {
             create: (el) => {
@@ -187,7 +189,7 @@ function testController(http, graphql, auth) {
                         auth.login(el.owner.email, el.owner.password).then((respo) => {
                             vm.createStore(el.name, el.email, el.phoneNumber, el.city, el.state, el.zipCode).then((respon) => {
                                 console.log(respon);
-                                el.id = respon.data.data.createStore.id;
+                                el.id = respon.data.data.createStore.store.id;
                                 vm.createAdmin(el.owner.id, el.id);
                             })
                         })
@@ -217,7 +219,7 @@ function testController(http, graphql, auth) {
         }
 
         function populateInventoryData() {
-            for (var x = 0; x < 10; x++) {
+            for (var x = 0; x < 1000; x++) {
                 let temp = {};
                 temp.cardId = vm.cards[Math.floor(Math.random() * vm.cards.length)].node.id;
                 temp.store = createStores.data[Math.floor(Math.random() * createStores.data.length)];
@@ -225,6 +227,7 @@ function testController(http, graphql, auth) {
                 temp.price = 0;
                 createInventory.data.push(temp);
             }
+            console.log(createInventory.data);
         }
         createUsers.data.map((element) => {
             createUsers.create(element);
