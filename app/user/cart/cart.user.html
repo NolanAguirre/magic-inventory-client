@@ -1,4 +1,30 @@
-<div class="mi-body">
-    <card ng-repeat="cartItem in vm.cartItems track by $index" card="cartItem">
-    </card>
+<div class="body">
+    <div class="cart-container">
+        <div class="cart-header">
+            Shopping Cart
+        </div>
+        <div class="cart-contents">
+            <div class="card-scrollable">
+                <card ng-repeat="cartItem in vm.cartItems track by $index" card="cartItem">
+                </card>
+            </div>
+            <div class="cart-summery-container">
+                <div class="cart-summery">
+                    <table>
+                        <tr>
+                            <td>Items In Cart:</td>
+                            <td>{{vm.cart.getCount()}}</td>
+                        </tr>
+                        <tr>
+                            <td>Cart Total: </td>
+                            <td>{{vm.cart.getTotal()}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <button class="cart-checkout-btn">
+                    Checkout
+                </button>
+            </div>
+        </div>
+    </div>
 </div>

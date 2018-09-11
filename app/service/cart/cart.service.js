@@ -27,7 +27,12 @@
       function getItems(){
           return items;
       }
-
+      function getCount(){
+          return items.length;
+      }
+      function getTotal(){
+          return 0;
+      }
       function checkout(){
           let itemsWithIssues = items.filter(async (item)=>{
               let data = await http.graphql(graphql.fragment(`
@@ -47,7 +52,9 @@
       return {
           addItem:addItem,
           getItems:getItems,
-          checkout:checkout
+          checkout:checkout,
+          getCount: getCount,
+          getTotal: getTotal
       }
   }
 })();
