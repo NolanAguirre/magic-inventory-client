@@ -10,8 +10,8 @@
 
     function authService($state, $timeout, httpService, graphql, storage) {
         let profile;
+        //TODO handle poeple messing up login
          function login(email, password) {
-            $state.go('callback')
             return httpService.graphql(graphql.fragment(`
                 mutation{
 	                   authenticate(input:{arg0:"${email}", password:"${password}"}){
@@ -20,6 +20,10 @@
                    }
                 `)).then(async (res) => {
                 console.log(res)
+                if(res.data.data.authenticate.jwtTokenType == null){
+                    $state.go('login')
+                    return;
+                }
                 localStorage.setItem('access_token', res.data.data.authenticate.jwtTokenType);
                 await getUserProfile();
                 $state.go('home')
@@ -44,7 +48,7 @@
                      }
                 `))
                 profile = result.data.data.getUserData;
-                console.log(profile);
+                console.log(result);
                 return profile;
             }
         }
@@ -59,14 +63,9 @@
         }
 
         function logout() {
-            // Remove tokens and expiry time from localStorage
             localStorage.removeItem('access_token');
-            localStorage.removeItem('id');
             localStorage.removeItem('expires_at');
-            localStorage.removeItem('role');
-            localStorage.removeItem('store');
-            storage.data.userProfile = {};
-            //$state.go('home');
+            $state.go('home');
         }
 
         function isAuthenticated() {
