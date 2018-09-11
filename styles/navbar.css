@@ -5,6 +5,7 @@
     background-color: white;
     padding: 0 15px;
     display: flex;
+    border-bottom: 3px solid rgb(201, 217, 221);
 }
 
 .nav-logo {
