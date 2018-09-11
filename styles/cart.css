@@ -1,0 +1,28 @@
+.cart-container{
+    background-color: white;
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    margin:10px 0;
+}
+.cart-header{
+    font-size:54px;
+    border-bottom: 3px solid #4586cd;
+    margin: 0 10px;
+}
+.cart-contents{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex:1;
+}
+.cart-summery-container{
+    width:250px;
+    display:flex;
+    flex-direction: column;
+    margin:20px 0;
+    padding-left: 5px;
+    border-left: 3px solid #6393c8;
+    margin-left: auto;
+}
+.cart-checkout-btn

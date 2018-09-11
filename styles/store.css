@@ -1,44 +1,17 @@
-/* stores css */
-
-.mi-store {
+.search-options{
+    display:flex;
+    justify-content: center;
+}
+.search-option-btn{
+    padding: 10px 20px;
+    margin: 4px 20px;
+}
+.store-inventory-container{
     background-color: white;
-    min-height: 150px;
-    padding: 1rem;
+    display:flex;
+    flex-direction: column;
     width: 100%;
-    border-bottom: 2px solid rgb(189, 189, 189);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
 }
-
-.mi-store-info img {
-    margin-right: 1rem;
-}
-
-.mi-store-contact {
-    display: flex;
-    padding: 5 0;
-    align-items: center;
-    font-size: 20px;
-}
-
-.mi-store-view-inventory {
-    width: 15rem;
-    text-align: center;
-    background-color: #38aebc;
-    padding: 2rem 3rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color .2s;
-}
-
-.mi-store-view-inventory:hover {
-    background-color: rgb(87, 223, 173);
-}
-
-/* store css */
-
-.mi-scrollable {
+.card-scrollable {
     overflow: auto;
 }
